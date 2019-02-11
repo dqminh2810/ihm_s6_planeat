@@ -20,7 +20,7 @@
          <children>
             <HBox layoutX="103.0" layoutY="117.0" prefHeight="400.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button mnemonicParsing="false" text="←">
+                  <Button fx:id="returnButton" mnemonicParsing="false" text="←">
                      <HBox.margin>
                         <Insets top="4.0" />
                      </HBox.margin>
@@ -51,23 +51,23 @@
                                                    <children>
                                                       <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                                          <children>
-                                                            <PieChart fx:id="energyPiechart" minHeight="0.0" minWidth="0.0" title="Energie" titleSide="BOTTOM" HBox.hgrow="ALWAYS" />
-                                                            <PieChart fx:id="fatsPiechart" minHeight="0.0" minWidth="0.0" title="Lipides" titleSide="BOTTOM" />
-                                                            <PieChart fx:id="saturatedPiechart" minHeight="0.0" minWidth="0.0" title="Acides Gras Saturés" titleSide="BOTTOM" />
+                                                            <PieChart fx:id="energyPieChart" minHeight="0.0" minWidth="0.0" title="Energie" titleSide="BOTTOM" HBox.hgrow="ALWAYS" />
+                                                            <PieChart fx:id="fatsPieChart" minHeight="0.0" minWidth="0.0" title="Lipides" titleSide="BOTTOM" />
+                                                            <PieChart fx:id="saturatedPieChart" minHeight="0.0" minWidth="0.0" title="Acides Gras Saturés" titleSide="BOTTOM" />
                                                          </children>
                                                       </HBox>
                                                       <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                                          <children>
-                                                            <PieChart fx:id="carbohydratesChartpie" minHeight="0.0" minWidth="0.0" title="Glucides" titleSide="BOTTOM" HBox.hgrow="ALWAYS" />
-                                                            <PieChart fx:id="sugarChartpie" minHeight="0.0" minWidth="0.0" title="Sucres" titleSide="BOTTOM" />
-                                                            <PieChart fx:id="proteinsChartpie" minHeight="0.0" minWidth="0.0" title="Protéines" titleSide="BOTTOM" />
+                                                            <PieChart fx:id="carbohydratesPieChart" minHeight="0.0" minWidth="0.0" title="Glucides" titleSide="BOTTOM" HBox.hgrow="ALWAYS" />
+                                                            <PieChart fx:id="sugarPieChart" minHeight="0.0" minWidth="0.0" title="Sucres" titleSide="BOTTOM" />
+                                                            <PieChart fx:id="proteinsPieChart" minHeight="0.0" minWidth="0.0" title="Protéines" titleSide="BOTTOM" />
                                                          </children>
                                                       </HBox>
                                                       <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                                          <children>
-                                                            <PieChart fx:id="saltChartpie" minHeight="0.0" minWidth="0.0" title="Sel" titleSide="BOTTOM" HBox.hgrow="ALWAYS" />
-                                                            <PieChart fx:id="fibresChartpie" minHeight="0.0" minWidth="0.0" title="Fibres" titleSide="BOTTOM" />
-                                                            <PieChart fx:id="calciumChartpie" minHeight="0.0" minWidth="0.0" title="Calcium" titleSide="BOTTOM" />
+                                                            <PieChart fx:id="saltPieChart" minHeight="0.0" minWidth="0.0" title="Sel" titleSide="BOTTOM" HBox.hgrow="ALWAYS" />
+                                                            <PieChart fx:id="fibresPieChart" minHeight="0.0" minWidth="0.0" title="Fibres" titleSide="BOTTOM" />
+                                                            <PieChart fx:id="calciumPieChart" minHeight="0.0" minWidth="0.0" title="Calcium" titleSide="BOTTOM" />
                                                          </children>
                                                       </HBox>
                                                    </children>
