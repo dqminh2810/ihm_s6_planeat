@@ -13,7 +13,7 @@
    <children>
       <HBox>
          <children>
-            <Button fx:id="return_button" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="←">
+            <Button fx:id="returnButton" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="←">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" top="10.0" />
                </HBox.margin>
@@ -31,17 +31,17 @@
       </HBox>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
          <children>
-            <TextField fx:id="email_textflied" text="Email*">
+            <TextField fx:id="emailTextfield" text="Email*">
                <VBox.margin>
                   <Insets bottom="30.0" left="60.0" right="60.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="password_textfield" text="Mot de passe*">
+            <TextField fx:id="passwordTextfield" text="Mot de passe*">
                <VBox.margin>
                   <Insets bottom="30.0" left="60.0" right="60.0" />
                </VBox.margin>
             </TextField>
-            <Button fx:id="connexion_button" mnemonicParsing="false" text="Connexion" />
+            <Button fx:id="connexionButton" mnemonicParsing="false" text="Connexion" />
          </children>
       </VBox>
    </children>

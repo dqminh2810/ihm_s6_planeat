@@ -16,16 +16,16 @@
          <children>
             <HBox alignment="CENTER">
                <children>
-                  <Button fx:id="prevday_button" mnemonicParsing="false" text="&lt;&lt;">
+                  <Button fx:id="prevdayButton" mnemonicParsing="false" text="&lt;&lt;">
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Text fx:id="curdate_text" strokeType="OUTSIDE" strokeWidth="0.0" text="dd/mm">
+                  <Text fx:id="curdateText" strokeType="OUTSIDE" strokeWidth="0.0" text="dd/mm">
                      <font>
                         <Font size="14.0" />
                      </font></Text>
-                  <Button fx:id="nextday_button" mnemonicParsing="false" text="&gt;&gt;">
+                  <Button fx:id="nextdayButton" mnemonicParsing="false" text="&gt;&gt;">
                      <HBox.margin>
                         <Insets left="15.0" />
                      </HBox.margin>
@@ -38,7 +38,7 @@
                   <Insets bottom="10.0" />
                </padding>
             </HBox>
-            <ListView fx:id="curday_list" prefHeight="342.0" prefWidth="194.0" VBox.vgrow="ALWAYS">
+            <ListView fx:id="curdayList" prefHeight="342.0" prefWidth="194.0" VBox.vgrow="ALWAYS">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -65,8 +65,8 @@
                   </Text>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Text fx:id="curmeal_hour_text" strokeType="OUTSIDE" strokeWidth="0.0" text="10h00" />
-                        <Text fx:id="curmeal_name_text" strokeType="OUTSIDE" strokeWidth="0.0" text="Repas">
+                        <Text fx:id="curmealHourText" strokeType="OUTSIDE" strokeWidth="0.0" text="10h00" />
+                        <Text fx:id="curmealNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Repas">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -89,7 +89,7 @@
                         </Text>
                         <Button mnemonicParsing="false">
                            <graphic>
-                              <ImageView fx:id="stats_button" fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="statsButton" fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                         </Button>
                      </children>
@@ -98,13 +98,13 @@
                      <children>
                         <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                            <children>
-                              <PieChart fx:id="calories_piechart" minHeight="0.0" minWidth="0.0" title="Calories" />
-                              <PieChart fx:id="protein_piechart" minHeight="0.0" minWidth="0.0" title="Protéines" />
+                              <PieChart fx:id="caloriesPiechart" minHeight="0.0" minWidth="0.0" title="Calories" />
+                              <PieChart fx:id="proteinPiechart" minHeight="0.0" minWidth="0.0" title="Protéines" />
                            </children></HBox>
                         <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                            <children>
-                              <PieChart fx:id="glucoses_piechart" minHeight="0.0" minWidth="0.0" title="Glucoses" />
-                              <PieChart fx:id="dontsucre_piechart" minHeight="0.0" minWidth="0.0" title="Dont sucre" />
+                              <PieChart fx:id="glucosesPiechart" minHeight="0.0" minWidth="0.0" title="Glucoses" />
+                              <PieChart fx:id="dontsucrePiechart" minHeight="0.0" minWidth="0.0" title="Dont sucre" />
                            </children></HBox>
                      </children>
                   </VBox>
@@ -123,7 +123,7 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                      <graphic>
-                        <ImageView fx:id="agenda_button" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="agendaButton" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </Button>
                   <Button mnemonicParsing="false">
@@ -131,7 +131,7 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                      <graphic>
-                        <ImageView fx:id="addmeal_button" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="addMealButton" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </Button>
                   <Button mnemonicParsing="false">
@@ -139,7 +139,7 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                      <graphic>
-                        <ImageView fx:id="create_meal_button" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="createMealButton" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </Button>
                   <Button mnemonicParsing="false">
@@ -147,7 +147,7 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                      <graphic>
-                        <ImageView fx:id="create_ingredient_button" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="createIngredientButton" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </Button>
                   <Button mnemonicParsing="false">
@@ -155,7 +155,7 @@
                         <Insets bottom="20.0" top="20.0" />
                      </VBox.margin>
                      <graphic>
-                        <ImageView fx:id="profile_button" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="profileButton" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </Button>
                </children>
@@ -165,7 +165,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="40.0" prefWidth="78.0" VBox.vgrow="NEVER">
                <children>
-                  <Text fx:id="curhour_text" strokeType="OUTSIDE" strokeWidth="0.0" text="10h00">
+                  <Text fx:id="curHourText" strokeType="OUTSIDE" strokeWidth="0.0" text="10h00">
                      <font>
                         <Font size="14.0" />
                      </font>

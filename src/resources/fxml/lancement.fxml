@@ -16,12 +16,12 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <Button fx:id="connexion_button" mnemonicParsing="false" text="Connexion">
+      <Button fx:id="connexionButton" mnemonicParsing="false" text="Connexion">
          <VBox.margin>
             <Insets bottom="35.0" />
          </VBox.margin>
       </Button>
-      <Button fx:id="inscription_button" mnemonicParsing="false" text="Inscription">
+      <Button fx:id="inscriptionButton" mnemonicParsing="false" text="Inscription">
          <VBox.margin>
             <Insets bottom="35.0" />
          </VBox.margin>
