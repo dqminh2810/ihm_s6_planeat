@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
@@ -11,12 +12,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_LEFT" prefWidth="200.0">
          <children>
-            <Button fx:id="return_button" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="←">
+            <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="←">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
@@ -40,12 +40,12 @@
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <TextField fx:id="name_texfield" promptText="Nom">
+            <TextField fx:id="nameTexfield" promptText="Nom">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="firstname_texfield" promptText="Prénom">
+            <TextField fx:id="firstnameTexfield" promptText="Prénom">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -57,7 +57,7 @@
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <TextField fx:id="mail_texfield" prefHeight="25.0" prefWidth="309.0" promptText="E-mail">
+            <TextField fx:id="mailTexfield" prefHeight="25.0" prefWidth="309.0" promptText="E-mail">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -74,7 +74,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Text>
-            <DatePicker fx:id="birth_date_picker" prefHeight="25.0" prefWidth="209.0" />
+            <DatePicker fx:id="birthDatePicker" prefHeight="25.0" prefWidth="209.0" />
          </children>
          <VBox.margin>
             <Insets top="10.0" />
@@ -87,12 +87,12 @@
                   <Insets />
                </HBox.margin>
             </Text>
-            <RadioButton fx:id="sex_m" mnemonicParsing="false" text="M">
+            <RadioButton fx:id="sexM" mnemonicParsing="false" text="M">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
             </RadioButton>
-            <RadioButton fx:id="sex_f" mnemonicParsing="false" text="F">
+            <RadioButton fx:id="sexF" mnemonicParsing="false" text="F">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
@@ -107,12 +107,12 @@
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <TextField fx:id="weight_texfield" promptText="Poids (kg)">
+            <TextField fx:id="weightTexfield" promptText="Poids (kg)">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="size_texfield" promptText="Taille (cm)">
+            <TextField fx:id="sizeTexfield" promptText="Taille (cm)">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -124,15 +124,7 @@
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <ChoiceBox fx:id="statut_combobox" prefHeight="25.0" prefWidth="318.0" />
-         </children>
-         <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin>
-      </HBox>
-      <HBox fx:id="cooking_frequency_combobox" alignment="CENTER" prefWidth="200.0">
-         <children>
-            <ChoiceBox fx:id="statut_combobox1" prefHeight="25.0" prefWidth="318.0" />
+            <ChoiceBox fx:id="statusChoicebox" prefHeight="25.0" prefWidth="318.0" />
          </children>
          <VBox.margin>
             <Insets top="10.0" />
@@ -140,16 +132,24 @@
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <TextField fx:id="name_texfield1" promptText="Mot de passe*">
+            <ChoiceBox fx:id="cookingFrequencyChoiceBox" prefHeight="25.0" prefWidth="318.0" />
+         </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefWidth="200.0">
+         <children>
+            <PasswordField fx:id="passwordField" promptText="Mot de passe">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
-            </TextField>
-            <TextField fx:id="firstname_texfield1" promptText="Confirmation mot de passe*">
+            </PasswordField>
+            <PasswordField fx:id="passwordConfirmationField" promptText="Confirmation mot de passe">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
-            </TextField>
+            </PasswordField>
          </children>
          <VBox.margin>
             <Insets top="10.0" />
@@ -157,7 +157,7 @@
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Button fx:id="return_button1" mnemonicParsing="false" text="Inscription">
+            <Button fx:id="inscriptionButton" mnemonicParsing="false" text="Inscription">
                <font>
                   <Font size="18.0" />
                </font>
