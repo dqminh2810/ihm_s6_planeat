@@ -1,22 +1,23 @@
-import controller.ControllerInscription;
+import controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import view.ViewInscription;
 import javafx.stage.Stage;
+import view.*;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader();
-        ControllerInscription controller = new ControllerInscription();
+        ControllerLancement controller = new ControllerLancement();
         loader.setController(controller);
-        Parent root = loader.load(getClass().getResourceAsStream(ViewInscription.XML_FILE));
+        Parent root = loader.load(getClass().getResourceAsStream(ViewLancement.XML_FILE));
         root.getStylesheets().add(ViewInscription.CSS);
         controller.init();
-        primaryStage.setScene(new Scene(root, ViewInscription.WIDTH, ViewInscription.HEIGHT));
+        primaryStage.setScene(new Scene(root, ViewLancement.WIDTH, ViewLancement.HEIGHT));
         primaryStage.setTitle(ViewInscription.LABEL);
         primaryStage.show();
     }
