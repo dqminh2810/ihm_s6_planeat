@@ -57,7 +57,7 @@
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <TextField fx:id="mailTexfield" prefHeight="25.0" prefWidth="309.0" promptText="E-mail">
+            <TextField fx:id="mailTexfield" prefHeight="25.0" prefWidth="309.0" promptText="E-mail*">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -166,6 +166,11 @@
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="10.0" layoutY="344.0" prefWidth="200.0">
+         <children>
+            <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
+         </children>
       </HBox>
    </children>
 </VBox>
