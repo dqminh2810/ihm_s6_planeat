@@ -10,16 +10,10 @@ import view.*;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader();
-        ControllerLancement controller = new ControllerLancement();
-        loader.setController(controller);
-        Parent root = loader.load(getClass().getResourceAsStream(ViewLancement.XML_FILE));
-        root.getStylesheets().add(ViewInscription.CSS);
-        controller.init();
-        primaryStage.setScene(new Scene(root, ViewLancement.WIDTH, ViewLancement.HEIGHT));
-        primaryStage.setTitle(ViewInscription.LABEL);
-        primaryStage.show();
+    public void start(Stage primaryStage){
+        ViewBase view = new ViewAgenda();
+        Controller controller = new ControllerAgenda(primaryStage, null, view);
+        controller.setView(controller);
     }
 
 

@@ -5,8 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
+import view.ViewBase;
 
-public class ControllerStat {
+public class ControllerStat extends Controller {
     @FXML
     private Button returnButton;
     @FXML
@@ -41,6 +43,9 @@ public class ControllerStat {
     @FXML
     private ListView otherList;
 
+    public ControllerStat(Stage stage, Controller previousController, ViewBase actualView) {
+        super(stage,previousController, actualView);
+    }
 
     public void init(){
         returnButton.setOnAction(event -> System.out.println("back"));

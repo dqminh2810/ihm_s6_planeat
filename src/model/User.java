@@ -15,5 +15,16 @@ public class User {
     private String password;
 
 
-
+    public User(String name, String firstName, LocalDate birthDate, String mail, UserSex sex, float weight, int size, StatusChoice status, CookingFrequency cookingFrequency, String password) {
+        this.name = name;
+        this.firstName = firstName;
+        this.birthDate = birthDate;
+        this.mail = mail;
+        this.sex = sex;
+        this.weight = weight;
+        this.size = size;
+        this.status = status;
+        this.cookingFrequency = cookingFrequency;
+        this.password = password;
+    }
 }

@@ -1,30 +1,29 @@
 package controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import view.ViewBase;
 import view.ViewConnexion;
 import view.ViewInscription;
-import view.ViewLancement;
 
-import java.io.IOException;
-
-public class ControllerLancement {
+public class ControllerLancement extends Controller {
     @FXML
     private Button connexionButton;
     @FXML
     private Button inscriptionButton;
 
-
-    public void init(){
-        connexionButton.setOnAction( event -> goToConnexionView());
-        inscriptionButton.setOnAction( event -> goToConnexionView());    //add a listner to inscription button
+    public ControllerLancement(Stage stage, Controller previousController, ViewBase actualView) {
+        super(stage,previousController, actualView);
     }
 
+
+    public void init(){
+        connexionButton.setOnAction( event -> setView(new ControllerConnexion(getStage(), this, new ViewConnexion())));
+        inscriptionButton.setOnAction( event -> setView(new ControllerInscription(getStage(), this, new ViewInscription())));
+    }
+
+    /*
     public void goToConnexionView() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -42,8 +41,6 @@ public class ControllerLancement {
         }catch (IOException io){
             io.printStackTrace();
         }
-
     }
-
-
+    */
 }
