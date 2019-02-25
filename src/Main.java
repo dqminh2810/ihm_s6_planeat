@@ -11,8 +11,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage){
-        ViewBase view = new ViewAgenda();
-        Controller controller = new ControllerAgenda(primaryStage, null, view);
+        ViewBase view = new ViewPopupAjoutPlats();
+        Controller controller = new ControllerPopupAjoutPlats(primaryStage, null, view);
         controller.setView(controller);
     }
 
