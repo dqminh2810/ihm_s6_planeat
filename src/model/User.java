@@ -3,6 +3,9 @@ package model;
 import java.time.LocalDate;
 
 public class User {
+
+    public static User actualUser = null;
+
     private String name;
     private String firstName;
     private LocalDate birthDate;

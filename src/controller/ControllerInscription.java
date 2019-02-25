@@ -10,6 +10,7 @@ import model.CookingFrequency;
 import model.StatusChoice;
 import model.User;
 import model.UserSex;
+import view.ViewAccueil;
 import view.ViewBase;
 import view.ViewLancement;
 
@@ -104,7 +105,8 @@ public class ControllerInscription extends Controller {
         CookingFrequency cookingFrequency = cookingFrequencyChoiceBox.getSelectionModel().getSelectedItem();
 
         User user = new User(name, firstName, birthDate, mail, sex, weight, size, statusChoice, cookingFrequency, password);
-        //TODO : launch homepage
+        User.actualUser = user;
+        setView(new ControllerAccueil(getStage(), this, new ViewAccueil()));
     }
 
     private void initClickOnSex(){
