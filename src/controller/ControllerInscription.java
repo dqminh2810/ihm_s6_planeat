@@ -6,10 +6,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import mocks.UserMocks;
 import model.CookingFrequency;
 import model.StatusChoice;
 import model.User;
 import model.UserSex;
+import view.ViewAccueil;
 import view.ViewBase;
 import view.ViewLancement;
 
@@ -70,6 +72,11 @@ public class ControllerInscription extends Controller {
             return;
         }
 
+        if(UserMocks.users.containsKey(mail)){
+            errorText.setText("Cet email existe déjà");
+            return;
+        }
+
         LocalDate birthDate = birthDatePicker.getValue();
         if(birthDate == null){
             errorText.setText("Tu n'as pas remplis ta date de naissance");
@@ -104,7 +111,8 @@ public class ControllerInscription extends Controller {
         CookingFrequency cookingFrequency = cookingFrequencyChoiceBox.getSelectionModel().getSelectedItem();
 
         User user = new User(name, firstName, birthDate, mail, sex, weight, size, statusChoice, cookingFrequency, password);
-        //TODO : launch homepage
+        User.actualUser = user;
+        setView(new ControllerAccueil(getStage(), this, new ViewAccueil()));
     }
 
     private void initClickOnSex(){

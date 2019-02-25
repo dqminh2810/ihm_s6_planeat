@@ -1,21 +1,23 @@
 import controller.*;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import view.ViewInscription;
+import mocks.FoodMocks;
+import mocks.UserMocks;
 import javafx.stage.Stage;
+import model.User;
 import view.*;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage){
-        ViewBase view = new ViewAddFood();
-        Controller controller = new ControllerAddFood(primaryStage, null, view);
+        FoodMocks.initMocks();
+        UserMocks.initMocks();
+        User.actualUser = UserMocks.users.get("todesco@gmail.com");
+
+        ViewBase view = new ViewAccueil();
+        Controller controller = new ControllerAccueil(primaryStage, null, view);
         controller.setView(controller);
     }
-
 
     public static void main(String[] args) {
         launch(args);
