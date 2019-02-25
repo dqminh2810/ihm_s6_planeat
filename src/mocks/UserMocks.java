@@ -13,7 +13,7 @@ public class UserMocks {
     public static void initMocks(){
         users = new HashMap<>();
         User user;
-        Repas repas;
+        Menu menu;
         ArrayList<Dish> dish = new ArrayList<>();
         ArrayList<Ingredient> ingredients = new ArrayList<>();
 
@@ -22,11 +22,11 @@ public class UserMocks {
         users.put("todesco@gmail.com", user);
         ingredients.add(new Ingredient(FoodMocks.foods.get(0), 6));
         dish.add(new Dish("Omelette des familles", "A ne pas retourner", CourseType.MAIN_COURSE, ingredients, null));
-        repas = new Repas(dish, LocalDateTime.now());
-        user.addRepas(repas);
+        menu = new Menu("Omelette", dish, LocalDateTime.now());
+        user.addRepas(menu);
 
-        repas = new Repas(dish, LocalDateTime.of(2019, 2, 25, 12, 30));
-        user.addRepas(repas);
+        menu = new Menu("Omelette", dish, LocalDateTime.of(2019, 2, 25, 12, 30));
+        user.addRepas(menu);
 
         user = new User("Bauce", "Camille", LocalDate.now(),
                 "bauce@gmail.com", UserSex.FEMALE, 49, 160, StatusChoice.STUDENT, CookingFrequency.NEVER, "azerty");

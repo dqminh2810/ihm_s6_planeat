@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.User;
 import view.ViewBase;
 
 import java.time.DayOfWeek;
@@ -32,6 +33,7 @@ public class ControllerAgenda extends Controller {
         clickOnReturnButton(returnButton);
         clickOnPreviousWeek();
         clickOnNextWeek();
+        System.out.println(User.actualUser);
     }
 
     private void setDateText(){

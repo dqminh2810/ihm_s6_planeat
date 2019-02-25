@@ -17,7 +17,7 @@ public class User {
     private StatusChoice status;
     private CookingFrequency cookingFrequency;
     private String password;
-    private ArrayList<Repas> repas;
+    private ArrayList<Menu> menus;
 
 
     public User(String name, String firstName, LocalDate birthDate, String mail, UserSex sex, float weight, int size, StatusChoice status, CookingFrequency cookingFrequency, String password) {
@@ -31,16 +31,26 @@ public class User {
         this.status = status;
         this.cookingFrequency = cookingFrequency;
         this.password = password;
-        repas = new ArrayList<>();
+        menus = new ArrayList<>();
     }
 
-    public void addRepas(Repas repas){
-        this.repas.add(repas);
+    public void addRepas(Menu menu){
+        this.menus.add(menu);
     }
 
-    public void addRepas(ArrayList<Repas> repas){
-        this.repas.addAll(repas);
+    public void addRepas(ArrayList<Menu> menus){
+        this.menus.addAll(menus);
     }
 
     public String getPassword(){ return this.password; }
+
+    @Override
+    public String toString(){
+        StringBuilder builder = new StringBuilder();
+        builder.append(name).append(" ").append(firstName).append("\nSes repas : ").append(menus.size()).append("\n");
+        for (Menu menu : menus) {
+            builder.append("\t ").append(menu.getName()).append(" at ").append(menu.getTime()).append("\n");
+        }
+        return builder.toString();
+    }
 }
