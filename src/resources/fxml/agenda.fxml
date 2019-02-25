@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_LEFT" prefWidth="200.0">
          <children>
@@ -53,7 +53,7 @@
                   </Button>
                </children>
             </HBox>
-            <Button fx:id="return_button2" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
+            <Button fx:id="shareButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -63,6 +63,13 @@
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
+               <graphic>
+                  <ImageView fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/resources/images/share.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
          </children>
       </HBox>
