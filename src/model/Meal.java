@@ -3,12 +3,12 @@ package model;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Menu {
+public class Meal {
     private String name;
     private ArrayList<Dish> dishes;
     private LocalDateTime time;
 
-    public Menu(String name, ArrayList<Dish> dishes, LocalDateTime time){
+    public Meal(String name, ArrayList<Dish> dishes, LocalDateTime time){
         this.name = name;
         this.dishes = dishes;
         this.time = time;
@@ -36,5 +36,14 @@ public class Menu {
 
     public void setTime(LocalDateTime time) {
         this.time = time;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(name).append("\n");
+        builder.append(time.getHour()).append(" : ").append(time.getMinute());
+
+        return builder.toString();
     }
 }

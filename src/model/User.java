@@ -17,7 +17,7 @@ public class User {
     private StatusChoice status;
     private CookingFrequency cookingFrequency;
     private String password;
-    private ArrayList<Menu> menus;
+    private ArrayList<Meal> meals;
 
 
     public User(String name, String firstName, LocalDate birthDate, String mail, UserSex sex, float weight, int size, StatusChoice status, CookingFrequency cookingFrequency, String password) {
@@ -31,25 +31,29 @@ public class User {
         this.status = status;
         this.cookingFrequency = cookingFrequency;
         this.password = password;
-        menus = new ArrayList<>();
+        meals = new ArrayList<>();
     }
 
-    public void addRepas(Menu menu){
-        this.menus.add(menu);
+    public void addRepas(Meal meal){
+        this.meals.add(meal);
     }
 
-    public void addRepas(ArrayList<Menu> menus){
-        this.menus.addAll(menus);
+    public void addRepas(ArrayList<Meal> meals){
+        this.meals.addAll(meals);
     }
 
     public String getPassword(){ return this.password; }
 
+    public ArrayList<Meal> getMeals() {
+        return meals;
+    }
+
     @Override
     public String toString(){
         StringBuilder builder = new StringBuilder();
-        builder.append(name).append(" ").append(firstName).append("\nSes repas : ").append(menus.size()).append("\n");
-        for (Menu menu : menus) {
-            builder.append("\t ").append(menu.getName()).append(" at ").append(menu.getTime()).append("\n");
+        builder.append(name).append(" ").append(firstName).append("\nSes repas : ").append(meals.size()).append("\n");
+        for (Meal meal : meals) {
+            builder.append("\t ").append(meal.getName()).append(" at ").append(meal.getTime()).append("\n");
         }
         return builder.toString();
     }

@@ -100,7 +100,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dimanche" GridPane.columnIndex="6" GridPane.halignment="CENTER" />
             <ListView fx:id="monday_list" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
             <ListView fx:id="tuesday_list" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ListView fx:id="wwednesday_list" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ListView fx:id="wednesday_list" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <ListView fx:id="thursday_list" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <ListView fx:id="friday_list" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <ListView fx:id="saturday_list" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />

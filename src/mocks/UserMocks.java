@@ -3,7 +3,6 @@ package mocks;
 import model.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,13 +12,12 @@ public class UserMocks {
     public static void initMocks(){
         users = new HashMap<>();
         User user;
-        Menu menu;
         ArrayList<Dish> dish = new ArrayList<>();
         ArrayList<Ingredient> ingredients = new ArrayList<>();
 
         user = new User("Todesco", "Gabin", LocalDate.now(),
                 "todesco@gmail.com", UserSex.MALE, 76, 185, StatusChoice.STUDENT, CookingFrequency.OFTEN, "test");
-        for( Menu repas : MenuMocks.menu){
+        for( Meal repas : MenuMocks.meals){
             user.addRepas(repas);
         }
         users.put("todesco@gmail.com", user);
