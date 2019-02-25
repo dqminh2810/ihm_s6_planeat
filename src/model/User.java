@@ -41,4 +41,6 @@ public class User {
     public void addRepas(ArrayList<Repas> repas){
         this.repas.addAll(repas);
     }
+
+    public String getPassword(){ return this.password; }
 }
