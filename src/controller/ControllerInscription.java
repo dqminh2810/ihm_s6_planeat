@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import mocks.UserMocks;
 import model.CookingFrequency;
 import model.StatusChoice;
 import model.User;
@@ -68,6 +69,11 @@ public class ControllerInscription extends Controller {
         String mail = mailTexfield.getText();
         if(mail.length() == 0){
             errorText.setText("Tu n'as pas remplis le mail");
+            return;
+        }
+
+        if(UserMocks.users.containsKey(mail)){
+            errorText.setText("Cet email existe déjà");
             return;
         }
 

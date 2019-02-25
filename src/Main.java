@@ -14,14 +14,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage){
+        ViewBase view = new ViewGestionMenu();
+        Controller controller = new ControllerGestionMenu(primaryStage, null, view);
         UserMocks.initMocks();
         FoodMocks.initMocks();
-
-        ViewBase view = new ViewLancement();
-        Controller controller = new ControllerLancement(primaryStage, null, view);
-        controller.setView(controller);
     }
-
 
     public static void main(String[] args) {
         launch(args);

@@ -2,17 +2,19 @@ package model;
 
 import java.util.ArrayList;
 
-public class Dish
-{
+public class Dish {
     private String name;
     private String description;
     private CourseType courseType;
     private ArrayList<Ingredient> ingredients;
     private ArrayList<String> images;
 
-    public Dish()
-    {
-
+    public Dish(String name, String description, CourseType courseType, ArrayList<Ingredient> ingredients, ArrayList<String> images) {
+        this.name = name;
+        this.description = description;
+        this.courseType = courseType;
+        this.ingredients = ingredients;
+        this.images = images;
     }
 
     public String getName()
