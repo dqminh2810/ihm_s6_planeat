@@ -2,16 +2,14 @@ package model;
 
 import java.util.ArrayList;
 
-public class Food
-{
+public class Food {
     private String name;
-    private String description;
     private FoodCategory category;
 
     private int energy;
     private int fat;
     private int acid;
-    private int carbohydrate;
+    private int carbohydrate; //glucides
     private int sugar;
     private int protein;
     private int salt;
@@ -21,9 +19,19 @@ public class Food
 
     private ArrayList<String> images;
 
-    public Food()
-    {
-
+    public Food(String name, FoodCategory category, int energy, int fat, int acid, int carbohydrate, int sugar, int protein, int salt, boolean peanut, boolean gluten, ArrayList<String> images) {
+        this.name = name;
+        this.category = category;
+        this.energy = energy;
+        this.fat = fat;
+        this.acid = acid;
+        this.carbohydrate = carbohydrate;
+        this.sugar = sugar;
+        this.protein = protein;
+        this.salt = salt;
+        this.peanut = peanut;
+        this.gluten = gluten;
+        this.images = images;
     }
 
     public String getName()
@@ -34,16 +42,6 @@ public class Food
     public void setName(String name)
     {
         this.name = name;
-    }
-
-    public String getDescription()
-    {
-        return description;
-    }
-
-    public void setDescription(String description)
-    {
-        this.description = description;
     }
 
     public FoodCategory getCategory()
