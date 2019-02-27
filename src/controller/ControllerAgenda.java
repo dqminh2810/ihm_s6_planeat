@@ -6,14 +6,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import mocks.MealMocks;
 import model.Meal;
+import model.MealDated;
 import model.User;
 import view.ViewBase;
+import view.ViewGestionMenu;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Optional;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
@@ -27,27 +31,40 @@ public class ControllerAgenda extends Controller {
     @FXML
     private Text currentDateText;
     @FXML
-    private ListView<Meal> monday_list;
+    private ListView<MealDated> monday_list;
     @FXML
-    private ListView<Meal> tuesday_list;
+    private ListView<MealDated> tuesday_list;
     @FXML
-    private ListView<Meal> wednesday_list;
+    private ListView<MealDated> wednesday_list;
     @FXML
-    private ListView<Meal> thursday_list;
+    private ListView<MealDated> thursday_list;
     @FXML
-    private ListView<Meal> friday_list;
+    private ListView<MealDated> friday_list;
     @FXML
-    private ListView<Meal> saturday_list;
+    private ListView<MealDated> saturday_list;
     @FXML
-    private ListView<Meal> sunday_list;
-    private ObservableList<Meal> monday;
-    private ObservableList<Meal> tuesday;
-    private ObservableList<Meal> wednesday;
-    private ObservableList<Meal> thursday;
-    private ObservableList<Meal> friday;
-    private ObservableList<Meal> saturday;
-    private ObservableList<Meal> sunday;
-
+    private ListView<MealDated> sunday_list;
+    @FXML
+    private Button addMeal1Button;
+    @FXML
+    private Button addMeal2Button;
+    @FXML
+    private Button addMeal3Button;
+    @FXML
+    private Button addMeal4Button;
+    @FXML
+    private Button addMeal5Button;
+    @FXML
+    private Button addMeal6Button;
+    @FXML
+    private Button addMeal7Button;
+    private ObservableList<MealDated> monday;
+    private ObservableList<MealDated> tuesday;
+    private ObservableList<MealDated> wednesday;
+    private ObservableList<MealDated> thursday;
+    private ObservableList<MealDated> friday;
+    private ObservableList<MealDated> saturday;
+    private ObservableList<MealDated> sunday;
 
     private LocalDate firstDayOfActualWeek;
 
@@ -77,7 +94,35 @@ public class ControllerAgenda extends Controller {
         sunday = FXCollections.observableArrayList();
         sunday_list.setItems(sunday);
 
+        addMeal1Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.MONDAY));
+        addMeal2Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.TUESDAY));
+        addMeal3Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.WEDNESDAY));
+        addMeal4Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.THURSDAY));
+        addMeal5Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.FRIDAY));
+        addMeal6Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.SATURDAY));
+        addMeal7Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.SUNDAY));
+
         loadLists();
+    }
+
+    private void popupToAddMealDate(DayOfWeek dayOfWeek){
+        ChoiceDialog<Meal> dialog = new ChoiceDialog(MealMocks.meals.get(0), MealMocks.meals);
+        dialog.setTitle("Selectionner un repas");
+        dialog.setHeaderText(null);
+        dialog.setGraphic(null);
+        dialog.setContentText("Repas");
+
+        ButtonType buttonAddMeal = new ButtonType("Ajouter repas", ButtonBar.ButtonData.OTHER);
+        dialog.getDialogPane().getButtonTypes().add(buttonAddMeal);
+
+        ((Button) dialog.getDialogPane().lookupButton(buttonAddMeal)).setOnAction(event -> {
+            setView(new ControllerGestionMenu(getStage(), ControllerAgenda.this, new ViewGestionMenu()));
+        });
+
+        Optional<Meal> result = dialog.showAndWait();
+        if (result.isPresent()){
+            System.out.println("Your choice: " + result.get());
+        }
     }
 
     private void setDateText(){
@@ -95,16 +140,16 @@ public class ControllerAgenda extends Controller {
     }
 
     private void loadLists(){
-        ArrayList<Meal> mondayList = new ArrayList<>();
-        ArrayList<Meal> tuesdayList = new ArrayList<>();
-        ArrayList<Meal> wednesdayList = new ArrayList<>();
-        ArrayList<Meal> thursdayList = new ArrayList<>();
-        ArrayList<Meal> fridayList = new ArrayList<>();
-        ArrayList<Meal> saturdayList = new ArrayList<>();
-        ArrayList<Meal> sundayList = new ArrayList<>();
+        ArrayList<MealDated> mondayList = new ArrayList<>();
+        ArrayList<MealDated> tuesdayList = new ArrayList<>();
+        ArrayList<MealDated> wednesdayList = new ArrayList<>();
+        ArrayList<MealDated> thursdayList = new ArrayList<>();
+        ArrayList<MealDated> fridayList = new ArrayList<>();
+        ArrayList<MealDated> saturdayList = new ArrayList<>();
+        ArrayList<MealDated> sundayList = new ArrayList<>();
 
         for(int i = 0; i<User.actualUser.getMeals().size(); i++){
-            Meal meal = User.actualUser.getMeals().get(i);
+            MealDated meal = User.actualUser.getMeals().get(i);
             LocalDate currentDate = meal.getTime().toLocalDate();
             long daysBetween = DAYS.between(currentDate, firstDayOfActualWeek);
             if(daysBetween <= 0 && daysBetween >= -6){
@@ -134,6 +179,13 @@ public class ControllerAgenda extends Controller {
                 }
             }
         }
+        Collections.sort(mondayList);
+        Collections.sort(tuesdayList);
+        Collections.sort(wednesdayList);
+        Collections.sort(thursdayList);
+        Collections.sort(fridayList);
+        Collections.sort(saturdayList);
+        Collections.sort(sundayList);
         monday.addAll(mondayList);
         tuesday.addAll(tuesdayList);
         wednesday.addAll(wednesdayList);

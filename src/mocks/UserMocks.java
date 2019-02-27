@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class UserMocks {
+public abstract class UserMocks {
     public static HashMap<String, User> users;
 
     public static void initMocks(){
@@ -17,9 +17,7 @@ public class UserMocks {
 
         user = new User("Todesco", "Gabin", LocalDate.now(),
                 "todesco@gmail.com", UserSex.MALE, 76, 185, StatusChoice.STUDENT, CookingFrequency.OFTEN, "test");
-        for( Meal repas : MenuMocks.meals){
-            user.addRepas(repas);
-        }
+        user.addRepas(MealDatedMocks.meals);
         users.put("todesco@gmail.com", user);
 
 

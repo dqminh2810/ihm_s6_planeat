@@ -1,17 +1,19 @@
 package model;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+/**
+ * Un meal est un repas, il contient un nom et une liste de plats
+ * @see Dish
+ */
 
 public class Meal {
     private String name;
     private ArrayList<Dish> dishes;
-    private LocalDateTime time;
 
-    public Meal(String name, ArrayList<Dish> dishes, LocalDateTime time){
+    public Meal(String name, ArrayList<Dish> dishes){
         this.name = name;
         this.dishes = dishes;
-        this.time = time;
     }
 
     public String getName() {
@@ -30,20 +32,10 @@ public class Meal {
         this.dishes = dishes;
     }
 
-    public LocalDateTime getTime() {
-        return time;
-    }
-
-    public void setTime(LocalDateTime time) {
-        this.time = time;
-    }
-
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(name).append("\n");
-        builder.append(time.getHour()).append(" : ").append(time.getMinute());
-
         return builder.toString();
     }
 }

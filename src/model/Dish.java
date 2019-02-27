@@ -2,6 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * Un Dish est un plat. Un plat peut être une entrée, un principal ou un dessert..
+ * @see CourseType
+ */
+
 public class Dish {
     private String name;
     private String description;

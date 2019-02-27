@@ -50,4 +50,6 @@ public abstract class Controller {
     public ViewBase getActualView() {
         return actualView;
     }
+
+
 }
