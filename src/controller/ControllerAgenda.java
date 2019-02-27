@@ -3,9 +3,13 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import mocks.MealMocks;
 import model.Meal;
 import model.MealDated;
@@ -15,6 +19,7 @@ import view.ViewGestionMenu;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Optional;
@@ -106,6 +111,7 @@ public class ControllerAgenda extends Controller {
     }
 
     private void popupToAddMealDate(DayOfWeek dayOfWeek){
+        /*
         ChoiceDialog<Meal> dialog = new ChoiceDialog(MealMocks.meals.get(0), MealMocks.meals);
         dialog.setTitle("Selectionner un repas");
         dialog.setHeaderText(null);
@@ -122,6 +128,91 @@ public class ControllerAgenda extends Controller {
         Optional<Meal> result = dialog.showAndWait();
         if (result.isPresent()){
             System.out.println("Your choice: " + result.get());
+        }
+        */
+
+        boolean isHoursOk = false;
+        boolean isMinuteOk = false;
+
+        Dialog<MealDated> dialog = new Dialog<>();
+        dialog.setTitle("Selectionner un repas");
+        dialog.setHeaderText(null);
+        dialog.setGraphic(null);
+
+        Label meal = new Label("Repas : ");
+        Label middle = new Label(" : ");
+        ChoiceBox<Meal> meals = new ChoiceBox<>();
+        ObservableList<Meal> mealsList = FXCollections.observableArrayList();
+        mealsList.setAll(MealMocks.meals);
+        meals.setItems(mealsList);
+        meals.getSelectionModel().select(0);
+        TextField hours = new TextField();
+        hours.setPromptText("heure");
+        TextField minutes = new TextField();
+        minutes.setPromptText("minutes");
+
+        GridPane grid = new GridPane();
+        grid.add(meal, 0, 0);
+        grid.add(meals, 1, 0, 2, 1);
+        grid.setVgap(20);
+        grid.add(hours, 0, 1);
+        grid.add(middle, 1, 1);
+        grid.add(minutes, 2, 1);
+        dialog.getDialogPane().setContent(grid);
+
+        ButtonType buttonOk = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().add(buttonOk);
+
+        ButtonType buttonCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().add(buttonCancel);
+
+        Node buttonOkSecurity = dialog.getDialogPane().lookupButton(buttonOk);
+        buttonOkSecurity.setDisable(true);
+
+        hours.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue.matches("\\d*") || newValue.isEmpty()){
+                buttonOkSecurity.setDisable(true);
+                return;
+            }
+            int val = Integer.parseInt(newValue);
+            if(val < 0 || val > 23){
+                buttonOkSecurity.setDisable(true);
+                return;
+            }
+            buttonOkSecurity.setDisable(false);
+        });
+
+        minutes.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue.matches("\\d*") || newValue.isEmpty()){
+                buttonOkSecurity.setDisable(true);
+                return;
+            }
+            int val = Integer.parseInt(newValue);
+            if(val < 0 || val > 59){
+                buttonOkSecurity.setDisable(true);
+                return;
+            }
+            buttonOkSecurity.setDisable(false);
+        });
+
+        dialog.setResultConverter(new Callback<ButtonType, MealDated>() {
+            @Override
+            public MealDated call(ButtonType b) {
+                if (b == buttonOk) {
+                    LocalDateTime localDate = LocalDateTime.of(firstDayOfActualWeek.getYear(),
+                            firstDayOfActualWeek.getMonth(),
+                            firstDayOfActualWeek.getDayOfMonth()+dayOfWeek.getValue()-1,
+                            Integer.parseInt(hours.getText()),
+                            Integer.parseInt(minutes.getText()));
+                    return new MealDated(meals.getSelectionModel().getSelectedItem(), localDate);
+                }
+                return null;
+            }
+        });
+
+        Optional<MealDated> result = dialog.showAndWait();
+        if(result.isPresent()){
+
         }
     }
 
