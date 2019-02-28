@@ -41,7 +41,7 @@
          <children>
             <ScrollPane prefHeight="360.0" prefWidth="235.0" HBox.hgrow="ALWAYS">
                <content>
-                  <VBox prefWidth="370.0">
+                  <VBox>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -133,6 +133,11 @@
                            </padding>
                         </CheckBox>
                         <CheckBox fx:id="containGlutenCheckbox" mnemonicParsing="false" text="Traces de gluten" />
+                        <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
                      </children>
                   </VBox>
                </content>

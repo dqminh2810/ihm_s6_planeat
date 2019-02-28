@@ -17,7 +17,7 @@
    <children>
       <HBox>
          <children>
-            <Button id="returnButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="←">
+            <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="←">
                <font>
                   <Font size="18.0" />
                </font>
@@ -45,13 +45,13 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <children>
-                        <TextField id="nameTextfield" promptText="Nom" />
-                        <TextArea id="descriptionTextarea" prefHeight="37.0" prefWidth="350.0" promptText="Description">
+                        <TextField fx:id="nameTextfield" promptText="Nom" />
+                        <TextArea fx:id="descriptionTextarea" prefHeight="37.0" prefWidth="350.0" promptText="Description">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </TextArea>
-                        <MenuButton id="courseTypeMenubutton" mnemonicParsing="false" text="Type de plat">
+                        <MenuButton fx:id="courseTypeMenubutton" mnemonicParsing="false" text="Type de plat">
                           <items>
                             <MenuItem mnemonicParsing="false" text="Entrée" />
                             <MenuItem mnemonicParsing="false" text="Plat principale" />
@@ -72,12 +72,17 @@
                         <ListView prefHeight="0.0" />
                         <HBox alignment="CENTER_LEFT">
                            <children>
-                              <Button id="addIngredientButton" mnemonicParsing="false" text="Ajouter un ingrédient" />
+                              <Button fx:id="addIngredientButton" mnemonicParsing="false" text="Ajouter un ingrédient" />
                            </children>
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </HBox>
+                        <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Text>
                      </children>
                   </VBox>
                </content>
@@ -102,7 +107,7 @@
                               </HBox>
                               <HBox alignment="CENTER">
                                  <children>
-                                    <Button id="addImageButton" mnemonicParsing="false" text="Ajouter une image" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="addImageButton" mnemonicParsing="false" text="Ajouter une image" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
                            </children>
@@ -110,7 +115,7 @@
                      </content></ScrollPane>
                   <HBox alignment="CENTER">
                      <children>
-                        <Button id="saveButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="300.0" text="Enregistrer Plat" HBox.hgrow="ALWAYS">
+                        <Button fx:id="saveButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="300.0" text="Enregistrer Plat" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
