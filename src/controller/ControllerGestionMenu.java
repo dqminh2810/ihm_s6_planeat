@@ -12,10 +12,7 @@ import javafx.util.Callback;
 import mocks.FoodMocks;
 import mocks.FoodMocks;
 import mocks.MealMocks;
-import model.CourseType;
-import model.Dish;
-import model.Ingredient;
-import model.Meal;
+import model.*;
 import view.ViewBase;
 import view.ViewGestionMenu;
 
@@ -30,8 +27,7 @@ import java.util.ResourceBundle;
 
 public class ControllerGestionMenu extends Controller {
 
-    final ObservableList<Meal> listOfMeals;
-    final ObservableList<Meal> listOfDishs;
+    ModelListOfMenus modelListOfMenus = null;
 
     @FXML
     private Button returnButton;
@@ -53,8 +49,7 @@ public class ControllerGestionMenu extends Controller {
     //Constructor
     public ControllerGestionMenu(Stage stage, Controller previousController, ViewBase actualView) {
         super(stage, previousController, actualView);
-        listOfMeals = FXCollections.observableArrayList();
-        listOfDishs = FXCollections.observableArrayList();
+        modelListOfMenus = new ModelListOfMenus();
     }
 
     @Override
@@ -85,12 +80,12 @@ public class ControllerGestionMenu extends Controller {
     public TableView getMealTableView(){
         return MealTableView;
     }
-    public ObservableList<Meal> getListOfMeals(){ return listOfMeals; }
+    public ObservableList<Meal> getListOfMenus(){ return modelListOfMenus.getListOfMenus(); }
+    public ObservableList<Meal> getListOfDishes(){ return modelListOfMenus.getListOfDish(); }
 
     //Configure listView
     public void configListView(){
-        listOfMeals.addAll(MealMocks.meals);
-        MealListView.setItems(listOfMeals);
+        MealListView.setItems(getListOfMenus());
 
         //rename listcell to Meal name
         MealListView.setCellFactory(new Callback<ListView<Meal>, ListCell<Meal>>() {
@@ -113,7 +108,7 @@ public class ControllerGestionMenu extends Controller {
     }
     //Configure tableView
     public void configTableView(){
-        MealTableView.setItems(listOfDishs);
+        MealTableView.setItems(getListOfDishes());
 
         starterTableColumn.setCellValueFactory(new PropertyValueFactory<Meal, ArrayList<Dish>>("starter"));
         maincourseTableColumn.setCellValueFactory(new PropertyValueFactory<Meal, ArrayList<Dish>>("maincourse"));
@@ -189,8 +184,8 @@ public class ControllerGestionMenu extends Controller {
                         (observable, oldValue,
                          newValue) -> {
                             if (observable != null && observable.getValue() != null) {
-                                listOfDishs.clear();
-                                listOfDishs.addAll(observable.getValue());
+                                getListOfDishes().clear();
+                                getListOfDishes().addAll(observable.getValue());
                             }
                         });
     }
