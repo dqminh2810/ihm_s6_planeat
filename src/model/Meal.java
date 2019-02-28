@@ -34,8 +34,6 @@ public class Meal {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(name).append("\n");
-        return builder.toString();
+        return name;
     }
 }

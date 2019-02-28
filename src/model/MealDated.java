@@ -25,13 +25,8 @@ public class MealDated implements Comparable<MealDated> {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(meal.getName()).append("\n");
-        builder.append(time.getHour()).append(" : ").append(time.getMinute());
-
-        return builder.toString();
+        return meal.getName() + "\n" + time.getHour() + " : " + time.getMinute();
     }
-
 
     @Override
     public int compareTo(MealDated o) {
