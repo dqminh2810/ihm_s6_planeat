@@ -1,18 +1,38 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import mocks.FoodMocks;
+import mocks.FoodMocks;
+import mocks.MealMocks;
+import model.CourseType;
 import model.Dish;
+import model.Ingredient;
+import model.Meal;
 import view.ViewBase;
 import view.ViewGestionMenu;
 
-import javax.swing.text.TableView;
-import javax.swing.text.html.ListView;
-import java.awt.event.MouseEvent;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.ListView;
+import java.net.URL;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 
-public class ControllerGestionMenu extends Controller{
+public class ControllerGestionMenu extends Controller {
+
+    final ObservableList<Meal> listOfMeals;
+    final ObservableList<Meal> listOfDishs;
+
     @FXML
     private Button returnButton;
     @FXML
@@ -20,41 +40,31 @@ public class ControllerGestionMenu extends Controller{
     @FXML
     private Button agendaButton;
     @FXML
-    private ListView menuListView;
+    private ListView<Meal> MealListView;
     @FXML
-    private TableView menuTableView;
+    private TableView<Meal> MealTableView;
+    @FXML
+    private TableColumn<Meal, ArrayList<Dish>> starterTableColumn;
+    @FXML
+    private TableColumn<Meal,  ArrayList<Dish>> maincourseTableColumn;
+    @FXML
+    private TableColumn<Meal,  ArrayList<Dish>> dessertTableColumn;
 
+    //Constructor
     public ControllerGestionMenu(Stage stage, Controller previousController, ViewBase actualView) {
         super(stage, previousController, actualView);
+        listOfMeals = FXCollections.observableArrayList();
+        listOfDishs = FXCollections.observableArrayList();
     }
-    public ListView getMenuListView(){
-        return menuListView;
-    }
-    public TableView getMenuTableView(){
-        return menuTableView;
-    }
-    public Dish getStarter(){
-        //TODO
-        return null;
-    }
-    public Dish getMainCourse(){
-        //TODO
-        return null;
-    }
-    public Dish getDessert(){
-        //TODO
-        return null;
-    }
+
     @Override
-    void init() {
-
-    }
-    public void init(ViewGestionMenu view){
-        addButton.setOnAction(event -> addButtonEvent());
-        agendaButton.setOnAction(event -> agendaButtonEvent());
-        returnButton.setOnAction(event -> returnButtonEvent());
+    public void init() {
+        configListView();
+        configTableView();
+        linkListViewToTableView();
     }
 
+    //ACTION EVENT
     public void addButtonEvent(){
         //TODO
     }
@@ -64,7 +74,124 @@ public class ControllerGestionMenu extends Controller{
     public void returnButtonEvent(){
         //TODO
     }
-    public void displayMenuSelected(MouseEvent event){
+    public void displayMealSelected(MouseEvent event){
         //TODO
+    }
+
+    //GETTER
+    public ListView getMealListView(){
+        return MealListView;
+    }
+    public TableView getMealTableView(){
+        return MealTableView;
+    }
+    public ObservableList<Meal> getListOfMeals(){ return listOfMeals; }
+
+    //Configure listView
+    public void configListView(){
+        listOfMeals.addAll(MealMocks.meals);
+        MealListView.setItems(listOfMeals);
+
+        //rename listcell to Meal name
+        MealListView.setCellFactory(new Callback<ListView<Meal>, ListCell<Meal>>() {
+            @Override
+            public ListCell<Meal> call(ListView<Meal> param) {
+                ListCell<Meal> cell = new ListCell(){
+                    @Override
+                    protected void updateItem(Object item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setText(null);
+                        if(item != null){
+                            setText(((Meal)item).getName());
+                            setTooltip(new Tooltip(((Meal)item).getName()));
+                        }
+                    }
+                };
+                return cell;
+            }
+        });
+    }
+    //Configure tableView
+    public void configTableView(){
+        MealTableView.setItems(listOfDishs);
+
+        starterTableColumn.setCellValueFactory(new PropertyValueFactory<Meal, ArrayList<Dish>>("starter"));
+        maincourseTableColumn.setCellValueFactory(new PropertyValueFactory<Meal, ArrayList<Dish>>("maincourse"));
+        dessertTableColumn.setCellValueFactory(new PropertyValueFactory<Meal, ArrayList<Dish>>("dessert"));
+
+        //Rename tablecolumncell to dish name
+        starterTableColumn.setCellFactory(new Callback<TableColumn<Meal,  ArrayList<Dish>>, TableCell<Meal, ArrayList<Dish>>>() {
+            @Override
+            public TableCell<Meal, ArrayList<Dish>> call(TableColumn<Meal,  ArrayList<Dish>> param) {
+                TableCell<Meal,  ArrayList<Dish>> cell = new TableCell(){
+                    @Override
+                    protected void updateItem(Object item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setText(null);
+                        if(item != null){
+                            for(Dish d: (ArrayList<Dish>) item){
+                                setText(d.getName());
+                                setTooltip(new Tooltip(d.getName()));
+                            }
+                        }
+                    }
+                };
+                return cell;
+            }
+        });
+        maincourseTableColumn.setCellFactory(new Callback<TableColumn<Meal,  ArrayList<Dish>>, TableCell<Meal, ArrayList<Dish>>>() {
+            @Override
+            public TableCell<Meal, ArrayList<Dish>> call(TableColumn<Meal,  ArrayList<Dish>> param) {
+                TableCell<Meal,  ArrayList<Dish>> cell = new TableCell(){
+                    @Override
+                    protected void updateItem(Object item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setText(null);
+                        if(item != null){
+                            ArrayList<Dish> starter = (ArrayList<Dish>) item;
+                            for(Dish d: (ArrayList<Dish>) item){
+                                setText(d.getName());
+                                setTooltip(new Tooltip(d.getName()));
+                            }
+                        }
+                    }
+                };
+                return cell;
+            }
+        });
+        dessertTableColumn.setCellFactory(new Callback<TableColumn<Meal,  ArrayList<Dish>>, TableCell<Meal, ArrayList<Dish>>>() {
+            @Override
+            public TableCell<Meal, ArrayList<Dish>> call(TableColumn<Meal,  ArrayList<Dish>> param) {
+                TableCell<Meal,  ArrayList<Dish>> cell = new TableCell(){
+                    @Override
+                    protected void updateItem(Object item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setText(null);
+                        if(item != null){
+                            ArrayList<Dish> starter = (ArrayList<Dish>) item;
+                            for(Dish d: (ArrayList<Dish>) item){
+                                setText(d.getName());
+                                setTooltip(new Tooltip(d.getName()));
+                            }
+                        }
+                    }
+                };
+                return cell;
+            }
+        });
+    }
+
+    public void linkListViewToTableView(){
+        MealListView
+                .getSelectionModel()
+                .selectedItemProperty()
+                .addListener(
+                        (observable, oldValue,
+                         newValue) -> {
+                            if (observable != null && observable.getValue() != null) {
+                                listOfDishs.clear();
+                                listOfDishs.addAll(observable.getValue());
+                            }
+                        });
     }
 }

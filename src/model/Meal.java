@@ -10,10 +10,19 @@ import java.util.ArrayList;
 public class Meal {
     private String name;
     private ArrayList<Dish> dishes;
+    private ArrayList<Dish> starter;
+    private ArrayList<Dish> maincourse;
+    private ArrayList<Dish> dessert;
 
     public Meal(String name, ArrayList<Dish> dishes){
         this.name = name;
         this.dishes = dishes;
+        starter = new ArrayList<>();
+        maincourse = new ArrayList<>();
+        dessert = new ArrayList<>();
+        this.getStarter();
+        this.getMaincourse();
+        this.getDessert();
     }
 
     public String getName() {
@@ -32,8 +41,48 @@ public class Meal {
         this.dishes = dishes;
     }
 
+    public ArrayList<Dish> getStarter() {
+        for(Dish d: this.dishes){
+            if(d.getCourseType()==CourseType.STARTER)
+                if(!this.starter.contains(d))
+                    this.starter.add(d);
+        }
+        return this.starter;
+    }
+
+    public ArrayList<Dish> getMaincourse() {
+        for(Dish d: this.dishes){
+            if(d.getCourseType()==CourseType.MAIN_COURSE)
+                if(!this.maincourse.contains(d))
+                    this.maincourse.add(d);
+        }
+        return this.maincourse;
+    }
+
+    public ArrayList<Dish> getDessert() {
+        for(Dish d: this.dishes){
+            if(d.getCourseType()==CourseType.DESSERT)
+                if(!this.dessert.contains(d))
+                    this.dessert.add(d);
+        }
+        return this.dessert;
+    }
+
+    public boolean setStarter(Dish starter) {
+        return this.starter.add(starter);
+    }
+
+    public boolean setMaincourse(Dish maincourse) {
+        return this.maincourse.add(maincourse);
+    }
+
+    public boolean setDessert(Dish dessert) {
+        return this.dessert.add(dessert);
+    }
+
     @Override
     public String toString() {
         return name;
     }
+
 }
