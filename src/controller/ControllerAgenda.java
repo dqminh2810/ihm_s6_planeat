@@ -11,8 +11,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import mocks.MealMocks;
 import model.*;
+import sun.nio.cs.US_ASCII;
 import view.ViewBase;
 
 import java.time.DayOfWeek;
@@ -114,13 +116,13 @@ public class ControllerAgenda extends Controller {
         addMeal5Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.FRIDAY));
         addMeal6Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.SATURDAY));
         addMeal7Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.SUNDAY));
-        clickOnListviewItem(monday_list);
-        clickOnListviewItem(tuesday_list);
-        clickOnListviewItem(wednesday_list);
-        clickOnListviewItem(thursday_list);
-        clickOnListviewItem(friday_list);
-        clickOnListviewItem(saturday_list);
-        clickOnListviewItem(sunday_list);
+        clickOnListviewItem(monday_list, DayOfWeek.MONDAY);
+        clickOnListviewItem(tuesday_list, DayOfWeek.TUESDAY);
+        clickOnListviewItem(wednesday_list, DayOfWeek.WEDNESDAY);
+        clickOnListviewItem(thursday_list, DayOfWeek.THURSDAY);
+        clickOnListviewItem(friday_list, DayOfWeek.FRIDAY);
+        clickOnListviewItem(saturday_list, DayOfWeek.SATURDAY);
+        clickOnListviewItem(sunday_list, DayOfWeek.SUNDAY);
         loadLists();
     }
 
@@ -195,34 +197,40 @@ public class ControllerAgenda extends Controller {
         }
     }
 
-    private void clickOnListviewItem(ListView<MealDated> listView){
+    private void clickOnListviewItem(ListView<MealDated> listView, DayOfWeek dayOfWeek){
         listView.setOnMouseClicked(e -> {
             MealDated selected = listView.getSelectionModel().getSelectedItem();
             if(selected != null){
-                popupToSeeMeal(selected);
+                popupToSeeMeal(selected, dayOfWeek);
             }
         });
     }
 
-    private void popupToSeeMeal(MealDated selected){
+    private void popupToSeeMeal(MealDated mealSelected, DayOfWeek dayOfWeek){
         Dialog dialog = new Dialog<>();
-        dialog.setTitle(selected.getMeal().getName());
+        dialog.setTitle(mealSelected.getMeal().getName());
         dialog.setHeaderText(null);
         dialog.setGraphic(null);
 
         VBox parentBox = new VBox();
         Text text = new Text("Plats : ");
         parentBox.getChildren().add(text);
-        for(Dish dish : selected.getMeal().getDishes()){
+        for(Dish dish : mealSelected.getMeal().getDishes()){
             VBox dishesBox = new VBox();
             dishesBox.setPadding(new Insets(0, 0,0 ,10));
             Text dishName = new Text(dish.getName());
             dishesBox.getChildren().add(dishName);
             parentBox.getChildren().add(dishesBox);
-            //TODO : check that food is not null
             for(Ingredient food : dish.getIngredients()){
                 VBox ingredientBox = new VBox();
-
+                ingredientBox.setPadding(new Insets(0, 0,0 ,10));
+                String textToPut = food.getFood().getName();
+                if(food.getQuantity() != -1){
+                    textToPut += " - " + food.getQuantity()+"g";
+                }
+                Text text1 = new Text(textToPut);
+                ingredientBox.getChildren().add(text1);
+                dishesBox.getChildren().add(ingredientBox);
             }
         }
 
@@ -230,7 +238,19 @@ public class ControllerAgenda extends Controller {
 
         ButtonType buttonReturn = new ButtonType("Retour", ButtonBar.ButtonData.CANCEL_CLOSE);
         dialog.getDialogPane().getButtonTypes().add(buttonReturn);
-        dialog.setResizable(true);
+
+        ButtonType buttonDelete = new ButtonType("Supprimer", ButtonBar.ButtonData.OTHER);
+        dialog.getDialogPane().getButtonTypes().add(buttonDelete);
+
+
+        dialog.setResultConverter(button -> {
+            if(button.equals(buttonDelete)){
+                mealsDaysList.get(dayOfWeek.getValue()-1).remove(mealSelected);
+                User.actualUser.getMeals().remove(mealSelected);
+            }
+            return null;
+        });
+
         dialog.showAndWait();
     }
 

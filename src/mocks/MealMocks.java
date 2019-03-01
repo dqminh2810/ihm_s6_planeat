@@ -18,6 +18,7 @@ public abstract class MealMocks {
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         ingredients.add(new Ingredient(FoodMocks.foods.get(0), 6));
         dish.add(new Dish("Omelette des familles", "A ne pas retourner", CourseType.MAIN_COURSE, ingredients, null));
+        dish.add(new Dish("Yaourt aux fruits", "Perles de lait et mon visage s'est transformé", CourseType.DESSERT, new ArrayList<>(), null));
 
         ArrayList<Dish> dish2 = new ArrayList<>();
         ArrayList<Ingredient> ingredients2 = new ArrayList<>();
@@ -28,7 +29,7 @@ public abstract class MealMocks {
         ingredients3.add(new Ingredient(FoodMocks.foods.get(5), 200));
         dish2.add(new Dish("poivrons","scrounch", CourseType.STARTER, ingredients3, null));
 
-        dish2.add(new Dish("Yaourt aux fruits", "Perles de lait et mon visage s'est transformé", CourseType.DESSERT, null, null));
+        dish2.add(new Dish("Yaourt aux fruits", "Perles de lait et mon visage s'est transformé", CourseType.DESSERT, new ArrayList<>(), null));
 
         meals.add(new Meal("Omelette", dish));
         meals.add(new Meal("Pates au poulet et poivrons", dish2));
