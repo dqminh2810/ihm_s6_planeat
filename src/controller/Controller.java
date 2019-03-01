@@ -43,7 +43,7 @@ public abstract class Controller {
         button.setOnAction(event -> setView(previousController));
     }
 
-    Stage getStage() {
+    public Stage getStage() {
         return stage;
     }
 
@@ -51,5 +51,7 @@ public abstract class Controller {
         return actualView;
     }
 
-
+    public Controller getPreviousController() {
+        return previousController;
+    }
 }

@@ -1,5 +1,7 @@
 package model;
 
+import javafx.scene.control.Button;
+
 import java.util.ArrayList;
 
 /**
@@ -11,6 +13,7 @@ public class Dish {
     private String name;
     private String description;
     private CourseType courseType;
+    private Button deleteButton;
     private ArrayList<Ingredient> ingredients;
     private ArrayList<String> images;
 
@@ -20,6 +23,11 @@ public class Dish {
         this.courseType = courseType;
         this.ingredients = ingredients;
         this.images = images;
+    }
+
+    public Dish(String name, CourseType courseType){
+        this.name = name;
+        this.courseType = courseType;
     }
 
     public String getName()
@@ -70,5 +78,10 @@ public class Dish {
     public void setImages(ArrayList<String> images)
     {
         this.images = images;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

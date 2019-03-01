@@ -2,8 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,8 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -29,10 +27,9 @@
                               <Insets left="5.0" top="5.0" />
                            </HBox.margin>
                         </Text>
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="25.0" prefWidth="31.0" text="x" textAlignment="CENTER" />
                      </children>
                   </HBox>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Repas 1 &gt;&gt; Dessert" wrappingWidth="332.8033752441406">
+                  <Text fx:id="menuName" strokeType="OUTSIDE" strokeWidth="0.0" text="Repas 1 &gt;&gt; Dessert" wrappingWidth="332.8033752441406">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" />
                      </VBox.margin>
@@ -43,43 +40,36 @@
                <children>
                   <VBox prefHeight="342.0" prefWidth="170.0">
                      <children>
-                        <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="Catégorie 1">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                          </items>
-                        </MenuButton>
-                        <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="165.0" text="Catégorie 2">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                          </items>
-                        </MenuButton>
-                        <MenuButton mnemonicParsing="false" prefHeight="25.0" prefWidth="165.0" text="Catégorie 3">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                          </items>
-                        </MenuButton>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Starters" />
+                        <ChoiceBox fx:id="startersChoiceBox" prefWidth="150.0" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Maincourses" />
+                        <ChoiceBox fx:id="maincoursesChoiceBox" prefWidth="150.0" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Desserts" />
+                        <ChoiceBox fx:id="dessertsChoiceBox" prefWidth="150.0" />
+                        <Button fx:id="pickButton" mnemonicParsing="false" onAction="#linkChoiceBoxToTableView" text="Pick this one!">
+                           <VBox.margin>
+                              <Insets left="40.0" top="215.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
                   </VBox>
                   <VBox prefHeight="342.0" prefWidth="440.0">
                      <children>
-                        <TableView prefHeight="291.0" prefWidth="407.0">
+                        <TableView fx:id="dishTableView" prefHeight="291.0" prefWidth="407.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Index" />
-                            <TableColumn prefWidth="285.0" text="Name" />
-                              <TableColumn prefWidth="75.0" text="Action" />
+                            <TableColumn fx:id="typeTableColumn" prefWidth="103.0" text="Type" />
+                            <TableColumn fx:id="nameTableColumn" prefWidth="255.0" text="Name" />
+                              <TableColumn fx:id="actionTableColumn" prefWidth="77.0" text="Action" />
                           </columns>
                         </TableView>
                         <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Button">
+                              <Button fx:id="saveandexitButton" mnemonicParsing="false" text="Save and exit">
                                  <HBox.margin>
                                     <Insets top="25.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button alignment="TOP_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="Button">
+                              <Button fx:id="deleteAllButton" alignment="TOP_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="Delete all">
                                  <HBox.margin>
                                     <Insets left="20.0" right="20.0" top="25.0" />
                                  </HBox.margin>

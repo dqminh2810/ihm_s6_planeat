@@ -1,28 +1,22 @@
 package controller;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
-import mocks.FoodMocks;
-import mocks.FoodMocks;
-import mocks.MealMocks;
 import model.*;
+import view.ViewAgenda;
 import view.ViewBase;
-import view.ViewGestionMenu;
 
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.ListView;
-import java.net.URL;
-import java.time.LocalDateTime;
+import view.ViewPopupAjoutPlats;
+
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 
 public class ControllerGestionMenu extends Controller {
@@ -54,23 +48,41 @@ public class ControllerGestionMenu extends Controller {
 
     @Override
     public void init() {
-        configListView();
-        configTableView();
+        initListView();
+        initTableView();
         linkListViewToTableView();
+
+        //Handle Button event
+        addButton.setOnAction(event -> addButtonEvent());
+        returnButton.setOnAction(event -> returnButtonEvent());
+        agendaButton.setOnAction(event -> agendaButtonEvent());
     }
 
     //ACTION EVENT
     public void addButtonEvent(){
-        //TODO
+        try{
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            ViewBase view = new ViewPopupAjoutPlats();
+            Controller controller = new ControllerPopupAjoutPlats(stage,null,view);
+            controller.setView(controller);
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
     public void agendaButtonEvent(){
-        //TODO
+        try{
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            ViewBase view = new ViewAgenda();
+            Controller controller = new ControllerAgenda(stage,null,view);
+            this.setView(controller);
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
     public void returnButtonEvent(){
-        //TODO
-    }
-    public void displayMealSelected(MouseEvent event){
-        //TODO
+        this.getPreviousController().setView(this.getPreviousController());
     }
 
     //GETTER
@@ -83,32 +95,14 @@ public class ControllerGestionMenu extends Controller {
     public ObservableList<Meal> getListOfMenus(){ return modelListOfMenus.getListOfMenus(); }
     public ObservableList<Meal> getListOfDishes(){ return modelListOfMenus.getListOfDish(); }
 
-    //Configure listView
-    public void configListView(){
+    //init listView
+    public void initListView(){
         MealListView.setItems(getListOfMenus());
-
-        //rename listcell to Meal name
-        MealListView.setCellFactory(new Callback<ListView<Meal>, ListCell<Meal>>() {
-            @Override
-            public ListCell<Meal> call(ListView<Meal> param) {
-                ListCell<Meal> cell = new ListCell(){
-                    @Override
-                    protected void updateItem(Object item, boolean empty) {
-                        super.updateItem(item, empty);
-                        setText(null);
-                        if(item != null){
-                            setText(((Meal)item).getName());
-                            setTooltip(new Tooltip(((Meal)item).getName()));
-                        }
-                    }
-                };
-                return cell;
-            }
-        });
     }
-    //Configure tableView
-    public void configTableView(){
+    //init tableView
+    public void initTableView(){
         MealTableView.setItems(getListOfDishes());
+        MealTableView.getItems().clear();
 
         starterTableColumn.setCellValueFactory(new PropertyValueFactory<Meal, ArrayList<Dish>>("starter"));
         maincourseTableColumn.setCellValueFactory(new PropertyValueFactory<Meal, ArrayList<Dish>>("maincourse"));
@@ -163,7 +157,6 @@ public class ControllerGestionMenu extends Controller {
                         super.updateItem(item, empty);
                         setText(null);
                         if(item != null){
-                            ArrayList<Dish> starter = (ArrayList<Dish>) item;
                             for(Dish d: (ArrayList<Dish>) item){
                                 setText(d.getName());
                                 setTooltip(new Tooltip(d.getName()));
@@ -175,7 +168,7 @@ public class ControllerGestionMenu extends Controller {
             }
         });
     }
-
+    //Link Listview item to tableview
     public void linkListViewToTableView(){
         MealListView
                 .getSelectionModel()
