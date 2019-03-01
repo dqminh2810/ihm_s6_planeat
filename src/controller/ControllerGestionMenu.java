@@ -64,7 +64,7 @@ public class ControllerGestionMenu extends Controller {
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             ViewBase view = new ViewPopupAjoutPlats();
-            Controller controller = new ControllerPopupAjoutPlats(stage,null,view);
+            Controller controller = new ControllerPopupAjoutPlats(stage,this,view);
             controller.setView(controller);
         }catch (Exception e){
             System.out.println(e);
@@ -181,5 +181,9 @@ public class ControllerGestionMenu extends Controller {
                                 getListOfDishes().addAll(observable.getValue());
                             }
                         });
+    }
+
+    public ControllerGestionMenu getPreviousController() {
+        return this;
     }
 }

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -29,11 +30,7 @@
                         </Text>
                      </children>
                   </HBox>
-                  <Text fx:id="menuName" strokeType="OUTSIDE" strokeWidth="0.0" text="Repas 1 &gt;&gt; Dessert" wrappingWidth="332.8033752441406">
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" />
-                     </VBox.margin>
-                  </Text>
+                  <TextField fx:id="menuNameTextField" />
                </children>
             </VBox>
             <HBox prefHeight="357.0" prefWidth="600.0">

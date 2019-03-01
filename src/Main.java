@@ -1,9 +1,6 @@
 import controller.*;
 import javafx.application.Application;
-import mocks.FoodMocks;
-import mocks.MealDatedMocks;
-import mocks.MealMocks;
-import mocks.UserMocks;
+import mocks.*;
 import javafx.stage.Stage;
 import model.User;
 import view.*;
@@ -13,6 +10,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage){
         FoodMocks.initMocks();
+        DishMocks.initMocks();
         MealMocks.initMocks();
         MealDatedMocks.initMocks();
         UserMocks.initMocks();

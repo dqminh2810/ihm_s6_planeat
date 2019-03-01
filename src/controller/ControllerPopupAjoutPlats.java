@@ -7,14 +7,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Dish;
+import model.Meal;
 import model.ModelListOfDishes;
 import view.ViewBase;
 
+import java.util.ArrayList;
+
 public class ControllerPopupAjoutPlats extends Controller{
     private ModelListOfDishes modelListOfDishes = null;
+    private ControllerGestionMenu controllerGestionMenu;
 
     @FXML
-    private Text menuName;
+    private TextField menuNameTextField;
     @FXML
     private Button pickButton;
     @FXML
@@ -42,6 +46,7 @@ public class ControllerPopupAjoutPlats extends Controller{
         super(stage, previousController, actualView);
         //this.gestionMenuController = gestionMenuController;
         modelListOfDishes = new ModelListOfDishes();
+        controllerGestionMenu = (ControllerGestionMenu)previousController;
     }
 
     public void init(){
@@ -75,8 +80,15 @@ public class ControllerPopupAjoutPlats extends Controller{
 
     }
     public void saveAndExitButtonEvent() {
-        System.out.println(getListOfDishes());
+        //Update Menu Name
+        String menuName = menuNameTextField.getText();
+        ArrayList<Dish> newMeal = new ArrayList<>(getListOfDishes());
+        controllerGestionMenu.getListOfMenus().add(new Meal(menuName, newMeal));
         getStage().close();
+    }
+    //init TextField menuName
+    public void initTextField() {
+        //TODO
     }
     //init Choice Box
     public void initChoiceBox(){
