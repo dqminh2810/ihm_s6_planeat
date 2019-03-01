@@ -107,66 +107,6 @@ public class ControllerGestionMenu extends Controller {
         starterTableColumn.setCellValueFactory(new PropertyValueFactory<Meal, ArrayList<Dish>>("starter"));
         maincourseTableColumn.setCellValueFactory(new PropertyValueFactory<Meal, ArrayList<Dish>>("maincourse"));
         dessertTableColumn.setCellValueFactory(new PropertyValueFactory<Meal, ArrayList<Dish>>("dessert"));
-
-        //Rename tablecolumncell to dish name
-        starterTableColumn.setCellFactory(new Callback<TableColumn<Meal,  ArrayList<Dish>>, TableCell<Meal, ArrayList<Dish>>>() {
-            @Override
-            public TableCell<Meal, ArrayList<Dish>> call(TableColumn<Meal,  ArrayList<Dish>> param) {
-                TableCell<Meal,  ArrayList<Dish>> cell = new TableCell(){
-                    @Override
-                    protected void updateItem(Object item, boolean empty) {
-                        super.updateItem(item, empty);
-                        setText(null);
-                        if(item != null){
-                            for(Dish d: (ArrayList<Dish>) item){
-                                setText(d.getName());
-                                setTooltip(new Tooltip(d.getName()));
-                            }
-                        }
-                    }
-                };
-                return cell;
-            }
-        });
-        maincourseTableColumn.setCellFactory(new Callback<TableColumn<Meal,  ArrayList<Dish>>, TableCell<Meal, ArrayList<Dish>>>() {
-            @Override
-            public TableCell<Meal, ArrayList<Dish>> call(TableColumn<Meal,  ArrayList<Dish>> param) {
-                TableCell<Meal,  ArrayList<Dish>> cell = new TableCell(){
-                    @Override
-                    protected void updateItem(Object item, boolean empty) {
-                        super.updateItem(item, empty);
-                        setText(null);
-                        if(item != null){
-                            ArrayList<Dish> starter = (ArrayList<Dish>) item;
-                            for(Dish d: (ArrayList<Dish>) item){
-                                setText(d.getName());
-                                setTooltip(new Tooltip(d.getName()));
-                            }
-                        }
-                    }
-                };
-                return cell;
-            }
-        });
-        dessertTableColumn.setCellFactory(new Callback<TableColumn<Meal,  ArrayList<Dish>>, TableCell<Meal, ArrayList<Dish>>>() {
-            @Override
-            public TableCell<Meal, ArrayList<Dish>> call(TableColumn<Meal,  ArrayList<Dish>> param) {
-                TableCell<Meal,  ArrayList<Dish>> cell = new TableCell(){
-                    @Override
-                    protected void updateItem(Object item, boolean empty) {
-                        super.updateItem(item, empty);
-                        setText(null);
-                        if(item != null){
-                            for(Dish d: (ArrayList<Dish>) item){
-                                setText(d.getName());
-                                setTooltip(new Tooltip(d.getName()));
-                            }
-                        }
-                    }
-                };
-                return cell;
-            }
-        });
     }
     //Link Listview item to tableview
     public void linkListViewToTableView(){

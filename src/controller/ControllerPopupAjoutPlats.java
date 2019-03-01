@@ -1,11 +1,13 @@
 package controller;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.CourseType;
 import model.Dish;
 import model.Meal;
 import model.ModelListOfDishes;
@@ -84,6 +86,7 @@ public class ControllerPopupAjoutPlats extends Controller{
         String menuName = menuNameTextField.getText();
         ArrayList<Dish> newMeal = new ArrayList<>(getListOfDishes());
         controllerGestionMenu.getListOfMenus().add(new Meal(menuName, newMeal));
+        System.out.println(newMeal);
         getStage().close();
     }
     //init TextField menuName
@@ -121,4 +124,23 @@ public class ControllerPopupAjoutPlats extends Controller{
         dishTableView.getItems().add(maincourse);
         dishTableView.getItems().add(dessert);
     }
+
+    public void sortListOfDishes(){
+        ArrayList<Dish> tmpList = new ArrayList<>();
+        for(Dish d: getListOfDishes()){
+            if(d.getCourseType()== CourseType.STARTER)
+                tmpList.add(d);
+        }
+        for(Dish d: getListOfDishes()){
+            if(d.getCourseType()== CourseType.MAIN_COURSE)
+                tmpList.add(d);
+        }
+        for(Dish d: getListOfDishes()){
+            if(d.getCourseType()== CourseType.DESSERT)
+                tmpList.add(d);
+        }
+        getListOfDishes().clear();
+        getListOfDishes().addAll(tmpList);
+    }
+
 }

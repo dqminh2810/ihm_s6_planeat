@@ -13,25 +13,28 @@ public abstract class MealMocks {
 
     public static void initMocks(){
         meals = new ArrayList<>();
-
-        ArrayList<Dish> dish = new ArrayList<>();
+        ArrayList<Dish> dishes1 = new ArrayList<>();
+        ArrayList<Dish> dishes2 = new ArrayList<>();
         ArrayList<Ingredient> ingredients = new ArrayList<>();
-        ingredients.add(new Ingredient(FoodMocks.foods.get(0), 6));
-        dish.add(new Dish("Omelette des familles", "A ne pas retourner", CourseType.MAIN_COURSE, ingredients, null));
-        dish.add(new Dish("Yaourt aux fruits", "Perles de lait et mon visage s'est transformé", CourseType.DESSERT, new ArrayList<>(), null));
-
-        ArrayList<Dish> dish2 = new ArrayList<>();
         ArrayList<Ingredient> ingredients2 = new ArrayList<>();
+        ArrayList<Ingredient> ingredients3 = new ArrayList<>();
+
+        //Ingredients
+        ingredients.add(new Ingredient(FoodMocks.foods.get(0), 6));
         ingredients2.add(new Ingredient(FoodMocks.foods.get(1), 400));
         ingredients2.add(new Ingredient(FoodMocks.foods.get(3), 250));
-        dish2.add(new Dish("Pates au poulet", "miam :)", CourseType.MAIN_COURSE, ingredients2, null));
-        ArrayList<Ingredient> ingredients3 = new ArrayList<>();
         ingredients3.add(new Ingredient(FoodMocks.foods.get(5), 200));
-        dish2.add(new Dish("poivrons","scrounch", CourseType.STARTER, ingredients3, null));
 
-        dish2.add(new Dish("Yaourt aux fruits", "Perles de lait et mon visage s'est transformé", CourseType.DESSERT, new ArrayList<>(), null));
+        //Dishes
+        dishes1.add(new Dish("Omelette des familles", "A ne pas retourner", CourseType.MAIN_COURSE, ingredients, null));
+        dishes1.add(new Dish("Omelette des familles 2", "A ne pas retourner", CourseType.MAIN_COURSE, ingredients, null));
+        dishes1.add(new Dish("Yaourt aux fruits", "Perles de lait et mon visage s'est transformé", CourseType.DESSERT, new ArrayList<>(), null));
+        dishes2.add(new Dish("Pates au poulet", "miam :)", CourseType.MAIN_COURSE, ingredients2, null));
+        dishes2.add(new Dish("poivrons","scrounch", CourseType.STARTER, ingredients3, null));
+        dishes2.add(new Dish("Yaourt aux fruits", "Perles de lait et mon visage s'est transformé", CourseType.DESSERT, new ArrayList<>(), null));
 
-        meals.add(new Meal("Omelette", dish));
-        meals.add(new Meal("Pates au poulet et poivrons", dish2));
+        //Meals
+        meals.add(new Meal("Omelette", dishes1));
+        meals.add(new Meal("Pates au poulet et poivrons", dishes2));
     }
 }
