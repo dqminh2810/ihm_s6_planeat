@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -54,12 +54,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="addButton" contentDisplay="CENTER" mnemonicParsing="false" text="Button" textOverrun="CLIP">
+                  <Button fx:id="addButton" contentDisplay="CENTER" mnemonicParsing="false" text="Add Menu" textOverrun="CLIP">
                      <HBox.margin>
                         <Insets right="100.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="agendaButton" contentDisplay="CENTER" mnemonicParsing="false" text="Button" textOverrun="CLIP">
+                  <Button fx:id="agendaButton" contentDisplay="CENTER" mnemonicParsing="false" text="Agenda" textOverrun="CLIP">
                   </Button>
                </children>
             </HBox>
