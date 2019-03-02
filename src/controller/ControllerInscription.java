@@ -15,7 +15,9 @@ import view.ViewAccueil;
 import view.ViewBase;
 import view.ViewLancement;
 
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 public class ControllerInscription extends Controller {
     @FXML
@@ -141,5 +143,10 @@ public class ControllerInscription extends Controller {
         list.add(StatusChoice.RETIRED);
         statusChoicebox.setItems(list);
         statusChoicebox.getSelectionModel().select(0);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

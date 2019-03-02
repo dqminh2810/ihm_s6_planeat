@@ -11,6 +11,9 @@ import view.ViewAccueil;
 import view.ViewBase;
 import view.ViewLancement;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class ControllerConnexion extends Controller {
     @FXML
     private TextField emailTextfield;
@@ -50,6 +53,11 @@ public class ControllerConnexion extends Controller {
             errorText.setText("Email inconnu");
         }
 
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
 
     }
 }

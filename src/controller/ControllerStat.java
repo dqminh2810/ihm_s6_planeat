@@ -10,7 +10,9 @@ import javafx.stage.Stage;
 import model.Periode;
 import view.ViewBase;
 
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 public class ControllerStat extends Controller {
     @FXML
@@ -111,6 +113,11 @@ public class ControllerStat extends Controller {
             statDateStart.setValue(periode.getStartDate());
             statDateEnd.setValue(periode.getEndDate());
         });
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
 
     }
 }

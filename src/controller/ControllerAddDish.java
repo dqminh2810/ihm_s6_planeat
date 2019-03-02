@@ -12,6 +12,9 @@ import javafx.stage.Stage;
 import model.FoodCategory;
 import view.ViewBase;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class ControllerAddDish extends Controller
 {
     @FXML
@@ -39,5 +42,10 @@ public class ControllerAddDish extends Controller
 
     private void saveDish()
     {
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

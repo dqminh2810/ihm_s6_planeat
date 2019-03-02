@@ -5,24 +5,24 @@ import javafx.collections.ObservableList;
 import mocks.MealMocks;
 
 public class ModelListOfMenus {
-    private ObservableList<Meal> listOfMenus;
-    private ObservableList<Meal> listOfDish;
+    private ObservableList<Meal> listOfMenusForListView;
+    private ObservableList<Meal> listOfMenusForTableView;
 
     public ModelListOfMenus() {
-        listOfMenus = FXCollections.observableArrayList();
-        listOfDish = FXCollections.observableArrayList();
-        listOfMenus.addAll(MealMocks.meals);
+        listOfMenusForListView = FXCollections.observableArrayList();
+        listOfMenusForTableView = FXCollections.observableArrayList();
+        listOfMenusForListView.addAll(MealMocks.meals);
     }
 
     public void add(Meal meal) {
-        listOfMenus.add(meal);
+        listOfMenusForListView.add(meal);
     }
 
-    public ObservableList<Meal> getListOfMenus() {
-        return listOfMenus;
+    public ObservableList<Meal> getListOfMenusForListView() {
+        return listOfMenusForListView;
     }
 
-    public ObservableList<Meal> getListOfDish() {
-        return listOfDish;
+    public ObservableList<Meal> getListOfMenusForTableView() {
+        return listOfMenusForTableView;
     }
 }

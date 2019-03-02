@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,18 +10,18 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import mocks.MealMocks;
 import model.*;
-import sun.nio.cs.US_ASCII;
 import view.ViewBase;
 
+import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
@@ -33,6 +32,8 @@ public class ControllerAgenda extends Controller {
     private Button previousWeekButton;
     @FXML
     private Button nextWeekButton;
+    @FXML
+    private Button shareButton;
     @FXML
     private Text currentDateText;
     @FXML
@@ -75,6 +76,14 @@ public class ControllerAgenda extends Controller {
     public void init(){
         firstDayOfActualWeek = LocalDate.now().with(DayOfWeek.MONDAY); //to get monday
         mealsDaysList =  new ArrayList<>();
+
+        shareButton.setOnAction(e -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Partager un menu");
+            alert.setHeaderText("Partagez votre semaine de repas");
+            alert.setContentText("Le repas est partagé");
+            alert.showAndWait();
+        });
 
         setDateText();
         clickOnReturnButton(returnButton);
@@ -314,5 +323,10 @@ public class ControllerAgenda extends Controller {
             clearLists();
             loadLists();
         });
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

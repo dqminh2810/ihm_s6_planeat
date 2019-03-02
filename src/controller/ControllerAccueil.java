@@ -15,6 +15,8 @@ import view.ViewAgenda;
 import view.ViewBase;
 import view.ViewStat;
 
+import java.net.URL;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import static java.time.temporal.ChronoUnit.DAYS;
+import java.util.ResourceBundle;
 
 public class ControllerAccueil extends Controller {
 
@@ -153,4 +156,8 @@ public class ControllerAccueil extends Controller {
 
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 }

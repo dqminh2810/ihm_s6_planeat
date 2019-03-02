@@ -1,5 +1,7 @@
 package model;
 
+import javafx.scene.control.Button;
+
 import java.util.ArrayList;
 
 /**
@@ -13,6 +15,8 @@ public class Meal {
     private ArrayList<Dish> starter;
     private ArrayList<Dish> maincourse;
     private ArrayList<Dish> dessert;
+    private Button deleteButton;
+    private Button modifyButton;
 
     public Meal(String name, ArrayList<Dish> dishes){
         this.name = name;
@@ -23,6 +27,8 @@ public class Meal {
         this.getStarter();
         this.getMaincourse();
         this.getDessert();
+        deleteButton = new Button("Delete");
+        modifyButton = new Button("Modify");
     }
 
     public String getName() {
@@ -78,6 +84,22 @@ public class Meal {
 
     public boolean setDessert(Dish dessert) {
         return this.dessert.add(dessert);
+    }
+
+    public Button getDeleteButton() {
+        return deleteButton;
+    }
+
+    public void setDeleteButton(Button deleteButton) {
+        this.deleteButton = deleteButton;
+    }
+
+    public Button getModifyButton() {
+        return modifyButton;
+    }
+
+    public void setModifyButton(Button modifyButton) {
+        this.modifyButton = modifyButton;
     }
 
     @Override
