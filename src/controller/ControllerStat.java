@@ -58,7 +58,7 @@ public class ControllerStat extends Controller {
     }
 
     public void init(){
-        returnButton.setOnAction(event -> System.out.println("back"));
+        clickOnReturnButton(returnButton);
 
         Periode periode = new Periode(LocalDate.now().minusDays(1), LocalDate.now());
 
