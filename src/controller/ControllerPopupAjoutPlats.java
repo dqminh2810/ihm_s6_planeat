@@ -1,10 +1,13 @@
 package controller;
 
+import javafx.application.Platform;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.CourseType;
@@ -13,11 +16,17 @@ import model.Meal;
 import model.ModelListOfDishes;
 import view.ViewBase;
 
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ControllerPopupAjoutPlats extends Controller{
     private ModelListOfDishes modelListOfDishes = null;
     private ControllerGestionMenu controllerGestionMenu;
+    private Meal mealSelected = null;
+
 
     @FXML
     private TextField menuNameTextField;
@@ -40,21 +49,25 @@ public class ControllerPopupAjoutPlats extends Controller{
     @FXML
     private TableColumn<Dish, Dish> nameTableColumn;
     @FXML
-    private TableColumn<Dish, Button> actionTableColumn;
+    private TableColumn<Dish, Dish> actionTableColumn;
 
     //private ControllerGestionMenu gestionMenuController;
-
-    public ControllerPopupAjoutPlats(Stage stage, Controller previousController, ViewBase actualView) {
+    public ControllerPopupAjoutPlats(Stage stage, Controller previousController, ViewBase actualView, Meal mealSelected) {
         super(stage, previousController, actualView);
         //this.gestionMenuController = gestionMenuController;
+        this.mealSelected = mealSelected;
         modelListOfDishes = new ModelListOfDishes();
+
+        menuNameTextField = new TextField();
+        menuNameTextField.setText("DDDD");
+
         controllerGestionMenu = (ControllerGestionMenu)previousController;
     }
 
     public void init(){
+        initTextField();
         initChoiceBox();
         initTableView();
-        //linkChoiceBoxToTableView();
 
         //Handle Button event
         pickButton.setOnAction(event -> pickButtonEvent());
@@ -70,28 +83,64 @@ public class ControllerPopupAjoutPlats extends Controller{
     public ObservableList<Dish> getListOfMaincourses(){ return modelListOfDishes.getMaincourses(); }
     public ObservableList<Dish> getListOfDesserts(){ return modelListOfDishes.getDesserts(); }
     public ObservableList<Dish>  getListOfDishes(){ return modelListOfDishes.getListOfDishes(); }
+    public TextField getMenuNameTextField() { return menuNameTextField; }
+
+    //SETTER
+    public void setMenuNameTextField(String name) {
+        menuNameTextField.setText(name);
+    }
+
     //ACTION EVENT
     public void pickButtonEvent(){
         linkChoiceBoxToTableView();
     }
     public void deleteAllButtonEvent() {
-        System.out.println(getListOfDishes());
         //Update TableView
         dishTableView.getItems().clear();
-        System.out.println(getListOfDishes());
-
     }
     public void saveAndExitButtonEvent() {
         //Update Menu Name
-        String menuName = menuNameTextField.getText();
-        ArrayList<Dish> newMeal = new ArrayList<>(getListOfDishes());
-        controllerGestionMenu.getListOfMenus().add(new Meal(menuName, newMeal));
-        System.out.println(newMeal);
-        getStage().close();
+        if(checkMenuName()){
+            if(mealSelected == null){      //Create new menu
+                String menuName = menuNameTextField.getText();
+                ArrayList<Dish> newMeal = new ArrayList<>(getListOfDishes());
+                controllerGestionMenu.getListOfMenusForListView().add(new Meal(menuName, newMeal));
+            }else{      //Update old menu
+                String menuName = menuNameTextField.getText();
+                ArrayList<Meal> tmp = new ArrayList<>(controllerGestionMenu.getListOfMenusForListView());
+                ArrayList<Dish> updateMeal = new ArrayList<>(getListOfDishes());
+                System.out.println("Before: "+controllerGestionMenu.getListOfMenusForTableView().get(0).getDishes());
+                for(Meal m: controllerGestionMenu.getListOfMenusForListView()){
+                    if(m==mealSelected){
+                        m.setName(menuName);
+                        m.getDishes().clear();
+                        m.setDishes(updateMeal);
+                        tmp.remove(m);
+                    }
+                }
+                System.out.println("After: "+controllerGestionMenu.getListOfMenusForTableView().get(0).getDishes());
+
+                /*
+                 * Trick -> this is not really updated, I deleted the meal list
+                 * then create new temporary meal list without the meal selected,
+                 * it's added after the new one created
+                 */
+                controllerGestionMenu.getListOfMenusForListView().clear();
+                controllerGestionMenu.getListOfMenusForListView().addAll(tmp);
+                controllerGestionMenu.getListOfMenusForListView().add(new Meal(menuName, updateMeal));
+                controllerGestionMenu.getMealTableView().refresh();
+
+            }
+            getStage().close();
+        }
     }
+    public  void deleteButtonEvent(Dish dish) {
+        dishTableView.getItems().remove(dish);
+    }
+
     //init TextField menuName
     public void initTextField() {
-        //TODO
+        menuNameTextField.setEditable(true);
     }
     //init Choice Box
     public void initChoiceBox(){
@@ -110,9 +159,22 @@ public class ControllerPopupAjoutPlats extends Controller{
 
         typeTableColumn.setCellValueFactory(new PropertyValueFactory<Dish, Dish>("courseType"));
         nameTableColumn.setCellValueFactory(new PropertyValueFactory<Dish, Dish>("name"));
-        //actionTableColumn.setCellValueFactory(new PropertyValueFactory<Dish, Button>("deleteButton"));
+        actionTableColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+        actionTableColumn.setCellFactory(param -> new TableCell<Dish, Dish>(){
+            private final Button deleteButton = new Button("delete");
+            private final HBox pane = new HBox(deleteButton);
 
-        dishTableView.getColumns().addAll(typeTableColumn,nameTableColumn);
+            @Override
+            protected void updateItem(Dish item, boolean empty) {
+                super.updateItem(item, empty);
+                deleteButton.setOnAction(event -> {
+                    deleteButtonEvent(item);
+                });
+                setGraphic(empty ? null : pane);
+            }
+        });
+
+        dishTableView.getColumns().addAll(typeTableColumn,nameTableColumn,actionTableColumn);
     }
     //link choiceBox to tableView
     public void linkChoiceBoxToTableView(){
@@ -142,5 +204,22 @@ public class ControllerPopupAjoutPlats extends Controller{
         getListOfDishes().clear();
         getListOfDishes().addAll(tmpList);
     }
+    public boolean checkMenuName(){
+        if(menuNameTextField.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("You forget something!!");
+            alert.setHeaderText("Message");
+            alert.setContentText("You have to fill the menu name!!!");
 
+            alert.showAndWait();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        if(mealSelected!=null)
+            menuNameTextField.setText(mealSelected.getName());
+    }
 }

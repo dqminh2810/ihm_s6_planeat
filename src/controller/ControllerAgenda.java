@@ -14,12 +14,14 @@ import mocks.MealMocks;
 import model.*;
 import view.ViewBase;
 
+import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
@@ -321,5 +323,10 @@ public class ControllerAgenda extends Controller {
             clearLists();
             loadLists();
         });
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

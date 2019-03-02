@@ -12,6 +12,9 @@ import javafx.stage.Stage;
 import model.FoodCategory;
 import view.ViewBase;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class ControllerAddFood extends Controller
 {
     @FXML
@@ -200,5 +203,10 @@ public class ControllerAddFood extends Controller
         list.add(FoodCategory.OTHER);
         categorySplitmenu.setItems(list);
         categorySplitmenu.getSelectionModel().select(0);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

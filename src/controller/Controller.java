@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,7 +10,7 @@ import view.ViewBase;
 
 import java.io.IOException;
 
-public abstract class Controller {
+public abstract class Controller implements Initializable {
     private Stage stage; //the state is the current window
     private Controller previousController;
     private ViewBase actualView;

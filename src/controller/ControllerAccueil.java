@@ -10,8 +10,10 @@ import view.ViewAddFood;
 import view.ViewAgenda;
 import view.ViewBase;
 
+import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 public class ControllerAccueil extends Controller {
 
@@ -70,4 +72,8 @@ public class ControllerAccueil extends Controller {
         //profileButton.setOnAction(event -> setView(new ControllerProfile(getStage(), this, new ViewProfile())));
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 }

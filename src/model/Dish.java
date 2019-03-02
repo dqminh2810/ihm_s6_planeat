@@ -1,5 +1,7 @@
 package model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.Button;
 
 import java.util.ArrayList;
@@ -10,44 +12,38 @@ import java.util.ArrayList;
  */
 
 public class Dish {
-    private String name;
-    private String description;
+    private StringProperty name;
+    private StringProperty description;
     private CourseType courseType;
-    private Button deleteButton;
     private ArrayList<Ingredient> ingredients;
     private ArrayList<String> images;
 
     public Dish(String name, String description, CourseType courseType, ArrayList<Ingredient> ingredients, ArrayList<String> images) {
-        this.name = name;
-        this.description = description;
+        this.name = new SimpleStringProperty(name);
+        this.description = new SimpleStringProperty(description);
         this.courseType = courseType;
         this.ingredients = ingredients;
         this.images = images;
     }
 
-    public Dish(String name, CourseType courseType){
-        this.name = name;
-        this.courseType = courseType;
-    }
-
     public String getName()
     {
-        return name;
+        return name.get();
     }
 
     public void setName(String name)
     {
-        this.name = name;
+        this.name.set(name);
     }
 
     public String getDescription()
     {
-        return description;
+        return description.get();
     }
 
     public void setDescription(String description)
     {
-        this.description = description;
+        this.description.set(description);
     }
 
     public CourseType getCourseType()
@@ -82,6 +78,6 @@ public class Dish {
 
     @Override
     public String toString() {
-        return name;
+        return name.get();
     }
 }
