@@ -29,7 +29,8 @@ public abstract class Controller implements Initializable {
             loader.setController(controller);
             Parent root = loader.load(getClass().getResourceAsStream("../"+ controller.getActualView().getXmlFile()));
             root.getStylesheets().add(controller.getActualView().getCss());
-            controller.init();
+            //TODO : mettez tous ce que vous avez dans init dans la méthode initialize()
+            //controller.init();
 
             stage.setScene(new Scene(root, controller.getActualView().getWidth(), controller.getActualView().getHeight()));
             stage.setTitle(controller.getActualView().getLabel());
@@ -40,7 +41,7 @@ public abstract class Controller implements Initializable {
         }
     }
 
-    protected void clickOnReturnButton(Button button){
+    void clickOnReturnButton(Button button){
         button.setOnAction(event -> setView(previousController));
     }
 
@@ -48,7 +49,7 @@ public abstract class Controller implements Initializable {
         return stage;
     }
 
-    public ViewBase getActualView() {
+    private ViewBase getActualView() {
         return actualView;
     }
 

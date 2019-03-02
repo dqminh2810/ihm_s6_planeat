@@ -34,6 +34,90 @@ public class User {
         mealsDated = new ArrayList<>();
     }
 
+    public static User getActualUser() {
+        return actualUser;
+    }
+
+    public static void setActualUser(User actualUser) {
+        User.actualUser = actualUser;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public UserSex getSex() {
+        return sex;
+    }
+
+    public void setSex(UserSex sex) {
+        this.sex = sex;
+    }
+
+    public float getWeight() {
+        return weight;
+    }
+
+    public void setWeight(float weight) {
+        this.weight = weight;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public StatusChoice getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusChoice status) {
+        this.status = status;
+    }
+
+    public CookingFrequency getCookingFrequency() {
+        return cookingFrequency;
+    }
+
+    public void setCookingFrequency(CookingFrequency cookingFrequency) {
+        this.cookingFrequency = cookingFrequency;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public void addRepas(MealDated meal){
         this.mealsDated.add(meal);
     }

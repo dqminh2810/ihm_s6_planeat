@@ -12,11 +12,9 @@ public abstract class UserMocks {
     public static void initMocks(){
         users = new HashMap<>();
         User user;
-        ArrayList<Dish> dish = new ArrayList<>();
-        ArrayList<Ingredient> ingredients = new ArrayList<>();
 
         user = new User("Todesco", "Gabin", LocalDate.now(),
-                "todesco@gmail.com", UserSex.MALE, 76, 185, StatusChoice.STUDENT, CookingFrequency.OFTEN, "test");
+                "todesco@gmail.com", UserSex.FEMALE, 76, 185, StatusChoice.STUDENT, CookingFrequency.OFTEN, "test");
         user.addRepas(MealDatedMocks.meals);
         users.put("todesco@gmail.com", user);
 
