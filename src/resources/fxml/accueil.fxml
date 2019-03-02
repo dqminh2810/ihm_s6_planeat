@@ -98,13 +98,13 @@
                      <children>
                         <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                            <children>
-                              <PieChart fx:id="caloriesPiechart" minHeight="0.0" minWidth="0.0" title="Calories" />
-                              <PieChart fx:id="proteinPiechart" minHeight="0.0" minWidth="0.0" title="Protéines" />
+                              <PieChart fx:id="caloriesPiechart" minHeight="0.0" minWidth="0.0" titleSide="BOTTOM" title="Calories" HBox.hgrow="ALWAYS" />
+                              <PieChart fx:id="proteinPiechart" minHeight="0.0" minWidth="0.0" titleSide="BOTTOM" title="Protéines" />
                            </children></HBox>
                         <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                            <children>
-                              <PieChart fx:id="glucosesPiechart" minHeight="0.0" minWidth="0.0" title="Glucoses" />
-                              <PieChart fx:id="dontsucrePiechart" minHeight="0.0" minWidth="0.0" title="Dont sucre" />
+                              <PieChart fx:id="glucosesPiechart" minHeight="0.0" minWidth="0.0" titleSide="BOTTOM" title="Glucoses" HBox.hgrow="ALWAYS" />
+                              <PieChart fx:id="dontsucrePiechart" minHeight="0.0" minWidth="0.0" titleSide="BOTTOM" title="Dont sucre" />
                            </children></HBox>
                      </children>
                   </VBox>
