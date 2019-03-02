@@ -7,7 +7,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Callback;
 import model.*;
 import view.ViewAgenda;
 import view.ViewBase;
@@ -15,7 +14,7 @@ import view.ViewBase;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.ListView;
-import view.ViewPopupAjoutPlats;
+import view.ViewAddMeal;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -112,8 +111,8 @@ public class ControllerGestionMenu extends Controller {
         try{
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
-            ViewBase view = new ViewPopupAjoutPlats();
-            Controller controller = new ControllerPopupAjoutPlats(stage,this,view, null);
+            ViewBase view = new ViewAddMeal();
+            Controller controller = new ControllerAddRepas(stage,this,view, null);
             controller.setView(controller);
         }catch (Exception e){
             System.out.println(e);
@@ -146,10 +145,10 @@ public class ControllerGestionMenu extends Controller {
             Meal mealSelected = getListOfMenusForListView().get(selectedId);
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
-            ViewBase view = new ViewPopupAjoutPlats();
-            Controller controller = new ControllerPopupAjoutPlats(stage,this,view, mealSelected);
-            ((ControllerPopupAjoutPlats) controller).getListOfDishes().addAll(getListOfDishFromMenu(selectedId));
-            ((ControllerPopupAjoutPlats) controller).setMenuNameTextField(mealSelected.getName());
+            ViewBase view = new ViewAddMeal();
+            Controller controller = new ControllerAddRepas(stage,this,view, mealSelected);
+            ((ControllerAddRepas) controller).getListOfDishes().addAll(getListOfDishFromMenu(selectedId));
+            ((ControllerAddRepas) controller).setMenuNameTextField(mealSelected.getName());
 
             controller.setView(controller);
         }catch (Exception e){

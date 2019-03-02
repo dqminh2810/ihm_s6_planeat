@@ -20,7 +20,7 @@
                <children>
                   <HBox prefHeight="300.0" prefWidth="1260.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout des meal dans le meal choisi" wrappingWidth="1258.1367797851562">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout d'un Repas" wrappingWidth="1258.1367797851562">
                            <font>
                               <Font size="21.0" />
                            </font>

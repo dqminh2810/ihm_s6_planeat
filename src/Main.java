@@ -16,8 +16,8 @@ public class Main extends Application {
         UserMocks.initMocks();
         User.actualUser = UserMocks.users.get("todesco@gmail.com");
 
-        ViewBase view = new ViewLancement();
-        Controller controller = new ControllerLancement(primaryStage, null, view);
+        ViewBase view = new ViewGestionMenu();
+        Controller controller = new ControllerGestionMenu(primaryStage, null, view);
         controller.setView(controller);
     }
 

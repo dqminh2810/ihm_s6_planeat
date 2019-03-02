@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ControllerPopupAjoutPlats extends Controller{
+public class ControllerAddRepas extends Controller{
     private ModelListOfDishes modelListOfDishes = null;
     private ControllerGestionMenu controllerGestionMenu;
     private Meal mealSelected = null;
@@ -52,7 +52,7 @@ public class ControllerPopupAjoutPlats extends Controller{
     private TableColumn<Dish, Dish> actionTableColumn;
 
     //private ControllerGestionMenu gestionMenuController;
-    public ControllerPopupAjoutPlats(Stage stage, Controller previousController, ViewBase actualView, Meal mealSelected) {
+    public ControllerAddRepas(Stage stage, Controller previousController, ViewBase actualView, Meal mealSelected) {
         super(stage, previousController, actualView);
         //this.gestionMenuController = gestionMenuController;
         this.mealSelected = mealSelected;
