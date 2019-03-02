@@ -65,7 +65,7 @@ public class ControllerAccueil extends Controller {
 
     LocalDate selectedDay;
     private ObservableList<MealDated> selectedDayMealList;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
 
     public ControllerAccueil(Stage stage, Controller previousController, ViewBase previousView) {

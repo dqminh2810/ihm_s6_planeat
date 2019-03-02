@@ -14,7 +14,7 @@ public abstract class MealDatedMocks {
         meals = new ArrayList<>();
 
         meals.add(new MealDated(MealMocks.meals.get(1), LocalDateTime.of(today.getYear(), today.getMonth(), today.getDayOfMonth(), 21, 30)));
-        meals.add(new MealDated(MealMocks.meals.get(0), LocalDateTime.of(today.getYear(), today.getMonth(), today.getDayOfMonth(), 12, 30)));
+       // meals.add(new MealDated(MealMocks.meals.get(0), LocalDateTime.of(today.getYear(), today.getMonth(), today.getDayOfMonth(), 12, 30)));
         meals.add(new MealDated(MealMocks.meals.get(1), LocalDateTime.of(today.getYear(), today.getMonth(), today.getDayOfMonth(), 19, 30)));
 
         meals.add(new MealDated(MealMocks.meals.get(0), LocalDateTime.of(today.plusDays(1).getYear(), today.plusDays(1).getMonth(), today.plusDays(1).getDayOfMonth(), 12, 30)));
