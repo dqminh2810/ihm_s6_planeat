@@ -59,14 +59,6 @@ public class ControllerAddFood extends Controller
         super(stage, previousController, previousView);
     }
 
-    @Override
-    void init()
-    {
-        loadFoodCategory();
-        clickOnReturnButton(returnButton);
-        saveButton.setOnAction(event -> saveFood());
-    }
-
     private void saveFood()
     {
         errorText.setText("");
@@ -207,6 +199,8 @@ public class ControllerAddFood extends Controller
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        loadFoodCategory();
+        clickOnReturnButton(returnButton);
+        saveButton.setOnAction(event -> saveFood());
     }
 }

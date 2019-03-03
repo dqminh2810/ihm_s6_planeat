@@ -10,10 +10,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.MealDated;
 import model.User;
-import view.ViewAddFood;
-import view.ViewAgenda;
-import view.ViewBase;
-import view.ViewStat;
+import view.*;
 
 import java.net.URL;
 import java.time.DayOfWeek;
@@ -112,7 +109,8 @@ public class ControllerAccueil extends Controller {
         Collections.sort(selectedDayMealList);
     }
 
-    public void init(){
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         //liste calendrier
         selectedDayMealList =  FXCollections.observableArrayList();
         curdayList.setItems(selectedDayMealList);
@@ -126,7 +124,7 @@ public class ControllerAccueil extends Controller {
         createIngredientButton.setOnAction(event -> setView(new ControllerAddFood(getStage(), this, new ViewAddFood())));
         //createMealButton.setOnAction(event ->  new ControllerAddDish(getStage(),this,new ViewAddD()));
         //addMealButton.setOnAction(event -> setView(new ControllerAddDish(getStage(), this, new ViewAddDish())));
-        //profileButton.setOnAction(event -> setView(new ControllerProfile(getStage(), this, new ViewProfile())));
+        profileButton.setOnAction(event -> setView(new ControllerEditProfile(getStage(), this, new ViewEditProfile())));
 
 
         //statistiques TODO: trouver les "cicle % round progress" (import)
@@ -153,11 +151,5 @@ public class ControllerAccueil extends Controller {
 
         //heure TODO: un timer de 1 minute pour la mettre a jour ?
         curHourText.setText(LocalDateTime.now().format(formatter));
-
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
     }
 }

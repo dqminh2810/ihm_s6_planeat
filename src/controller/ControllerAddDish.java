@@ -33,19 +33,13 @@ public class ControllerAddDish extends Controller
         super(stage, previousController, previousView);
     }
 
-    @Override
-    void init()
-    {
-        clickOnReturnButton(returnButton);
-        saveButton.setOnAction(event -> saveDish());
-    }
-
     private void saveDish()
     {
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        clickOnReturnButton(returnButton);
+        saveButton.setOnAction(event -> saveDish());
     }
 }

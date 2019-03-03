@@ -73,68 +73,6 @@ public class ControllerAgenda extends Controller {
         super(stage,previousController, previousView);
     }
 
-    public void init(){
-        firstDayOfActualWeek = LocalDate.now().with(DayOfWeek.MONDAY); //to get monday
-        mealsDaysList =  new ArrayList<>();
-
-        shareButton.setOnAction(e -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Partager un menu");
-            alert.setHeaderText("Partagez votre semaine de repas");
-            alert.setContentText("Le repas est partagé");
-            alert.showAndWait();
-        });
-
-        setDateText();
-        clickOnReturnButton(returnButton);
-        clickOnPreviousWeek();
-        clickOnNextWeek();
-
-        for(int i=0;i<7;i++){
-            ObservableList<MealDated> mealsOfDay = FXCollections.observableArrayList();
-            mealsDaysList.add(mealsOfDay);
-            switch (i){
-                case 0:
-                    monday_list.setItems(mealsOfDay);
-                    break;
-                case 1:
-                    tuesday_list.setItems(mealsOfDay);
-                    break;
-                case 2:
-                    wednesday_list.setItems(mealsOfDay);
-                    break;
-                case 3:
-                    thursday_list.setItems(mealsOfDay);
-                    break;
-                case 4:
-                    friday_list.setItems(mealsOfDay);
-                    break;
-                case 5:
-                    saturday_list.setItems(mealsOfDay);
-                    break;
-                case 6:
-                    sunday_list.setItems(mealsOfDay);
-                    break;
-            }
-        }
-
-        addMeal1Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.MONDAY));
-        addMeal2Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.TUESDAY));
-        addMeal3Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.WEDNESDAY));
-        addMeal4Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.THURSDAY));
-        addMeal5Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.FRIDAY));
-        addMeal6Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.SATURDAY));
-        addMeal7Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.SUNDAY));
-        clickOnListviewItem(monday_list, DayOfWeek.MONDAY);
-        clickOnListviewItem(tuesday_list, DayOfWeek.TUESDAY);
-        clickOnListviewItem(wednesday_list, DayOfWeek.WEDNESDAY);
-        clickOnListviewItem(thursday_list, DayOfWeek.THURSDAY);
-        clickOnListviewItem(friday_list, DayOfWeek.FRIDAY);
-        clickOnListviewItem(saturday_list, DayOfWeek.SATURDAY);
-        clickOnListviewItem(sunday_list, DayOfWeek.SUNDAY);
-        loadLists();
-    }
-
     private void popupToAddMealDate(DayOfWeek dayOfWeek){
         Dialog<MealDated> dialog = new Dialog<>();
         dialog.setTitle("Selectionner un repas");
@@ -327,6 +265,64 @@ public class ControllerAgenda extends Controller {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        firstDayOfActualWeek = LocalDate.now().with(DayOfWeek.MONDAY); //to get monday
+        mealsDaysList =  new ArrayList<>();
 
+        shareButton.setOnAction(e -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Partager un menu");
+            alert.setHeaderText("Partagez votre semaine de repas");
+            alert.setContentText("Le repas est partagé");
+            alert.showAndWait();
+        });
+
+        setDateText();
+        clickOnReturnButton(returnButton);
+        clickOnPreviousWeek();
+        clickOnNextWeek();
+
+        for(int i=0;i<7;i++){
+            ObservableList<MealDated> mealsOfDay = FXCollections.observableArrayList();
+            mealsDaysList.add(mealsOfDay);
+            switch (i){
+                case 0:
+                    monday_list.setItems(mealsOfDay);
+                    break;
+                case 1:
+                    tuesday_list.setItems(mealsOfDay);
+                    break;
+                case 2:
+                    wednesday_list.setItems(mealsOfDay);
+                    break;
+                case 3:
+                    thursday_list.setItems(mealsOfDay);
+                    break;
+                case 4:
+                    friday_list.setItems(mealsOfDay);
+                    break;
+                case 5:
+                    saturday_list.setItems(mealsOfDay);
+                    break;
+                case 6:
+                    sunday_list.setItems(mealsOfDay);
+                    break;
+            }
+        }
+
+        addMeal1Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.MONDAY));
+        addMeal2Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.TUESDAY));
+        addMeal3Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.WEDNESDAY));
+        addMeal4Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.THURSDAY));
+        addMeal5Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.FRIDAY));
+        addMeal6Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.SATURDAY));
+        addMeal7Button.setOnAction(event -> popupToAddMealDate(DayOfWeek.SUNDAY));
+        clickOnListviewItem(monday_list, DayOfWeek.MONDAY);
+        clickOnListviewItem(tuesday_list, DayOfWeek.TUESDAY);
+        clickOnListviewItem(wednesday_list, DayOfWeek.WEDNESDAY);
+        clickOnListviewItem(thursday_list, DayOfWeek.THURSDAY);
+        clickOnListviewItem(friday_list, DayOfWeek.FRIDAY);
+        clickOnListviewItem(saturday_list, DayOfWeek.SATURDAY);
+        clickOnListviewItem(sunday_list, DayOfWeek.SUNDAY);
+        loadLists();
     }
 }

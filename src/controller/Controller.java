@@ -21,8 +21,6 @@ public abstract class Controller implements Initializable {
         this.actualView = actualView;
     }
 
-    abstract void init();
-
     public void setView(Controller controller) {
         try {
             FXMLLoader loader = new FXMLLoader();

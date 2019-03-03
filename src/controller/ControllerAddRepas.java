@@ -64,17 +64,6 @@ public class ControllerAddRepas extends Controller{
         controllerGestionMenu = (ControllerGestionMenu)previousController;
     }
 
-    public void init(){
-        initTextField();
-        initChoiceBox();
-        initTableView();
-
-        //Handle Button event
-        pickButton.setOnAction(event -> pickButtonEvent());
-        deleteAllButton.setOnAction(event -> deleteAllButtonEvent());
-        saveandexitButton.setOnAction(event -> saveAndExitButtonEvent());
-    }
-
     //GETTER
     public ModelListOfDishes getModelListOfDishes() {
         return modelListOfDishes;
@@ -221,5 +210,14 @@ public class ControllerAddRepas extends Controller{
     public void initialize(URL location, ResourceBundle resources) {
         if(mealSelected!=null)
             menuNameTextField.setText(mealSelected.getName());
+
+        initTextField();
+        initChoiceBox();
+        initTableView();
+
+        //Handle Button event
+        pickButton.setOnAction(event -> pickButtonEvent());
+        deleteAllButton.setOnAction(event -> deleteAllButtonEvent());
+        saveandexitButton.setOnAction(event -> saveAndExitButtonEvent());
     }
 }

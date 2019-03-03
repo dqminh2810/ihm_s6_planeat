@@ -50,17 +50,6 @@ public class ControllerGestionMenu extends Controller {
         modelListOfMenus = new ModelListOfMenus();
     }
 
-    @Override
-    public void init() {
-        initListView();
-        initTableView();
-        linkListViewToTableView();
-
-        //Handle Button event
-        addButton.setOnAction(event -> addButtonEvent());
-        returnButton.setOnAction(event -> returnButtonEvent());
-        agendaButton.setOnAction(event -> agendaButtonEvent());
-    }
     //init listView
     public void initListView(){
         MealListView.setItems(getListOfMenusForListView());
@@ -181,6 +170,13 @@ public class ControllerGestionMenu extends Controller {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initListView();
+        initTableView();
+        linkListViewToTableView();
 
+        //Handle Button event
+        addButton.setOnAction(event -> addButtonEvent());
+        returnButton.setOnAction(event -> returnButtonEvent());
+        agendaButton.setOnAction(event -> agendaButtonEvent());
     }
 }
