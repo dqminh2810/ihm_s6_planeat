@@ -60,7 +60,7 @@ public class ControllerStat extends Controller {
     public void init(){
         clickOnReturnButton(returnButton);
 
-        Periode periode = new Periode(LocalDate.now().minusDays(1), LocalDate.now());
+        Periode periode = new Periode(LocalDate.now(), LocalDate.now());
 
         statDateStart.setValue(periode.getStartDate());
         statDateEnd.setValue(periode.getEndDate());

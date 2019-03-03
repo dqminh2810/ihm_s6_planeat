@@ -23,14 +23,14 @@ public class Periode {
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
         if (endDate != null && endDate.isBefore(this.startDate)){
-            endDate = startDate.plusDays(1);
+            endDate = startDate;
         }
     }
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
         if (startDate != null && startDate.isAfter(this.endDate)){
-            startDate = endDate.minusDays(1);
+            startDate = endDate;
         }
     }
 }
