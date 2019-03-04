@@ -107,4 +107,11 @@ public class Meal {
         return name;
     }
 
+    public double getIntakes(int intakeIndex) {
+        double sum = 0;
+        for (Dish dish : dishes) {
+            sum += dish.getIntakes(intakeIndex);
+        }
+        return sum;
+    }
 }

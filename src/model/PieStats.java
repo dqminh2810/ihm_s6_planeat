@@ -1,10 +1,14 @@
 package model;
 
+import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
+
 import java.time.LocalDate;
+import java.util.Observable;
 
 public class PieStats {
 
-    private int percentage;
+    private ObservableList<PieChart.Data> data;
     private Periode periode;
 
     public PieStats ( LocalDate start, LocalDate end ){
@@ -17,7 +21,11 @@ public class PieStats {
         getStat();
     }
 
-    private void getStat() {
+    public void getStat() {
+    }
+
+    private void colorate() {
+
     }
 
 }
