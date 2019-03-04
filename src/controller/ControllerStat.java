@@ -57,6 +57,8 @@ public class ControllerStat extends Controller {
     @FXML
     private ListView otherList;
 
+    Periode periode;
+
     public ControllerStat(Stage stage, Controller previousController) {
         super(stage,previousController);
         this.actualView = new ViewStat();
@@ -66,42 +68,61 @@ public class ControllerStat extends Controller {
     public void initialize(URL location, ResourceBundle resources) {
         clickOnReturnButton(returnButton);
 
-        Periode periode = new Periode(LocalDate.now(), LocalDate.now());
+        periode = new Periode(LocalDate.now(), LocalDate.now());
+
+        updateData();
 
         statDateStart.setValue(periode.getStartDate());
         statDateEnd.setValue(periode.getEndDate());
 
-        ArrayList<PieChart.Data> datas = new ArrayList<>();
+        statDateStart.setOnAction(event -> {
+            periode.setStartDate(statDateStart.getValue());
+            statDateStart.setValue(periode.getStartDate());
+            statDateEnd.setValue(periode.getEndDate());
+            updateData();
+        });
+
+        statDateEnd.setOnAction(event -> {
+            periode.setEndDate(statDateEnd.getValue());
+            statDateStart.setValue(periode.getStartDate());
+            statDateEnd.setValue(periode.getEndDate());
+            updateData();
+        });
+    }
+
+    private void updateData() {
+
+        ArrayList<PieChart.Data> pieChartData = new ArrayList<>();
 
         for (int intakeIndex = 0; intakeIndex < 9; intakeIndex++) {
-            datas.add(new PieChart.Data("", User.getActualUser().getIntakes(intakeIndex, periode)));
+            pieChartData.add(new PieChart.Data("", User.getActualUser().getIntakes(intakeIndex, periode)));
         }
         energyPieChart.setStartAngle(90);
-        energyPieChart.setData(FXCollections.observableArrayList(datas.get(0), new PieChart.Data("", RecommendedDailyAmount.male[0]-datas.get(0).getPieValue()))); //TODO : The real data
+        energyPieChart.setData(FXCollections.observableArrayList(pieChartData.get(0), new PieChart.Data("", RecommendedDailyAmount.male[0]-pieChartData.get(0).getPieValue()))); //TODO : The real data
         energyPieChart.setLabelsVisible(false);
 
         fatsPieChart.setStartAngle(90);
-        fatsPieChart.setData(FXCollections.observableArrayList(datas.get(1), new PieChart.Data("", RecommendedDailyAmount.male[1]-datas.get(1).getPieValue())));
+        fatsPieChart.setData(FXCollections.observableArrayList(pieChartData.get(1), new PieChart.Data("", RecommendedDailyAmount.male[1]-pieChartData.get(1).getPieValue())));
         fatsPieChart.setLabelsVisible(false);
 
         saturatedPieChart.setStartAngle(90);
-        saturatedPieChart.setData(FXCollections.observableArrayList(datas.get(2), new PieChart.Data("", RecommendedDailyAmount.male[2]-datas.get(2).getPieValue())));
+        saturatedPieChart.setData(FXCollections.observableArrayList(pieChartData.get(2), new PieChart.Data("", RecommendedDailyAmount.male[2]-pieChartData.get(2).getPieValue())));
         saturatedPieChart.setLabelsVisible(false);
 
         carbohydratesPieChart.setStartAngle(90);
-        carbohydratesPieChart.setData(FXCollections.observableArrayList(datas.get(3), new PieChart.Data("", RecommendedDailyAmount.male[3]-datas.get(3).getPieValue())));
+        carbohydratesPieChart.setData(FXCollections.observableArrayList(pieChartData.get(3), new PieChart.Data("", RecommendedDailyAmount.male[3]-pieChartData.get(3).getPieValue())));
         carbohydratesPieChart.setLabelsVisible(false);
 
         sugarPieChart.setStartAngle(90);
-        sugarPieChart.setData(FXCollections.observableArrayList(datas.get(4), new PieChart.Data("", RecommendedDailyAmount.male[4]-datas.get(4).getPieValue())));
+        sugarPieChart.setData(FXCollections.observableArrayList(pieChartData.get(4), new PieChart.Data("", RecommendedDailyAmount.male[4]-pieChartData.get(4).getPieValue())));
         sugarPieChart.setLabelsVisible(false);
 
         proteinsPieChart.setStartAngle(90);
-        proteinsPieChart.setData(FXCollections.observableArrayList(datas.get(5), new PieChart.Data("", RecommendedDailyAmount.male[5]-datas.get(5).getPieValue())));
+        proteinsPieChart.setData(FXCollections.observableArrayList(pieChartData.get(5), new PieChart.Data("", RecommendedDailyAmount.male[5]-pieChartData.get(5).getPieValue())));
         proteinsPieChart.setLabelsVisible(false);
 
         saltPieChart.setStartAngle(90);
-        saltPieChart.setData(FXCollections.observableArrayList(datas.get(6), new PieChart.Data("", RecommendedDailyAmount.male[6]-datas.get(6).getPieValue())));
+        saltPieChart.setData(FXCollections.observableArrayList(pieChartData.get(6), new PieChart.Data("", RecommendedDailyAmount.male[6]-pieChartData.get(6).getPieValue())));
         saltPieChart.setLabelsVisible(false);
 
         fibresPieChart.setStartAngle(90);
@@ -112,17 +133,5 @@ public class ControllerStat extends Controller {
         calciumPieChart.setData(FXCollections.observableArrayList(new PieChart.Data("Calcium", 67)));
         calciumPieChart.setLabelsVisible(false);
 
-
-        statDateStart.setOnAction(event -> {
-            periode.setStartDate(statDateStart.getValue());
-            statDateStart.setValue(periode.getStartDate());
-            statDateEnd.setValue(periode.getEndDate());
-        });
-
-        statDateEnd.setOnAction(event -> {
-            periode.setEndDate(statDateEnd.getValue());
-            statDateStart.setValue(periode.getStartDate());
-            statDateEnd.setValue(periode.getEndDate());
-        });
     }
 }
