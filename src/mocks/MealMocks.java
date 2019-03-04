@@ -26,12 +26,12 @@ public abstract class MealMocks {
         ingredients3.add(new Ingredient(FoodMocks.foods.get(5), 2));
 
         //Dishes
-        dishes1.add(new Dish("Omelette des familles", "A ne pas retourner", CourseType.MAIN_COURSE, ingredients, null));
-        dishes1.add(new Dish("Omelette des familles 2", "A ne pas retourner", CourseType.MAIN_COURSE, ingredients, null));
-        dishes1.add(new Dish("Yaourt aux fruits", "Perles de lait et mon visage s'est transformé", CourseType.DESSERT, new ArrayList<>(), null));
-        dishes2.add(new Dish("Pates au poulet", "miam :)", CourseType.MAIN_COURSE, ingredients2, null));
-        dishes2.add(new Dish("poivrons","scrounch", CourseType.STARTER, ingredients3, null));
-        dishes2.add(new Dish("Yaourt aux fruits", "Perles de lait et mon visage s'est transformé", CourseType.DESSERT, new ArrayList<>(), null));
+        dishes1.add(new Dish("Omelette des familles", "A ne pas retourner", CourseType.MAIN_COURSE, ingredients));
+        dishes1.add(new Dish("Omelette des familles 2", "A ne pas retourner", CourseType.MAIN_COURSE, ingredients));
+        dishes1.add(new Dish("Yaourt aux fruits", "Perles de lait et mon visage s'est transformé", CourseType.DESSERT, new ArrayList<>()));
+        dishes2.add(new Dish("Pates au poulet", "miam :)", CourseType.MAIN_COURSE, ingredients2));
+        dishes2.add(new Dish("poivrons","scrounch", CourseType.STARTER, ingredients3));
+        dishes2.add(new Dish("Yaourt aux fruits", "Perles de lait et mon visage s'est transformé", CourseType.DESSERT, new ArrayList<>()));
 
         //Meals
         meals.add(new Meal("Omelette", dishes1));

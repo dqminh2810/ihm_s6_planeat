@@ -11,6 +11,7 @@ import mocks.RecommendedDailyAmount;
 import model.Periode;
 import model.User;
 import view.ViewBase;
+import view.ViewStat;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -56,8 +57,9 @@ public class ControllerStat extends Controller {
     @FXML
     private ListView otherList;
 
-    public ControllerStat(Stage stage, Controller previousController, ViewBase actualView) {
-        super(stage,previousController, actualView);
+    public ControllerStat(Stage stage, Controller previousController) {
+        super(stage,previousController);
+        this.actualView = new ViewStat();
     }
 
     @Override

@@ -17,7 +17,7 @@ public class Main extends Application {
         User.actualUser = UserMocks.users.get("todesco@gmail.com");
 
         ViewBase view = new ViewAccueil();
-        Controller controller = new ControllerAccueil(primaryStage, null, view);
+        Controller controller = new ControllerAccueil(primaryStage, null);
         controller.setView(controller);
     }
 
