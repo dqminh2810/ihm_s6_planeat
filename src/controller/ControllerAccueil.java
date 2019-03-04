@@ -22,6 +22,9 @@ import java.util.Collections;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class ControllerAccueil extends Controller {
 
@@ -59,6 +62,8 @@ public class ControllerAccueil extends Controller {
     private Button profileButton;
     @FXML
     private Text curHourText;
+    @FXML
+    private Text helloUserText;
 
     LocalDate selectedDay;
     private ObservableList<MealDated> selectedDayMealList;
@@ -78,7 +83,6 @@ public class ControllerAccueil extends Controller {
     }
 
     private void setCurrentMeal(){
-
         Collections.sort(User.actualUser.getMeals());
 
         for(MealDated meal : User.actualUser.getMeals()){
@@ -89,7 +93,6 @@ public class ControllerAccueil extends Controller {
             }
         }
 
-        //TODO : trouver quoi marquer dans le cas ou aucun repas n'as été entré pour l'instant. ex: 1ere ouverture de l'app
         curmealNameText.setText("Aucun repas prévus prochainement !");
         curmealHourText.setText("(entrer de nouveaux repas en cliquant sur 'ajouter repas')");
     }
@@ -120,7 +123,12 @@ public class ControllerAccueil extends Controller {
         prevdayButton.setOnAction(event -> changeDay(selectedDay.minusDays(1)));
         nextdayButton.setOnAction(event -> changeDay(selectedDay.plusDays(1)));
 
-        //menu a droite TODO: ajouter bonjours utilisateur avec un text a droite
+        String hello = "Bonjour";
+        if(User.actualUser.getFirstName() != null && User.actualUser.getFirstName().length() != 0)
+            hello += " " + User.actualUser.getFirstName();
+
+        helloUserText.setText(hello);
+
         agendaButton.setOnAction(event -> setView(new ControllerAgenda(getStage(), this)));
         createIngredientButton.setOnAction(event -> setView(new ControllerAddFood(getStage(), this)));
         //createMealButton.setOnAction(event ->  new ControllerAddRepas(getStage(),this,new ViewAddMeal())); //TODO: lier le 3eme bouton créer repas a son controller et view
@@ -149,8 +157,12 @@ public class ControllerAccueil extends Controller {
 
         //prochain repas
         setCurrentMeal();
+        displayHour();
 
-        //heure TODO: un timer de 1 minute pour la mettre a jour ?
-        curHourText.setText(LocalDateTime.now().format(formatter));
+    }
+
+    private void displayHour(){
+        ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
+        exec.scheduleAtFixedRate(() -> curHourText.setText(LocalDateTime.now().format(formatter)), 0, 5, TimeUnit.SECONDS);
     }
 }
