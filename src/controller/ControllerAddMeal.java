@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import mocks.MealMocks;
 import model.CourseType;
 import model.Dish;
 import model.Meal;
@@ -135,11 +136,13 @@ public class ControllerAddMeal extends Controller{
     }
     public void saveAndExitButtonEvent() {
         //Update Menu Name
+        //System.out.println(MealMocks.meals);
         if(checkMenuName()){
             if(mealSelected == null){      //Create new menu
                 String menuName = menuNameTextField.getText();
                 ArrayList<Dish> newMeal = new ArrayList<>(getListOfDishes());
                 controllerGestionMenu.getListOfMenusForListView().add(new Meal(menuName, newMeal));
+                MealMocks.meals.add(new Meal(menuName, newMeal));
             }else{      //Update old menu
                 String menuName = menuNameTextField.getText();
                 ArrayList<Meal> tmp = new ArrayList<>(controllerGestionMenu.getListOfMenusForListView());
@@ -164,7 +167,6 @@ public class ControllerAddMeal extends Controller{
                 controllerGestionMenu.getListOfMenusForListView().addAll(tmp);
                 controllerGestionMenu.getListOfMenusForListView().add(new Meal(menuName, updateMeal));
                 controllerGestionMenu.getMealTableView().refresh();
-
             }
             getStage().close();
         }
