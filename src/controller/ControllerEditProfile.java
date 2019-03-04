@@ -7,6 +7,7 @@ import mocks.UserMocks;
 import model.User;
 import model.UserSex;
 import view.ViewBase;
+import view.ViewEditProfile;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,8 +16,9 @@ public class ControllerEditProfile extends ControllerUser {
     @FXML
     private Text editedText;
 
-    public ControllerEditProfile(Stage stage, Controller previousController, ViewBase actualView) {
-        super(stage, previousController, actualView);
+    public ControllerEditProfile(Stage stage, Controller previousController) {
+        super(stage, previousController);
+        this.actualView = new ViewEditProfile();
     }
 
     @Override

@@ -26,9 +26,10 @@ public class ControllerAddDish extends Controller
     @FXML
     private Button saveButton;
 
-    public ControllerAddDish(Stage stage, Controller previousController, ViewBase previousView)
+    public ControllerAddDish(Stage stage, Controller previousController)
     {
-        super(stage, previousController, previousView);
+        super(stage, previousController);
+        //TODO : add View dish
     }
 
     private void saveDish()

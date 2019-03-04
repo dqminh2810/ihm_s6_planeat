@@ -65,8 +65,9 @@ public class ControllerAccueil extends Controller {
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
 
-    public ControllerAccueil(Stage stage, Controller previousController, ViewBase previousView) {
-        super(stage,previousController, previousView);
+    public ControllerAccueil(Stage stage, Controller previousController) {
+        super(stage,previousController);
+        this.actualView = new ViewAccueil();
     }
 
     private void changeDay(LocalDate day){
@@ -120,15 +121,15 @@ public class ControllerAccueil extends Controller {
         nextdayButton.setOnAction(event -> changeDay(selectedDay.plusDays(1)));
 
         //menu a droite TODO: ajouter bonjours utilisateur avec un text a droite
-        agendaButton.setOnAction(event -> setView(new ControllerAgenda(getStage(), this, new ViewAgenda())));
-        createIngredientButton.setOnAction(event -> setView(new ControllerAddFood(getStage(), this, new ViewAddFood())));
+        agendaButton.setOnAction(event -> setView(new ControllerAgenda(getStage(), this)));
+        createIngredientButton.setOnAction(event -> setView(new ControllerAddFood(getStage(), this)));
         //createMealButton.setOnAction(event ->  new ControllerAddRepas(getStage(),this,new ViewAddMeal())); //TODO: lier le 3eme bouton créer repas a son controller et view
         //addMealButton.setOnAction(event -> setView(new ControllerGestionMenu(getStage(), this, new ViewGestionMenu()))); //TODO: lier le 2eme bouton ajouter menu a son controller et view
-        profileButton.setOnAction(event -> setView(new ControllerEditProfile(getStage(), this, new ViewEditProfile())));
+        profileButton.setOnAction(event -> setView(new ControllerEditProfile(getStage(), this)));
 
 
         //statistiques TODO: trouver les "cicle % round progress" (import)
-        statsButton.setOnAction(event -> setView(new ControllerStat(getStage(),this, new ViewStat())));
+        statsButton.setOnAction(event -> setView(new ControllerStat(getStage(),this)));
 
         dontsucrePiechart.setStartAngle(90);
         dontsucrePiechart.setData(FXCollections.observableArrayList(new PieChart.Data("", 50),new PieChart.Data("", 50)));

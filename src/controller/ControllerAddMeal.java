@@ -1,26 +1,22 @@
 package controller;
 
-import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.CourseType;
 import model.Dish;
 import model.Meal;
 import model.ModelListOfDishes;
+import view.ViewAddMeal;
 import view.ViewBase;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ControllerAddMeal extends Controller{
     private ModelListOfDishes modelListOfDishes = null;
@@ -52,13 +48,14 @@ public class ControllerAddMeal extends Controller{
     private TableColumn<Dish, Dish> actionTableColumn;
 
     //private ControllerGestionMenu gestionMenuController;
-    public ControllerAddMeal(Stage stage, Controller previousController, ViewBase actualView, Meal mealSelected) {
-        super(stage, previousController, actualView);
+    public ControllerAddMeal(Stage stage, Controller previousController, Meal mealSelected) {
+        super(stage, previousController);
         //this.gestionMenuController = gestionMenuController;
         this.mealSelected = mealSelected;
         modelListOfDishes = new ModelListOfDishes();
         menuNameTextField = new TextField();
         controllerGestionMenu = (ControllerGestionMenu)previousController;
+        this.actualView = new ViewAddMeal();
     }
 
 
