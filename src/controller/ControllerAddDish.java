@@ -10,6 +10,7 @@ import mocks.DishMocks;
 import model.CourseType;
 import model.Dish;
 import model.Ingredient;
+import view.ViewAddDish;
 import view.ViewBase;
 
 import java.net.URL;
@@ -42,7 +43,7 @@ public class ControllerAddDish extends Controller
     public ControllerAddDish(Stage stage, Controller previousController)
     {
         super(stage, previousController);
-        //TODO : add View dish
+        this.actualView = new ViewAddDish();
     }
 
     private void saveDish()

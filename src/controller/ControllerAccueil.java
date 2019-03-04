@@ -131,8 +131,8 @@ public class ControllerAccueil extends Controller {
 
         agendaButton.setOnAction(event -> setView(new ControllerAgenda(getStage(), this)));
         createIngredientButton.setOnAction(event -> setView(new ControllerAddFood(getStage(), this)));
-        //createMealButton.setOnAction(event ->  new ControllerAddRepas(getStage(),this,new ViewAddMeal())); //TODO: lier le 3eme bouton créer repas a son controller et view
-        //addMealButton.setOnAction(event -> setView(new ControllerGestionMenu(getStage(), this, new ViewGestionMenu()))); //TODO: lier le 2eme bouton ajouter menu a son controller et view
+        createMealButton.setOnAction(event ->  new ControllerAddDish(getStage(),this));
+        addMealButton.setOnAction(event -> setView(new ControllerGestionMenu(getStage(), this)));
         profileButton.setOnAction(event -> setView(new ControllerEditProfile(getStage(), this)));
 
 
