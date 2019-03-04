@@ -122,10 +122,8 @@ public class ControllerGestionMenu extends Controller {
     }
     public void agendaButtonEvent(){
         try{
-            Stage stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
             ViewBase view = new ViewAgenda();
-            Controller controller = new ControllerAgenda(stage,null);
+            Controller controller = new ControllerAgenda(getStage(),this);
             this.setView(controller);
         }catch (Exception e){
             System.out.println(e);
