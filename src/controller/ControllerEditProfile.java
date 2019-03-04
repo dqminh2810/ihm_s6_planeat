@@ -1,8 +1,9 @@
 package controller;
 
+import javafx.fxml.FXML;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.CookingFrequency;
-import model.StatusChoice;
+import mocks.UserMocks;
 import model.User;
 import model.UserSex;
 import view.ViewBase;
@@ -11,6 +12,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ControllerEditProfile extends ControllerUser {
+    @FXML
+    private Text editedText;
 
     public ControllerEditProfile(Stage stage, Controller previousController, ViewBase actualView) {
         super(stage, previousController, actualView);
@@ -18,6 +21,8 @@ public class ControllerEditProfile extends ControllerUser {
 
     @Override
     protected void sendForm() {
+        editedText.setText(null);
+        errorText.setText(null);
         if(!checkMailLength())
             return;
 
@@ -43,6 +48,18 @@ public class ControllerEditProfile extends ControllerUser {
 
         if(passwordField.getText().length() != 0)
             user.setPassword(passwordField.getText());
+
+        editedText.setText("Profil édité avec succès");
+    }
+
+    @Override
+    boolean checkMailAlreadyUsed(){
+        String mail = mailTexfield.getText();
+        if(!mail.equals(User.getActualUser().getMail()) && UserMocks.users.containsKey(mail)){
+            errorText.setText("Cet email existe déjà");
+            return false;
+        }
+        return true;
     }
 
 
@@ -53,7 +70,6 @@ public class ControllerEditProfile extends ControllerUser {
         firstnameTexfield.setText(User.actualUser.getFirstName());
         birthDatePicker.setValue(User.actualUser.getBirthDate());
         mailTexfield.setText(User.actualUser.getMail());
-        System.out.println(User.actualUser.getSex());
         if(User.actualUser.getSex().equals(UserSex.FEMALE)){
             sexF.setSelected(true);
         }else{
