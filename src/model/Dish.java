@@ -16,14 +16,12 @@ public class Dish {
     private StringProperty description;
     private CourseType courseType;
     private ArrayList<Ingredient> ingredients;
-    private ArrayList<String> images;
 
-    public Dish(String name, String description, CourseType courseType, ArrayList<Ingredient> ingredients, ArrayList<String> images) {
+    public Dish(String name, String description, CourseType courseType, ArrayList<Ingredient> ingredients) {
         this.name = new SimpleStringProperty(name);
         this.description = new SimpleStringProperty(description);
         this.courseType = courseType;
         this.ingredients = ingredients;
-        this.images = images;
     }
 
     public String getName()
@@ -64,16 +62,6 @@ public class Dish {
     public void setIngredients(ArrayList<Ingredient> ingredients)
     {
         this.ingredients = ingredients;
-    }
-
-    public ArrayList<String> getImages()
-    {
-        return images;
-    }
-
-    public void setImages(ArrayList<String> images)
-    {
-        this.images = images;
     }
 
     @Override
