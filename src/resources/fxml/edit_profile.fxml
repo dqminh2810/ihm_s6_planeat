@@ -12,11 +12,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="backgroundDark" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_LEFT" prefWidth="200.0">
          <children>
-            <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="←">
+            <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="buttonPrimary" text="←">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
@@ -26,7 +26,7 @@
             </Button>
             <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Editer le profil">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Editer le profil">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -69,7 +69,7 @@
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date de naissance* : ">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Date de naissance* : ">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -82,7 +82,7 @@
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sexe* : ">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Sexe* : ">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -107,7 +107,7 @@
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Poids (kg) : " />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Poids (kg) : " />
             <TextField fx:id="weightTexfield" promptText="Poids (kg)">
                <HBox.margin>
                   <Insets right="10.0" />
@@ -120,7 +120,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="10.0" layoutY="204.0" prefWidth="200.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Taille (cm) :" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Taille (cm) :" />
             <TextField fx:id="sizeTextfield" promptText="Taille (cm)">
                <HBox.margin>
                   <Insets left="10.0" />
@@ -133,7 +133,7 @@
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Statut : " />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Statut : " />
             <ChoiceBox fx:id="statusChoicebox" prefHeight="25.0" prefWidth="318.0" />
          </children>
          <VBox.margin>
@@ -142,7 +142,7 @@
       </HBox>
       <HBox alignment="CENTER" prefWidth="200.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fréquence de cuisine : " />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Fréquence de cuisine : " />
             <ChoiceBox fx:id="cookingFrequencyChoiceBox" prefHeight="25.0" prefWidth="318.0" />
          </children>
          <VBox.margin>

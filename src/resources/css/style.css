@@ -35,7 +35,7 @@
     -fx-background-color: rgba(255,255,255,0.065);
     -fx-fill: #888b9a;
     -fx-text-fill: #888b9a;
-    -fx-padding: 10px 24px;
+    -fx-padding: 5px 15px;
     -fx-font-size: 18px;
 }
 .date-picker{
@@ -43,4 +43,7 @@
 }
 .text-field:focused, .text-field:hover{
     -fx-border-color: #db9046;
+}
+.radio-button{
+    -fx-text-fill: white;
 }
