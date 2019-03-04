@@ -167,6 +167,10 @@ public class ControllerAddMeal extends Controller{
                 controllerGestionMenu.getListOfMenusForListView().addAll(tmp);
                 controllerGestionMenu.getListOfMenusForListView().add(new Meal(menuName, updateMeal));
                 controllerGestionMenu.getMealTableView().refresh();
+
+                MealMocks.meals.removeAll(MealMocks.meals);
+                MealMocks.meals.addAll( controllerGestionMenu.getListOfMenusForListView());
+
             }
             getStage().close();
         }
