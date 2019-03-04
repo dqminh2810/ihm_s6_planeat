@@ -137,7 +137,6 @@ public class User {
         for (MealDated mealDated : mealsDated){
             if (periode.containsDay(mealDated.getTime().toLocalDate())) {
                 sum += mealDated.getMeal().getIntakes(intakeIndex);
-                System.out.println(sum);
             }
         }
         return sum;
