@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 
 public class ControllerInscription extends ControllerUser {
 
-    ControllerInscription(Stage stage, Controller previousController) {
+    public ControllerInscription(Stage stage, Controller previousController) {
         super(stage,previousController);
         this.actualView = new ViewInscription();
     }

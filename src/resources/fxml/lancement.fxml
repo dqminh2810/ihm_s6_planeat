@@ -6,9 +6,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="backgroundDark" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PLAN'EAT" textAlignment="CENTER">
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="PLAN'EAT" textAlignment="CENTER">
          <VBox.margin>
             <Insets bottom="35.0" />
          </VBox.margin>
@@ -16,15 +16,21 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <Button fx:id="connexionButton" mnemonicParsing="false" text="Connexion">
+      <Button fx:id="connexionButton" mnemonicParsing="false" styleClass="buttonPrimary" text="Connexion">
          <VBox.margin>
             <Insets bottom="35.0" />
          </VBox.margin>
+         <font>
+            <Font size="18.0" />
+         </font>
       </Button>
-      <Button fx:id="inscriptionButton" mnemonicParsing="false" text="Inscription">
+      <Button fx:id="inscriptionButton" mnemonicParsing="false" styleClass="buttonPrimary" text="Inscription">
          <VBox.margin>
             <Insets bottom="35.0" />
          </VBox.margin>
+         <font>
+            <Font size="18.0" />
+         </font>
       </Button>
    </children>
 </VBox>

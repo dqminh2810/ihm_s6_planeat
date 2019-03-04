@@ -11,6 +11,7 @@
     -fx-background-color: #db9046;
     -fx-fill: white;
     -fx-text-fill: white;
+    -fx-cursor: pointer;
 }
 .list-view{
     -fx-background-color: rgba(255,255,255,0.065);
@@ -27,4 +28,19 @@
 .list-cell:odd, .list-cell:even {
     -fx-background-color: none;
     -fx-text-fill: white;
+}
+.text-field{
+    -fx-border-radius: 6px;
+    -fx-border-color: transparent;
+    -fx-background-color: rgba(255,255,255,0.065);
+    -fx-fill: #888b9a;
+    -fx-text-fill: #888b9a;
+    -fx-padding: 10px 24px;
+    -fx-font-size: 18px;
+}
+.date-picker{
+    -fx-background-color: rgba(255,255,255,0.065);
+}
+.text-field:focused, .text-field:hover{
+    -fx-border-color: #db9046;
 }

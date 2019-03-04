@@ -8,18 +8,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="backgroundDark" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox>
          <children>
-            <Button fx:id="returnButton" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="←">
+            <Button fx:id="returnButton" alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="buttonPrimary" text="←">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" top="10.0" />
                </HBox.margin>
             </Button>
             <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Connexion">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Connexion">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -40,7 +40,7 @@
                   <Insets bottom="30.0" left="60.0" right="60.0" />
                </VBox.margin>
             </TextField>
-            <Button fx:id="connexionButton" mnemonicParsing="false" text="Connexion" />
+            <Button fx:id="connexionButton" mnemonicParsing="false" styleClass="buttonPrimary" text="Connexion" />
             <HBox alignment="CENTER" prefWidth="200.0">
                <children>
                   <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
