@@ -12,6 +12,10 @@ import mocks.DishMocks;
 import mocks.FoodMocks;
 import mocks.MealMocks;
 import model.*;
+import model.CourseType;
+import model.Dish;
+import model.Ingredient;
+import view.ViewAddDish;
 import view.ViewBase;
 
 import java.net.URL;
@@ -49,9 +53,10 @@ public class ControllerAddDish extends Controller
     private ObservableList<Ingredient> ingredients;
 
 
-    public ControllerAddDish(Stage stage, Controller previousController, ViewBase previousView)
+    public ControllerAddDish(Stage stage, Controller previousController)
     {
-        super(stage, previousController, previousView);
+        super(stage, previousController);
+        this.actualView = new ViewAddDish();
     }
 
     private void saveDish()

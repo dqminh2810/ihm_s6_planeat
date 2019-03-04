@@ -9,7 +9,7 @@ import mocks.UserMocks;
 import model.User;
 import view.ViewAccueil;
 import view.ViewBase;
-import view.ViewLancement;
+import view.ViewConnexion;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,8 +26,9 @@ public class ControllerConnexion extends Controller {
     @FXML
     private Text errorText;
 
-    public ControllerConnexion(Stage stage, Controller previousController, ViewBase actualView) {
-        super(stage,previousController, actualView);
+    public ControllerConnexion(Stage stage, Controller previousController) {
+        super(stage,previousController);
+        this.actualView = new ViewConnexion();
     }
 
     private void connexion(){
@@ -38,7 +39,7 @@ public class ControllerConnexion extends Controller {
             User user = UserMocks.users.get(email);
             if (password.equals(user.getPassword())){
                 User.actualUser = user;
-                setView(new ControllerAccueil(getStage(), this, new ViewAccueil()));
+                setView(new ControllerAccueil(getStage(), this));
             }
             else{
                 errorText.setText("Mot de passe incorrect");

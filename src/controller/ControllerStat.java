@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import model.Periode;
 import view.ViewBase;
+import view.ViewStat;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -53,8 +54,9 @@ public class ControllerStat extends Controller {
     @FXML
     private ListView otherList;
 
-    public ControllerStat(Stage stage, Controller previousController, ViewBase actualView) {
-        super(stage,previousController, actualView);
+    public ControllerStat(Stage stage, Controller previousController) {
+        super(stage,previousController);
+        this.actualView = new ViewStat();
     }
 
     @Override

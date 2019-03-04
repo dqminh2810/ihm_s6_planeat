@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mocks.MealMocks;
 import model.*;
+import view.ViewAgenda;
 import view.ViewBase;
 
 import java.net.URL;
@@ -69,8 +70,9 @@ public class ControllerAgenda extends Controller {
     private ArrayList<ObservableList<MealDated>> mealsDaysList;
     private LocalDate firstDayOfActualWeek;
 
-    public ControllerAgenda(Stage stage, Controller previousController, ViewBase previousView) {
-        super(stage,previousController, previousView);
+    public ControllerAgenda(Stage stage, Controller previousController) {
+        super(stage,previousController);
+        this.actualView = new ViewAgenda();
     }
 
     private void popupToAddMealDate(DayOfWeek dayOfWeek){
