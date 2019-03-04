@@ -50,6 +50,17 @@ public class ControllerGestionMenu extends Controller {
         modelListOfMenus = new ModelListOfMenus();
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        initListView();
+        initTableView();
+        linkListViewToTableView();
+
+        //Handle Button event
+        addButton.setOnAction(event -> addButtonEvent());
+        returnButton.setOnAction(event -> returnButtonEvent());
+        agendaButton.setOnAction(event -> agendaButtonEvent());
+    }
     //init listView
     public void initListView(){
         MealListView.setItems(getListOfMenusForListView());
@@ -99,9 +110,9 @@ public class ControllerGestionMenu extends Controller {
     public void addButtonEvent(){
         try{
             Stage stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
+            //stage.initStyle(StageStyle.UNDECORATED);
             ViewBase view = new ViewAddMeal();
-            Controller controller = new ControllerAddRepas(stage,this,view, null);
+            Controller controller = new ControllerAddMeal(stage,this,view, null);
             controller.setView(controller);
         }catch (Exception e){
             System.out.println(e);
@@ -119,7 +130,7 @@ public class ControllerGestionMenu extends Controller {
         }
     }
     public void returnButtonEvent(){
-        this.getPreviousController().setView(this.getPreviousController());
+        this.clickOnReturnButton(returnButton);
     }
     public void deleteButtonEvent(int selectedId) {
         if(selectedId!=-1){
@@ -135,9 +146,8 @@ public class ControllerGestionMenu extends Controller {
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             ViewBase view = new ViewAddMeal();
-            Controller controller = new ControllerAddRepas(stage,this,view, mealSelected);
-            ((ControllerAddRepas) controller).getListOfDishes().addAll(getListOfDishFromMenu(selectedId));
-            ((ControllerAddRepas) controller).setMenuNameTextField(mealSelected.getName());
+            Controller controller = new ControllerAddMeal(stage,this,view, mealSelected);
+            ((ControllerAddMeal) controller).getListOfDishes().addAll(getListOfDishFromMenu(selectedId));
 
             controller.setView(controller);
         }catch (Exception e){
@@ -166,17 +176,5 @@ public class ControllerGestionMenu extends Controller {
             listofdish = mealSelected.getDishes();
         }
         return listofdish;
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        initListView();
-        initTableView();
-        linkListViewToTableView();
-
-        //Handle Button event
-        addButton.setOnAction(event -> addButtonEvent());
-        returnButton.setOnAction(event -> returnButtonEvent());
-        agendaButton.setOnAction(event -> agendaButtonEvent());
     }
 }

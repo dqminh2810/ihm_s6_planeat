@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ControllerAddRepas extends Controller{
+public class ControllerAddMeal extends Controller{
     private ModelListOfDishes modelListOfDishes = null;
     private ControllerGestionMenu controllerGestionMenu;
     private Meal mealSelected = null;
@@ -52,17 +52,70 @@ public class ControllerAddRepas extends Controller{
     private TableColumn<Dish, Dish> actionTableColumn;
 
     //private ControllerGestionMenu gestionMenuController;
-    public ControllerAddRepas(Stage stage, Controller previousController, ViewBase actualView, Meal mealSelected) {
+    public ControllerAddMeal(Stage stage, Controller previousController, ViewBase actualView, Meal mealSelected) {
         super(stage, previousController, actualView);
         //this.gestionMenuController = gestionMenuController;
         this.mealSelected = mealSelected;
         modelListOfDishes = new ModelListOfDishes();
-
         menuNameTextField = new TextField();
-        menuNameTextField.setText("DDDD");
-
         controllerGestionMenu = (ControllerGestionMenu)previousController;
     }
+
+
+    //INIT
+    public void initialize(URL location, ResourceBundle resources) {
+        if(mealSelected!=null)
+            menuNameTextField.setText(mealSelected.getName());
+
+        initTextField();
+        initChoiceBox();
+        initTableView();
+
+        //Handle Button event
+        pickButton.setOnAction(event -> pickButtonEvent());
+        deleteAllButton.setOnAction(event -> deleteAllButtonEvent());
+        saveandexitButton.setOnAction(event -> saveAndExitButtonEvent());
+    }
+    //init TextField menuName
+    public void initTextField() {
+        menuNameTextField.setEditable(true);
+    }
+    //init Choice Box
+    public void initChoiceBox(){
+        startersChoiceBox.setItems(modelListOfDishes.getStarters());
+        maincoursesChoiceBox.setItems(modelListOfDishes.getMaincourses());
+        dessertsChoiceBox.setItems(modelListOfDishes.getDesserts());
+
+        startersChoiceBox.getSelectionModel().select(0);
+        maincoursesChoiceBox.getSelectionModel().select(0);
+        dessertsChoiceBox.getSelectionModel().select(0);
+    }
+    //init Table View
+    public void initTableView(){
+        dishTableView.setItems(getListOfDishes());
+        dishTableView.getColumns().clear();
+
+        typeTableColumn.setCellValueFactory(new PropertyValueFactory<Dish, Dish>("courseType"));
+        nameTableColumn.setCellValueFactory(new PropertyValueFactory<Dish, Dish>("name"));
+        actionTableColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+        actionTableColumn.setCellFactory(param -> new TableCell<Dish, Dish>(){
+            private final Button deleteButton = new Button("delete");
+            private final HBox pane = new HBox(deleteButton);
+
+            @Override
+            protected void updateItem(Dish item, boolean empty) {
+                super.updateItem(item, empty);
+                deleteButton.setOnAction(event -> {
+                    deleteButtonEvent(item);
+                });
+                setGraphic(empty ? null : pane);
+            }
+        });
+
+        dishTableView.getColumns().addAll(typeTableColumn,nameTableColumn,actionTableColumn);
+        sortListOfDishes();
+    }
+
 
     //GETTER
     public ModelListOfDishes getModelListOfDishes() {
@@ -74,10 +127,6 @@ public class ControllerAddRepas extends Controller{
     public ObservableList<Dish>  getListOfDishes(){ return modelListOfDishes.getListOfDishes(); }
     public TextField getMenuNameTextField() { return menuNameTextField; }
 
-    //SETTER
-    public void setMenuNameTextField(String name) {
-        menuNameTextField.setText(name);
-    }
 
     //ACTION EVENT
     public void pickButtonEvent(){
@@ -127,45 +176,7 @@ public class ControllerAddRepas extends Controller{
         dishTableView.getItems().remove(dish);
     }
 
-    //init TextField menuName
-    public void initTextField() {
-        menuNameTextField.setEditable(true);
-    }
-    //init Choice Box
-    public void initChoiceBox(){
-        startersChoiceBox.setItems(modelListOfDishes.getStarters());
-        maincoursesChoiceBox.setItems(modelListOfDishes.getMaincourses());
-        dessertsChoiceBox.setItems(modelListOfDishes.getDesserts());
-
-        startersChoiceBox.getSelectionModel().select(0);
-        maincoursesChoiceBox.getSelectionModel().select(0);
-        dessertsChoiceBox.getSelectionModel().select(0);
-    }
-    //init Table View
-    public void initTableView(){
-        dishTableView.setItems(getListOfDishes());
-        dishTableView.getColumns().clear();
-
-        typeTableColumn.setCellValueFactory(new PropertyValueFactory<Dish, Dish>("courseType"));
-        nameTableColumn.setCellValueFactory(new PropertyValueFactory<Dish, Dish>("name"));
-        actionTableColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-        actionTableColumn.setCellFactory(param -> new TableCell<Dish, Dish>(){
-            private final Button deleteButton = new Button("delete");
-            private final HBox pane = new HBox(deleteButton);
-
-            @Override
-            protected void updateItem(Dish item, boolean empty) {
-                super.updateItem(item, empty);
-                deleteButton.setOnAction(event -> {
-                    deleteButtonEvent(item);
-                });
-                setGraphic(empty ? null : pane);
-            }
-        });
-
-        dishTableView.getColumns().addAll(typeTableColumn,nameTableColumn,actionTableColumn);
-    }
-    //link choiceBox to tableView
+    //Link choiceBox to tableView
     public void linkChoiceBoxToTableView(){
         Dish starter = startersChoiceBox.getValue();
         Dish maincourse = maincoursesChoiceBox.getValue();
@@ -193,6 +204,7 @@ public class ControllerAddRepas extends Controller{
         getListOfDishes().clear();
         getListOfDishes().addAll(tmpList);
     }
+    //Check if menu name is empty
     public boolean checkMenuName(){
         if(menuNameTextField.getText().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -204,20 +216,5 @@ public class ControllerAddRepas extends Controller{
             return false;
         }
         return true;
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        if(mealSelected!=null)
-            menuNameTextField.setText(mealSelected.getName());
-
-        initTextField();
-        initChoiceBox();
-        initTableView();
-
-        //Handle Button event
-        pickButton.setOnAction(event -> pickButtonEvent());
-        deleteAllButton.setOnAction(event -> deleteAllButtonEvent());
-        saveandexitButton.setOnAction(event -> saveAndExitButtonEvent());
     }
 }
