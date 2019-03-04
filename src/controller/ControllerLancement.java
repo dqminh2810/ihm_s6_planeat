@@ -20,13 +20,9 @@ public class ControllerLancement extends Controller {
         super(stage,previousController, actualView);
     }
 
-    public void init(){
-        connexionButton.setOnAction( event -> setView(new ControllerConnexion(getStage(), this, new ViewConnexion())));
-        inscriptionButton.setOnAction( event -> setView(new ControllerInscription(getStage(), this, new ViewInscription())));
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        connexionButton.setOnAction( event -> setView(new ControllerConnexion(getStage(), this, new ViewConnexion())));
+        inscriptionButton.setOnAction( event -> setView(new ControllerInscription(getStage(), this, new ViewInscription())));
     }
 }

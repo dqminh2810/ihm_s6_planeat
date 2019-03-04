@@ -21,16 +21,12 @@ public abstract class Controller implements Initializable {
         this.actualView = actualView;
     }
 
-    abstract void init();
-
     public void setView(Controller controller) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setController(controller);
             Parent root = loader.load(getClass().getResourceAsStream("../"+ controller.getActualView().getXmlFile()));
             root.getStylesheets().add(controller.getActualView().getCss());
-            //TODO : mettez tous ce que vous avez dans init dans la méthode initialize()
-            //controller.init();
 
             stage.setScene(new Scene(root, controller.getActualView().getWidth(), controller.getActualView().getHeight()));
             stage.setTitle(controller.getActualView().getLabel());

@@ -9,10 +9,13 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import mocks.FoodMocks;
+import model.Food;
 import model.FoodCategory;
 import view.ViewBase;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ControllerAddFood extends Controller
@@ -47,8 +50,6 @@ public class ControllerAddFood extends Controller
     private Text errorText;
 
     @FXML
-    private Button addImageButton;
-    @FXML
     private Button saveButton;
 
     @FXML
@@ -57,14 +58,6 @@ public class ControllerAddFood extends Controller
     public ControllerAddFood(Stage stage, Controller previousController, ViewBase previousView)
     {
         super(stage, previousController, previousView);
-    }
-
-    @Override
-    void init()
-    {
-        loadFoodCategory();
-        clickOnReturnButton(returnButton);
-        saveButton.setOnAction(event -> saveFood());
     }
 
     private void saveFood()
@@ -188,7 +181,41 @@ public class ControllerAddFood extends Controller
         boolean containPeanut = containPeanutCheckbox.isSelected();
         boolean containGluten = containGlutenCheckbox.isSelected();
 
+        Food food;
 
+        //If an error occur during the save process
+        try
+        {
+            food = new Food(name, foodCategory, energy, fat, acid, carbohydrate, sugar, protein, salt, containPeanut, containGluten);
+        }
+        catch (Exception e)
+        {
+            errorText.setText("Une erreur empêche la sauvegarde");
+            return;
+        }
+
+        for (Food f : FoodMocks.foods)
+        {
+            if (f.getName().equals(name))
+            {
+                errorText.setText("Il existe déjà un aliment " + name);
+                return;
+            }
+        }
+
+        //If an error occur during the save process
+        try
+        {
+            FoodMocks.foods.add(food);
+        }
+        catch (Exception e)
+        {
+            errorText.setText("Une erreur empêche la sauvegarde");
+            return;
+        }
+
+        //If the save worked, leave the page
+        setView(getPreviousController());
     }
 
     private void loadFoodCategory()
@@ -207,6 +234,8 @@ public class ControllerAddFood extends Controller
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        loadFoodCategory();
+        clickOnReturnButton(returnButton);
+        saveButton.setOnAction(event -> saveFood());
     }
 }

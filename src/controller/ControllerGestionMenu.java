@@ -61,12 +61,6 @@ public class ControllerGestionMenu extends Controller {
         returnButton.setOnAction(event -> returnButtonEvent());
         agendaButton.setOnAction(event -> agendaButtonEvent());
     }
-
-    //INIT to removed
-    @Override
-    public void init() {
-
-    }
     //init listView
     public void initListView(){
         MealListView.setItems(getListOfMenusForListView());
@@ -183,5 +177,4 @@ public class ControllerGestionMenu extends Controller {
         }
         return listofdish;
     }
-
 }

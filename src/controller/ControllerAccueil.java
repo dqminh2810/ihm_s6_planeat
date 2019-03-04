@@ -10,10 +10,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.MealDated;
 import model.User;
-import view.ViewAddFood;
-import view.ViewAgenda;
-import view.ViewBase;
-import view.ViewStat;
+import view.*;
 
 import java.net.URL;
 import java.time.DayOfWeek;
@@ -112,7 +109,8 @@ public class ControllerAccueil extends Controller {
         Collections.sort(selectedDayMealList);
     }
 
-    public void init(){
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         //liste calendrier
         selectedDayMealList =  FXCollections.observableArrayList();
         curdayList.setItems(selectedDayMealList);
@@ -121,12 +119,12 @@ public class ControllerAccueil extends Controller {
         prevdayButton.setOnAction(event -> changeDay(selectedDay.minusDays(1)));
         nextdayButton.setOnAction(event -> changeDay(selectedDay.plusDays(1)));
 
-        //menu a droite TODO: ajouter bonjours utilisateur avec un text a droite, ajouter iconnes.
+        //menu a droite TODO: ajouter bonjours utilisateur avec un text a droite
         agendaButton.setOnAction(event -> setView(new ControllerAgenda(getStage(), this, new ViewAgenda())));
         createIngredientButton.setOnAction(event -> setView(new ControllerAddFood(getStage(), this, new ViewAddFood())));
-        //createMealButton.setOnAction(event ->  new ControllerAddDish(getStage(),this,new ViewAddD()));
-        //addMealButton.setOnAction(event -> setView(new ControllerAddDish(getStage(), this, new ViewAddDish())));
-        //profileButton.setOnAction(event -> setView(new ControllerProfile(getStage(), this, new ViewProfile())));
+        //createMealButton.setOnAction(event ->  new ControllerAddRepas(getStage(),this,new ViewAddMeal())); //TODO: lier le 3eme bouton créer repas a son controller et view
+        //addMealButton.setOnAction(event -> setView(new ControllerGestionMenu(getStage(), this, new ViewGestionMenu()))); //TODO: lier le 2eme bouton ajouter menu a son controller et view
+        profileButton.setOnAction(event -> setView(new ControllerEditProfile(getStage(), this, new ViewEditProfile())));
 
 
         //statistiques TODO: trouver les "cicle % round progress" (import)
@@ -153,11 +151,5 @@ public class ControllerAccueil extends Controller {
 
         //heure TODO: un timer de 1 minute pour la mettre a jour ?
         curHourText.setText(LocalDateTime.now().format(formatter));
-
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
     }
 }

@@ -17,9 +17,7 @@ public class Food {
     private boolean peanut;
     private boolean gluten;
 
-    private ArrayList<String> images;
-
-    public Food(String name, FoodCategory category, int energy, int fat, int acid, int carbohydrate, int sugar, int protein, int salt, boolean peanut, boolean gluten, ArrayList<String> images) {
+    public Food(String name, FoodCategory category, int energy, int fat, int acid, int carbohydrate, int sugar, int protein, int salt, boolean peanut, boolean gluten) {
         this.name = name;
         this.category = category;
         this.energy = energy;
@@ -31,7 +29,6 @@ public class Food {
         this.salt = salt;
         this.peanut = peanut;
         this.gluten = gluten;
-        this.images = images;
     }
 
     public String getName()
@@ -142,15 +139,5 @@ public class Food {
     public void setGluten(boolean gluten)
     {
         this.gluten = gluten;
-    }
-
-    public ArrayList<String> getImages()
-    {
-        return images;
-    }
-
-    public void setImages(ArrayList<String> images)
-    {
-        this.images = images;
     }
 }

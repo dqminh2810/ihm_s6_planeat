@@ -57,10 +57,11 @@ public class ControllerStat extends Controller {
         super(stage,previousController, actualView);
     }
 
-    public void init(){
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         clickOnReturnButton(returnButton);
 
-        Periode periode = new Periode(LocalDate.now().minusDays(1), LocalDate.now());
+        Periode periode = new Periode(LocalDate.now(), LocalDate.now());
 
         statDateStart.setValue(periode.getStartDate());
         statDateEnd.setValue(periode.getEndDate());
@@ -113,11 +114,5 @@ public class ControllerStat extends Controller {
             statDateStart.setValue(periode.getStartDate());
             statDateEnd.setValue(periode.getEndDate());
         });
-
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
     }
 }

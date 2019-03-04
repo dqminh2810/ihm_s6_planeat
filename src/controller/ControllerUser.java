@@ -53,11 +53,6 @@ public abstract class ControllerUser extends Controller{
         super(stage, previousController, actualView);
     }
 
-    //TODO : delete this method
-    public void init(){
-
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadStatusChoice();

@@ -61,9 +61,12 @@ public class ControllerAddMeal extends Controller{
         controllerGestionMenu = (ControllerGestionMenu)previousController;
     }
 
+
     //INIT
-    @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if(mealSelected!=null)
+            menuNameTextField.setText(mealSelected.getName());
+
         initTextField();
         initChoiceBox();
         initTableView();
@@ -72,8 +75,6 @@ public class ControllerAddMeal extends Controller{
         pickButton.setOnAction(event -> pickButtonEvent());
         deleteAllButton.setOnAction(event -> deleteAllButtonEvent());
         saveandexitButton.setOnAction(event -> saveAndExitButtonEvent());
-        if(mealSelected!=null)
-            menuNameTextField.setText(mealSelected.getName());
     }
     //init TextField menuName
     public void initTextField() {
@@ -114,6 +115,7 @@ public class ControllerAddMeal extends Controller{
         dishTableView.getColumns().addAll(typeTableColumn,nameTableColumn,actionTableColumn);
         sortListOfDishes();
     }
+
 
     //GETTER
     public ModelListOfDishes getModelListOfDishes() {
@@ -214,11 +216,5 @@ public class ControllerAddMeal extends Controller{
             return false;
         }
         return true;
-    }
-
-
-    @Override
-    void init() {
-
     }
 }

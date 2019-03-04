@@ -30,11 +30,6 @@ public class ControllerConnexion extends Controller {
         super(stage,previousController, actualView);
     }
 
-    public void init(){
-        clickOnReturnButton(returnButton);
-        connexionButton.setOnAction(event -> connexion());
-    }
-
     private void connexion(){
         String email = emailTextfield.getText();
         String password = passwordTextfield.getText();
@@ -58,6 +53,7 @@ public class ControllerConnexion extends Controller {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        clickOnReturnButton(returnButton);
+        connexionButton.setOnAction(event -> connexion());
     }
 }
