@@ -140,4 +140,10 @@ public class Food {
     {
         this.gluten = gluten;
     }
+
+    @Override
+    public String toString()
+    {
+        return name;
+    }
 }

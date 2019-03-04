@@ -63,7 +63,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Text>
-                        <ListView fx:id="ingredientList" prefHeight="0.0" />
+                        <ListView fx:id="ingredientList" prefHeight="100.0" />
                         <HBox alignment="CENTER_RIGHT">
                            <children>
                               <Button fx:id="addIngredientButton" mnemonicParsing="false" text="Ajouter un ingrédient" HBox.hgrow="ALWAYS" />
