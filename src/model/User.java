@@ -132,6 +132,17 @@ public class User {
         return mealsDated;
     }
 
+    public double getIntakes(int intakeIndex, Periode periode) {
+        double sum = 0;
+        for (MealDated mealDated : mealsDated){
+            if (periode.containsDay(mealDated.getTime().toLocalDate())) {
+                sum += mealDated.getMeal().getIntakes(intakeIndex);
+                System.out.println(sum);
+            }
+        }
+        return sum;
+    }
+
     @Override
     public String toString(){
         StringBuilder builder = new StringBuilder();

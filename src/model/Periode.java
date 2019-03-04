@@ -1,6 +1,10 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.*;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class Periode {
 
@@ -32,5 +36,13 @@ public class Periode {
         if (startDate != null && startDate.isAfter(this.endDate)){
             startDate = endDate;
         }
+    }
+
+    public long getInterval(){
+        return startDate.until(endDate, DAYS);
+    }
+
+    public boolean containsDay(LocalDate date) {
+        return ( date.isEqual(startDate) || date.isAfter(startDate) ) && ( date.isBefore(endDate) || date.isEqual(endDate) );
     }
 }
