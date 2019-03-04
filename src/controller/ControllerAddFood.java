@@ -50,8 +50,6 @@ public class ControllerAddFood extends Controller
     private Text errorText;
 
     @FXML
-    private Button addImageButton;
-    @FXML
     private Button saveButton;
 
     @FXML
@@ -188,12 +186,31 @@ public class ControllerAddFood extends Controller
         //If an error occur during the save process
         try
         {
-            food = new Food(name, foodCategory, energy, fat, acid, carbohydrate, sugar, protein, salt, containPeanut, containGluten, new ArrayList<String>());
+            food = new Food(name, foodCategory, energy, fat, acid, carbohydrate, sugar, protein, salt, containPeanut, containGluten);
+        }
+        catch (Exception e)
+        {
+            errorText.setText("Une erreur empêche la sauvegarde");
+            return;
+        }
+
+        for (Food f : FoodMocks.foods)
+        {
+            if (f.getName().equals(name))
+            {
+                errorText.setText("Il existe déjà un aliment " + name);
+                return;
+            }
+        }
+
+        //If an error occur during the save process
+        try
+        {
             FoodMocks.foods.add(food);
         }
         catch (Exception e)
         {
-            errorText.setText("An Error occured, impossible to save");
+            errorText.setText("Une erreur empêche la sauvegarde");
             return;
         }
 

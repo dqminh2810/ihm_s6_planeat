@@ -24,8 +24,6 @@ public class ControllerAddDish extends Controller
     private Text errorText;
 
     @FXML
-    private Button addImageButton;
-    @FXML
     private Button saveButton;
 
     public ControllerAddDish(Stage stage, Controller previousController, ViewBase previousView)
@@ -35,10 +33,12 @@ public class ControllerAddDish extends Controller
 
     private void saveDish()
     {
+        errorText.setText("");
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources)
+    {
         clickOnReturnButton(returnButton);
         saveButton.setOnAction(event -> saveDish());
     }
