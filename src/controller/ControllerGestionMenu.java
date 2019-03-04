@@ -60,7 +60,7 @@ public class ControllerGestionMenu extends Controller {
 
         //Handle Button event
         addButton.setOnAction(event -> addButtonEvent());
-        returnButton.setOnAction(event -> returnButtonEvent());
+        clickOnReturnButton(returnButton);
         agendaButton.setOnAction(event -> agendaButtonEvent());
     }
     //init listView
@@ -130,9 +130,6 @@ public class ControllerGestionMenu extends Controller {
         }catch (Exception e){
             System.out.println(e);
         }
-    }
-    public void returnButtonEvent(){
-        this.clickOnReturnButton(returnButton);
     }
     public void deleteButtonEvent(int selectedId) {
         if(selectedId!=-1){
