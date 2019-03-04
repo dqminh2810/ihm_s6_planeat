@@ -138,7 +138,6 @@ public class ControllerAccueil extends Controller {
 
         //statistiques TODO: trouver les "cicle % round progress" (import)
         statsButton.setOnAction(event -> setView(new ControllerStat(getStage(),this)));
-
         dontsucrePiechart.setStartAngle(90);
         dontsucrePiechart.setData(FXCollections.observableArrayList(new PieChart.Data("", 50),new PieChart.Data("", 50)));
         dontsucrePiechart.setLabelsVisible(false);

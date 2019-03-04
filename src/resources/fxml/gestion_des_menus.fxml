@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backgroundDark" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="119.0" prefWidth="1260.0">
          <children>
-            <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="71.0" text="&lt;-">
+            <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="71.0" styleClass="buttonPrimary" text="&lt;-">
                <opaqueInsets>
                   <Insets left="10.0" />
                </opaqueInsets>
@@ -22,7 +22,7 @@
                   <Insets right="50.0" />
                </HBox.margin>
             </Button>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des plats" textAlignment="CENTER" wrappingWidth="1138.3164157867432" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Gestion des plats" textAlignment="CENTER" wrappingWidth="1138.3164157867432" />
          </children>
          <opaqueInsets>
             <Insets />
