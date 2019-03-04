@@ -12,10 +12,10 @@ import javafx.stage.Stage;
 import mocks.FoodMocks;
 import model.Food;
 import model.FoodCategory;
+import view.ViewAddFood;
 import view.ViewBase;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ControllerAddFood extends Controller
@@ -55,9 +55,10 @@ public class ControllerAddFood extends Controller
     @FXML
     private ChoiceBox<FoodCategory> categorySplitmenu;
 
-    public ControllerAddFood(Stage stage, Controller previousController, ViewBase previousView)
+    public ControllerAddFood(Stage stage, Controller previousController)
     {
-        super(stage, previousController, previousView);
+        super(stage, previousController);
+        this.actualView = new ViewAddFood();
     }
 
     private void saveFood()

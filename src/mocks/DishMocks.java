@@ -29,14 +29,14 @@ public abstract class DishMocks {
         ingredients3.add(new Ingredient(FoodMocks.foods.get(5), 200));
 
         //Starters
-        starters.add(new Dish("poivrons","scrounch", CourseType.STARTER, ingredients3, null));
+        starters.add(new Dish("poivrons","scrounch", CourseType.STARTER, ingredients3));
 
         //Maincourses
-        maincourses.add(new Dish("Omelette des familles", "A ne pas retourner", CourseType.MAIN_COURSE, ingredients, null));
-        maincourses.add(new Dish("Pates au poulet", "miam :)", CourseType.MAIN_COURSE, ingredients2, null));
+        maincourses.add(new Dish("Omelette des familles", "A ne pas retourner", CourseType.MAIN_COURSE, ingredients));
+        maincourses.add(new Dish("Pates au poulet", "miam :)", CourseType.MAIN_COURSE, ingredients2));
 
         //Desserts
-        desserts.add(new Dish("Yaourt aux fruits", "Perles de lait et mon visage s'est transformé", CourseType.DESSERT, null, null));
+        desserts.add(new Dish("Yaourt aux fruits", "Perles de lait et mon visage s'est transformé", CourseType.DESSERT, null));
 
         //All Dishes
         dishes.addAll(starters);

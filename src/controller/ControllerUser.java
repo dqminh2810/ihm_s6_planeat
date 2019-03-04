@@ -49,8 +49,8 @@ public abstract class ControllerUser extends Controller{
     protected Text errorText;
     protected ToggleGroup group;
 
-    ControllerUser(Stage stage, Controller previousController, ViewBase actualView) {
-        super(stage, previousController, actualView);
+    ControllerUser(Stage stage, Controller previousController) {
+        super(stage, previousController);
     }
 
     @Override

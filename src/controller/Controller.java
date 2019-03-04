@@ -13,12 +13,11 @@ import java.io.IOException;
 public abstract class Controller implements Initializable {
     private Stage stage; //the state is the current window
     private Controller previousController;
-    private ViewBase actualView;
+    protected ViewBase actualView;
 
-    Controller(Stage stage, Controller previousController, ViewBase actualView){
+    Controller(Stage stage, Controller previousController){
         this.stage = stage;
         this.previousController = previousController;
-        this.actualView = actualView;
     }
 
     public void setView(Controller controller) {

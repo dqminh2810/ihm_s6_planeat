@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.ListView;
 import view.ViewAddMeal;
+import view.ViewGestionMenu;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -45,9 +46,10 @@ public class ControllerGestionMenu extends Controller {
     private TableColumn<Meal, Meal> actionTableColumn;
 
     //Constructor
-    public ControllerGestionMenu(Stage stage, Controller previousController, ViewBase actualView) {
-        super(stage, previousController, actualView);
+    public ControllerGestionMenu(Stage stage, Controller previousController) {
+        super(stage, previousController);
         modelListOfMenus = new ModelListOfMenus();
+        this.actualView = new ViewGestionMenu();
     }
 
     @Override
@@ -112,7 +114,7 @@ public class ControllerGestionMenu extends Controller {
             Stage stage = new Stage();
             //stage.initStyle(StageStyle.UNDECORATED);
             ViewBase view = new ViewAddMeal();
-            Controller controller = new ControllerAddMeal(stage,this,view, null);
+            Controller controller = new ControllerAddMeal(stage,this, null);
             controller.setView(controller);
         }catch (Exception e){
             System.out.println(e);
@@ -123,7 +125,7 @@ public class ControllerGestionMenu extends Controller {
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             ViewBase view = new ViewAgenda();
-            Controller controller = new ControllerAgenda(stage,null,view);
+            Controller controller = new ControllerAgenda(stage,null);
             this.setView(controller);
         }catch (Exception e){
             System.out.println(e);
@@ -146,7 +148,7 @@ public class ControllerGestionMenu extends Controller {
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             ViewBase view = new ViewAddMeal();
-            Controller controller = new ControllerAddMeal(stage,this,view, mealSelected);
+            Controller controller = new ControllerAddMeal(stage,this, mealSelected);
             ((ControllerAddMeal) controller).getListOfDishes().addAll(getListOfDishFromMenu(selectedId));
 
             controller.setView(controller);
