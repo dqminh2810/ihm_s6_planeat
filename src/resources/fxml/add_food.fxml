@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="746.0" styleClass="backgroundDark" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox>
          <children>
-            <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="←">
+            <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="buttonPrimary" text="←">
                <font>
                   <Font size="18.0" />
                </font>
@@ -28,9 +28,9 @@
             </Button>
             <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout d'un Aliment">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Ajout d'un Aliment">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="22.0" />
                      </font>
                   </Text>
                </children>
@@ -39,7 +39,7 @@
       </HBox>
       <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
          <children>
-            <ScrollPane hbarPolicy="NEVER" HBox.hgrow="ALWAYS">
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" HBox.hgrow="ALWAYS">
                <content>
                   <VBox>
                      <padding>
@@ -47,12 +47,12 @@
                      </padding>
                      <children>
                         <TextField fx:id="nameTextfield" promptText="Nom" />
-                        <ChoiceBox fx:id="categorySplitmenu" VBox.vgrow="ALWAYS">
+                        <ChoiceBox fx:id="categorySplitmenu" prefHeight="41.0" prefWidth="514.0" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </ChoiceBox>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Apports nutritionels pour 100g">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Apports nutritionels pour 100g">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -60,19 +60,19 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Text>
-                        <GridPane>
+                        <GridPane prefWidth="564.0" VBox.vgrow="ALWAYS">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" prefWidth="298.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.5" minWidth="10.0" prefWidth="52.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
                               <TextField fx:id="energy_textfield" promptText="Énergie">
@@ -105,7 +105,7 @@
                                     <Font size="10.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="energyTextfield" promptText="Énergie">
+                              <TextField fx:id="energyTextfield" prefWidth="322.0" promptText="Énergie">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
@@ -118,19 +118,28 @@
                                     <Insets />
                                  </GridPane.margin>
                               </TextField>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" Kcal" GridPane.columnIndex="1" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text=" Kcal" GridPane.columnIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                            </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
                         </GridPane>
                         <CheckBox fx:id="containPeanutCheckbox" mnemonicParsing="false" text="Traces d'arachides">
                            <padding>
                               <Insets top="10.0" />
                            </padding>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
                         </CheckBox>
                         <CheckBox fx:id="containGlutenCheckbox" mnemonicParsing="false" text="Traces de gluten" />
                         <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0">
@@ -140,7 +149,7 @@
                         </Text>
                         <HBox alignment="CENTER">
                            <children>
-                              <Button fx:id="saveButton" mnemonicParsing="false" text="Enregistrer Aliment" HBox.hgrow="ALWAYS">
+                              <Button fx:id="saveButton" mnemonicParsing="false" styleClass="buttonPrimary" text="Enregistrer l'aliment" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>

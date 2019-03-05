@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="backgroundDark" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="backgroundDark" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_LEFT" prefWidth="200.0">
          <children>
@@ -29,7 +29,7 @@
                <children>
                   <Button fx:id="previousWeekButton" mnemonicParsing="false" styleClass="buttonPrimary" text="&lt;&lt;">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="16.0" />
                      </font>
                      <HBox.margin>
                         <Insets right="10.0" />
@@ -37,7 +37,7 @@
                   </Button>
                   <Text fx:id="currentDateText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="dd/mm/yyyy - dd/mm/yyyy">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="22.0" />
                      </font>
                      <HBox.margin>
                         <Insets bottom="10.0" top="10.0" />
@@ -45,7 +45,7 @@
                   </Text>
                   <Button fx:id="nextWeekButton" mnemonicParsing="false" styleClass="buttonPrimary" text="&gt;&gt;">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="16.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="10.0" />
@@ -93,41 +93,62 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Lundi" textAlignment="CENTER" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Lundi" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></Text>
                   <Button fx:id="addMeal1Button" mnemonicParsing="false" styleClass="buttonPrimary" text="+" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Mardi" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Mardi">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></Text>
                   <Button fx:id="addMeal2Button" mnemonicParsing="false" styleClass="buttonPrimary" text="+" />
                </children></VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Mercredi" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Mercredi">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></Text>
                   <Button fx:id="addMeal3Button" mnemonicParsing="false" styleClass="buttonPrimary" text="+" />
                </children></VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Jeudi" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Jeudi">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></Text>
                   <Button fx:id="addMeal4Button" mnemonicParsing="false" styleClass="buttonPrimary" text="+" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Vendredi" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Vendredi">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></Text>
                   <Button fx:id="addMeal5Button" mnemonicParsing="false" styleClass="buttonPrimary" text="+" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Samedi" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Samedi">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></Text>
                   <Button fx:id="addMeal6Button" mnemonicParsing="false" styleClass="buttonPrimary" text="+" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Dimanche" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Dimanche">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></Text>
                   <Button fx:id="addMeal7Button" mnemonicParsing="false" styleClass="buttonPrimary" text="+" />
                </children>
             </VBox>

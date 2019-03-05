@@ -33,17 +33,52 @@
     -fx-border-radius: 6px;
     -fx-border-color: transparent;
     -fx-background-color: rgba(255,255,255,0.065);
-    -fx-fill: #888b9a;
-    -fx-text-fill: #888b9a;
+    -fx-fill: rgba(255,255,255,0.6);
+    -fx-text-fill: rgba(255,255,255,0.6);
+    -fx-prompt-text-fill: rgba(255,255,255,0.4);
     -fx-padding: 5px 15px;
+    -fx-font-size: 18px;
+}
+.text-area{
+    -fx-border-color: transparent;
+    -fx-border-radius: 6px;
+    -fx-background-color: #242424;
+    -fx-control-inner-background: rgba(255,255,255,0.065);
+    -fx-text-fill: rgba(255,255,255,0.6);
+    -fx-fill: rgba(255,255,255,0.6);
+    -fx-prompt-text-fill: rgba(255,255,255,0.4);
     -fx-font-size: 18px;
 }
 .date-picker{
     -fx-background-color: rgba(255,255,255,0.065);
 }
-.text-field:focused, .text-field:hover{
+.text-field:focused, .text-field:hover, .text-area:focused, .text-area:hover, .choice-box:focused, .choice-box:hover{
     -fx-border-color: #db9046;
 }
-.radio-button{
+.radio-button, .check-box{
     -fx-text-fill: white;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+.choice-box{
+    -fx-border-color: transparent;
+    -fx-border-radius: 6px;
+    -fx-background-color: rgba(255,255,255,0.065);
+    -fx-font-size: 18px;
+}
+.choice-box .label{
+    -fx-text-fill: rgba(255,255,255,0.6);;
+}
+.choice-box .context-menu {
+    -fx-background-color: #242424;
+}
+.choice-box .menu-item:focused {
+    -fx-background-color: rgba(255,255,255,0.15);
+}
+.choice-box .menu-item > .label {
+    -fx-text-fill: rgba(255,255,255,0.6);;
 }
