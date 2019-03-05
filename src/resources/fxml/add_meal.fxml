@@ -101,6 +101,9 @@
                         <TableColumn fx:id="nameTableColumn" prefWidth="300.0" text="Nom" />
                         <TableColumn fx:id="actionTableColumn" prefWidth="100.0" text="Action" />
                      </columns>
+                     <VBox.margin>
+                        <Insets right="10.0" />
+                     </VBox.margin>
                   </TableView>
                   <HBox alignment="CENTER_RIGHT">
                      <children>

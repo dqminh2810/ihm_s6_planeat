@@ -24,7 +24,7 @@
             </Button>
             <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Gestion des plats">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Gestion des menus">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -50,7 +50,7 @@
                   <Insets left="5.0" right="5.0" />
                </HBox.margin>
             </VBox>
-            <TableView fx:id="MealTableView" styleClass="backDarkGrey">
+            <TableView fx:id="MealTableView" styleClass="backDarkGrey" HBox.hgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="starterTableColumn" prefWidth="300.0" text="Entree" />
                 <TableColumn fx:id="maincourseTableColumn" prefWidth="300.0" text="Plat" />
