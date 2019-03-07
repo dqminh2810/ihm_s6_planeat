@@ -108,14 +108,6 @@ public class Meal {
         return name;
     }
 
-    double getIntakes(int intakeIndex) {
-        double sum = 0;
-        for (Dish dish : dishes) {
-            sum += dish.getIntakes(intakeIndex);
-        }
-        return sum;
-    }
-
     List<Ingredient> getAllIngredients() {
         List<Ingredient> list = new ArrayList<>();
         for (Dish dish : dishes) {

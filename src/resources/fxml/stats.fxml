@@ -14,13 +14,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" styleClass="backgroundDark" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="backgroundDark" stylesheets="@../css/style.css" VBox.vgrow="ALWAYS">
          <children>
             <HBox layoutX="103.0" layoutY="117.0" prefHeight="400.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="returnButton" mnemonicParsing="false" text="←">
+                  <Button fx:id="returnButton" mnemonicParsing="false" styleClass="buttonPrimary" stylesheets="@../css/style.css" text="←">
                      <HBox.margin>
                         <Insets top="4.0" />
                      </HBox.margin>
@@ -35,14 +35,14 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="35.0" prefWidth="613.0">
                                              <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Détails des AJR sur la période du   ">
+                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Détails des AJR sur la période du   ">
                                                    <HBox.margin>
                                                       <Insets left="10.0" />
                                                    </HBox.margin>
                                                 </Text>
-                                                <DatePicker fx:id="statDateStart" prefHeight="25.0" prefWidth="71.0" />
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="  au  " />
-                                                <DatePicker fx:id="statDateEnd" prefHeight="25.0" prefWidth="71.0" />
+                                                <DatePicker fx:id="statDateStart" prefHeight="39.0" prefWidth="116.0" styleClass="date-picker" />
+                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="  au  " />
+                                                <DatePicker fx:id="statDateEnd" prefHeight="39.0" prefWidth="109.0" styleClass="date-picker" />
                                              </children>
                                           </HBox>
                                           <ScrollPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
@@ -88,21 +88,21 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="35.0" prefWidth="613.0">
                                              <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Détails des AJR sur la période du   ">
+                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Détails des AJR sur la période du   ">
                                                    <HBox.margin>
                                                       <Insets left="10.0" />
                                                    </HBox.margin>
                                                 </Text>
-                                                <DatePicker fx:id="stat2DateStart" prefHeight="25.0" prefWidth="71.0" />
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="  au  " />
-                                                <DatePicker fx:id="stat2DateEnd" prefHeight="25.0" prefWidth="71.0" />
+                                                <DatePicker fx:id="stat2DateStart" prefHeight="39.0" prefWidth="116.0" styleClass="date-picker" />
+                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="  au  " />
+                                                <DatePicker fx:id="stat2DateEnd" prefHeight="39.0" prefWidth="105.0" styleClass="date-picker" />
                                              </children>
                                           </HBox>
                                           <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                              <children>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                                    <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fruits">
+                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Fruits">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -112,7 +112,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                                    <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Légumes">
+                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Légumes">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -122,7 +122,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                                    <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Viandes">
+                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Viandes">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -132,7 +132,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                                    <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Poissons">
+                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Poissons">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -142,7 +142,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                                    <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Origine Animale">
+                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Origine Animale">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -152,7 +152,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                                    <children>
-                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Autres">
+                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Autres">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
@@ -164,7 +164,8 @@
                                           </HBox>
                                        </children>
                                     </VBox>
-                                 </children></AnchorPane>
+                                 </children>
+                              </AnchorPane>
                         </content>
                       </Tab>
                     </tabs>

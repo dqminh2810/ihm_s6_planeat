@@ -123,7 +123,7 @@ public class ControllerStat extends Controller {
     }
 
     private void updateData() {
-        
+
         updateLists();
 
         updatePieCharts();
