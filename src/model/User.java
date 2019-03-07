@@ -1,7 +1,10 @@
 package model;
 
+import javafx.collections.ObservableList;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 
@@ -130,6 +133,15 @@ public class User {
 
     public ArrayList<MealDated> getMeals() {
         return mealsDated;
+    }
+
+    public List<Ingredient> getIngredientHistory(Periode periode) {
+        List<Ingredient> list = new ArrayList<>();
+        for (MealDated mealDated : mealsDated){
+            if (periode.containsDay(mealDated.getTime().toLocalDate()))
+                list.addAll(mealDated.getMeal().getAllIngredients());
+        }
+        return list;
     }
 
     public double getIntakes(int intakeIndex, Periode periode) {
