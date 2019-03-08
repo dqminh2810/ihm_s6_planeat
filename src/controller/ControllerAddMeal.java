@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ControllerAddMeal extends Controller{
-    private ModelListOfDishes modelListOfDishes = null;
+    private ModelListOfDishes modelListOfDishes;
     private ControllerGestionMenu controllerGestionMenu;
     private Meal mealSelected = null;
 
@@ -72,6 +72,7 @@ public class ControllerAddMeal extends Controller{
         initTableView();
 
         //Handle Button event
+        initTableView();
         pickButton.setOnAction(event -> pickButtonEvent());
         deleteAllButton.setOnAction(event -> deleteAllButtonEvent());
         saveandexitButton.setOnAction(event -> saveAndExitButtonEvent());
@@ -90,12 +91,13 @@ public class ControllerAddMeal extends Controller{
         maincoursesChoiceBox.setItems(modelListOfDishes.getMaincourses());
         dessertsChoiceBox.setItems(modelListOfDishes.getDesserts());
 
-        startersChoiceBox.getSelectionModel().select(0);
-        maincoursesChoiceBox.getSelectionModel().select(0);
-        dessertsChoiceBox.getSelectionModel().select(0);
+        //startersChoiceBox.getSelectionModel().select(0);
+        //maincoursesChoiceBox.getSelectionModel().select(0);
+        //dessertsChoiceBox.getSelectionModel().select(0);
     }
     //init Table View
     public void initTableView(){
+        //System.out.println("List of dishes: "+ getListOfDishes());
         dishTableView.setItems(getListOfDishes());
         dishTableView.getColumns().clear();
 
@@ -163,7 +165,6 @@ public class ControllerAddMeal extends Controller{
                     }
                 }
                 System.out.println("After: "+controllerGestionMenu.getListOfMenusForTableView().get(0).getDishes());
-
                 /*
                  * Trick -> this is not really updated, I deleted the meal list
                  * then create new temporary meal list without the meal selected,
@@ -173,10 +174,6 @@ public class ControllerAddMeal extends Controller{
                 controllerGestionMenu.getListOfMenusForListView().addAll(tmp);
                 controllerGestionMenu.getListOfMenusForListView().add(new Meal(menuName, updateMeal));
                 controllerGestionMenu.getMealTableView().refresh();
-
-                MealMocks.meals.removeAll(MealMocks.meals);
-                MealMocks.meals.addAll( controllerGestionMenu.getListOfMenusForListView());
-
             }
             getStage().close();
         }
@@ -190,13 +187,17 @@ public class ControllerAddMeal extends Controller{
 
     //Link choiceBox to tableView
     public void linkChoiceBoxToTableView(){
+
         Dish starter = startersChoiceBox.getValue();
         Dish maincourse = maincoursesChoiceBox.getValue();
         Dish dessert = dessertsChoiceBox.getValue();
         //Update TableView
-        dishTableView.getItems().add(starter);
-        dishTableView.getItems().add(maincourse);
-        dishTableView.getItems().add(dessert);
+        if(starter!=null)
+            dishTableView.getItems().add(starter);
+        if(maincourse!=null)
+            dishTableView.getItems().add(maincourse);
+        if(dessert!=null)
+            dishTableView.getItems().add(dessert);
     }
 
     public void sortListOfDishes(){

@@ -109,8 +109,9 @@ public class ControllerGestionMenu extends Controller {
     public void addButtonEvent(){
         try{
             Stage stage = new Stage();
-            //stage.initStyle(StageStyle.UNDECORATED);
-            Controller controller = new ControllerAddMeal(stage,null, null);
+            ControllerAddMeal controller = new ControllerAddMeal(stage,this, null);
+             controller.getListOfDishes().clear();
+
             controller.setFirstView(controller);
         }catch (Exception e){
             e.printStackTrace();
@@ -141,9 +142,10 @@ public class ControllerGestionMenu extends Controller {
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             ControllerAddMeal controller = new ControllerAddMeal(stage,this, mealSelected);
+            controller.getListOfDishes().clear();
             controller.getListOfDishes().addAll(getListOfDishFromMenu(selectedId));
 
-            controller.setView(controller);
+            controller.setFirstView(controller);
         }catch (Exception e){
             e.printStackTrace();
         }

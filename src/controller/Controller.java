@@ -51,10 +51,13 @@ public abstract class Controller implements Initializable {
     }
 
     public void setView(Controller controller) {
-        stage.getScene().setRoot(getRoot(controller));
-        stage.setTitle(controller.getActualView().getLabel());
-        stage.show();
-        stage.setMaximized(ViewBase.isMaximized);
+        Parent root = getRoot(controller);
+        if(root != null) {
+            stage.getScene().setRoot(getRoot(controller));
+            stage.setTitle(controller.getActualView().getLabel());
+            stage.show();
+            stage.setMaximized(ViewBase.isMaximized);
+        }
     }
 
     void clickOnReturnButton(Button button){
