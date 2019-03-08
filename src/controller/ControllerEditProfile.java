@@ -9,7 +9,6 @@ import mocks.UserMocks;
 import model.Theme;
 import model.User;
 import model.UserSex;
-import view.ViewBase;
 import view.ViewEditProfile;
 
 import java.net.URL;
@@ -23,11 +22,19 @@ public class ControllerEditProfile extends ControllerUser {
     @FXML
     private RadioButton lightRadio;
     private ToggleGroup themeGroup;
+    private boolean profileEdited;
 
 
-    public ControllerEditProfile(Stage stage, Controller previousController) {
+    ControllerEditProfile(Stage stage, Controller previousController) {
         super(stage, previousController);
         this.actualView = new ViewEditProfile();
+        profileEdited = false;
+    }
+
+    private ControllerEditProfile(Stage stage, Controller previousController, boolean profileEdited) {
+        super(stage, previousController);
+        this.actualView = new ViewEditProfile();
+        this.profileEdited = profileEdited;
     }
 
     @Override
@@ -56,10 +63,15 @@ public class ControllerEditProfile extends ControllerUser {
         user.setCookingFrequency(cookingFrequencyChoiceBox.getSelectionModel().getSelectedItem());
         user.setSize(getSize());
         user.setWeight(getWeight());
-        user.setThemeCss((Theme) themeGroup.getSelectedToggle().getUserData());
 
         if(passwordField.getText().length() != 0)
             user.setPassword(passwordField.getText());
+
+        Theme radio = (Theme) themeGroup.getSelectedToggle().getUserData();
+        if(!radio.equals(User.actualUser.getThemeCss())){
+            user.setThemeCss(radio);
+            setView(new ControllerEditProfile(getStage(), getPreviousController(), true));
+        }
 
         editedText.setText("Profil édité avec succès");
     }
@@ -97,6 +109,8 @@ public class ControllerEditProfile extends ControllerUser {
         statusChoicebox.getSelectionModel().select(User.actualUser.getStatus());
         cookingFrequencyChoiceBox.getSelectionModel().select(User.actualUser.getCookingFrequency());
 
+        if(profileEdited)
+            editedText.setText("Profil édité avec succès");
     }
 
     private void initClickOnTheme(){

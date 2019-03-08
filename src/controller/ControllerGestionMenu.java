@@ -23,8 +23,7 @@ import java.util.ResourceBundle;
 
 
 public class ControllerGestionMenu extends Controller {
-
-    private ModelListOfMenus modelListOfMenus = null;
+    private ModelListOfMenus modelListOfMenus;
 
     @FXML
     private Button returnButton;
@@ -45,7 +44,6 @@ public class ControllerGestionMenu extends Controller {
     @FXML
     private TableColumn<Meal, Meal> actionTableColumn;
 
-    //Constructor
     public ControllerGestionMenu(Stage stage, Controller previousController) {
         super(stage, previousController);
         modelListOfMenus = new ModelListOfMenus();
@@ -58,23 +56,22 @@ public class ControllerGestionMenu extends Controller {
         initTableView();
         linkListViewToTableView();
 
-        //Handle Button event
         addButton.setOnAction(event -> addButtonEvent());
         clickOnReturnButton(returnButton);
         agendaButton.setOnAction(event -> agendaButtonEvent());
     }
-    //init listView
+
     public void initListView(){
         MealListView.setItems(getListOfMenusForListView());
     }
-    //init tableView
+
     public void initTableView(){
         MealTableView.setItems(getListOfMenusForTableView());
         MealTableView.getItems().clear();
 
-        starterTableColumn.setCellValueFactory(new PropertyValueFactory<Meal, ArrayList<Dish>>("starter"));
-        maincourseTableColumn.setCellValueFactory(new PropertyValueFactory<Meal, ArrayList<Dish>>("maincourse"));
-        dessertTableColumn.setCellValueFactory(new PropertyValueFactory<Meal, ArrayList<Dish>>("dessert"));
+        starterTableColumn.setCellValueFactory(new PropertyValueFactory<>("starter"));
+        maincourseTableColumn.setCellValueFactory(new PropertyValueFactory<>("maincourse"));
+        dessertTableColumn.setCellValueFactory(new PropertyValueFactory<>("dessert"));
         actionTableColumn.setCellFactory(param -> new TableCell<Meal, Meal>(){
             private final Button editButton = new Button("edit");
             private final Button deleteButton = new Button("delete");
@@ -113,22 +110,22 @@ public class ControllerGestionMenu extends Controller {
         try{
             Stage stage = new Stage();
             //stage.initStyle(StageStyle.UNDECORATED);
-            ViewBase view = new ViewAddMeal();
-            Controller controller = new ControllerAddMeal(stage,this, null);
-            controller.setView(controller);
+            Controller controller = new ControllerAddMeal(stage,null, null);
+            controller.setFirstView(controller);
         }catch (Exception e){
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
+
     public void agendaButtonEvent(){
         try{
-            ViewBase view = new ViewAgenda();
             Controller controller = new ControllerAgenda(getStage(),this);
             this.setView(controller);
         }catch (Exception e){
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
+
     public void deleteButtonEvent(int selectedId) {
         if(selectedId!=-1){
             Meal itemRemoved = getListOfMenusForListView().get(selectedId);
@@ -137,18 +134,18 @@ public class ControllerGestionMenu extends Controller {
         }
 
     }
+
     public void editButtonEvent(int selectedId){
         try{
             Meal mealSelected = getListOfMenusForListView().get(selectedId);
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
-            ViewBase view = new ViewAddMeal();
-            Controller controller = new ControllerAddMeal(stage,this, mealSelected);
-            ((ControllerAddMeal) controller).getListOfDishes().addAll(getListOfDishFromMenu(selectedId));
+            ControllerAddMeal controller = new ControllerAddMeal(stage,this, mealSelected);
+            controller.getListOfDishes().addAll(getListOfDishFromMenu(selectedId));
 
             controller.setView(controller);
         }catch (Exception e){
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -166,6 +163,7 @@ public class ControllerGestionMenu extends Controller {
                             }
                         });
     }
+
     public ArrayList<Dish> getListOfDishFromMenu(int selectedId){
         ArrayList<Dish> listofdish = new ArrayList<>();
         if(selectedId!=-1){

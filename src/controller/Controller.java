@@ -27,10 +27,11 @@ public abstract class Controller implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setController(controller);
             Parent root = loader.load(getClass().getResourceAsStream("../"+ controller.getActualView().getXmlFile()));
+            root.getStylesheets().add(controller.getActualView().getCssBase());
             if(User.actualUser.getThemeCss().equals(Theme.LIGHT)){
                 root.getStylesheets().add(controller.getActualView().getCssLight());
             }else{
-                root.getStylesheets().add(controller.getActualView().getCss());
+                root.getStylesheets().add(controller.getActualView().getCssDark());
             }
             return root;
         } catch (IOException e) {
@@ -40,10 +41,13 @@ public abstract class Controller implements Initializable {
     }
 
     public void setFirstView(Controller controller){
-        stage.setScene(new Scene(getRoot(controller), controller.getActualView().getWidth(), controller.getActualView().getHeight()));
-        stage.setTitle(controller.getActualView().getLabel());
-        stage.show();
-        stage.setMaximized(ViewBase.isMaximized);
+        Parent root = getRoot(controller);
+        if(root != null){
+            stage.setScene(new Scene(root, controller.getActualView().getWidth(), controller.getActualView().getHeight()));
+            stage.setTitle(controller.getActualView().getLabel());
+            stage.show();
+            stage.setMaximized(ViewBase.isMaximized);
+        }
     }
 
     public void setView(Controller controller) {

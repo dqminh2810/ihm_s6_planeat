@@ -8,7 +8,6 @@
     -fx-background-color: #f3b667;
     -fx-fill: white;
     -fx-text-fill: white;
-    -fx-cursor: pointer;
 }
 .list-view{
     -fx-background-color: rgba(0,0,0,0.06);
@@ -27,24 +26,17 @@
     -fx-text-fill: rgba(0,0,0,0.6);
 }
 .text-field{
-    -fx-border-radius: 6px;
-    -fx-border-color: transparent;
     -fx-background-color: rgba(0,0,0,0.06);
     -fx-fill: rgba(0,0,0,0.6);
     -fx-text-fill: rgba(0,0,0,0.6);
     -fx-prompt-text-fill: rgba(0,0,0,0.4);
-    -fx-padding: 5px 15px;
-    -fx-font-size: 18px;
 }
 .text-area{
-    -fx-border-color: transparent;
-    -fx-border-radius: 6px;
     -fx-background-color: #f0f0f0;
     -fx-control-inner-background: #f0f0f0;
     -fx-text-fill: rgba(0,0,0,0.6);
     -fx-fill: rgba(0,0,0,0.6);
     -fx-prompt-text-fill: rgba(0,0,0,0.4);
-    -fx-font-size: 18px;
 }
 .date-picker{
     -fx-background-color: rgba(0,0,0,0.065);
@@ -53,17 +45,9 @@
     -fx-border-color: #f3b667;
 }
 .radio-button, .check-box{
-    -fx-text-fill: rgba(0,0,0,0.06);
-}
-.scroll-pane > .viewport {
-    -fx-background-color: transparent;
-}
-.scroll-pane {
-    -fx-background-color: transparent;
+    -fx-text-fill: rgba(0,0,0,0.6);
 }
 .choice-box{
-    -fx-border-color: transparent;
-    -fx-border-radius: 6px;
     -fx-background-color: rgba(0,0,0,0.06);
     -fx-font-size: 18px;
 }
