@@ -38,8 +38,8 @@ public class Periode {
         }
     }
 
-    public long getInterval(){
-        return startDate.until(endDate, DAYS);
+    public int getInterval(){
+        return (int) startDate.until(endDate, DAYS);
     }
 
     public boolean containsDay(LocalDate date) {

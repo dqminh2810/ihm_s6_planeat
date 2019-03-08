@@ -8,7 +8,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -16,163 +15,155 @@
 
 <VBox prefHeight="400.0" prefWidth="640.0" styleClass="backgroundDark" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="backgroundDark" stylesheets="@../css/style.css" VBox.vgrow="ALWAYS">
+      <HBox prefHeight="400.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
          <children>
-            <HBox layoutX="103.0" layoutY="117.0" prefHeight="400.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Button fx:id="returnButton" mnemonicParsing="false" styleClass="buttonPrimary" stylesheets="@../css/style.css" text="←">
-                     <HBox.margin>
-                        <Insets top="4.0" />
-                     </HBox.margin>
-                  </Button>
-                  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS">
-                    <tabs>
-                      <Tab text="Details des AJR">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="36.0" styleClass="buttonPrimary" stylesheets="@../css/style.css" text="←">
+               <HBox.margin>
+                  <Insets top="4.0" />
+               </HBox.margin>
+            </Button>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" tabMinHeight="50.0" HBox.hgrow="ALWAYS">
+              <tabs>
+                <Tab text="Details des AJR">
+                     <content>
+                        <VBox prefHeight="371.0" prefWidth="613.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="35.0" prefWidth="613.0">
                                  <children>
-                                    <VBox layoutX="125.0" layoutY="14.0" prefHeight="371.0" prefWidth="613.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="35.0" prefWidth="613.0">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Détails des AJR sur la période du   ">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                    <DatePicker fx:id="statDateStart" prefHeight="39.0" prefWidth="110.0" styleClass="date-picker" />
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="  au  " />
+                                    <DatePicker fx:id="statDateEnd" prefHeight="39.0" prefWidth="110.0" styleClass="date-picker" />
+                                 </children>
+                              </HBox>
+                              <HBox VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <ScrollPane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                       <content>
+                                          <VBox prefHeight="475.0" prefWidth="598.0">
                                              <children>
-                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Détails des AJR sur la période du   ">
-                                                   <HBox.margin>
-                                                      <Insets left="10.0" />
-                                                   </HBox.margin>
-                                                </Text>
-                                                <DatePicker fx:id="statDateStart" prefHeight="39.0" prefWidth="116.0" styleClass="date-picker" />
-                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="  au  " />
-                                                <DatePicker fx:id="statDateEnd" prefHeight="39.0" prefWidth="109.0" styleClass="date-picker" />
-                                             </children>
-                                          </HBox>
-                                          <ScrollPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                             <content>
-                                                <VBox prefHeight="475.0" prefWidth="598.0">
+                                                <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                                    <children>
-                                                      <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                                         <children>
-                                                            <PieChart fx:id="energyPieChart" minHeight="0.0" minWidth="0.0" title="Energie" titleSide="BOTTOM" HBox.hgrow="ALWAYS" />
-                                                            <PieChart fx:id="fatsPieChart" minHeight="0.0" minWidth="0.0" title="Lipides" titleSide="BOTTOM" />
-                                                            <PieChart fx:id="saturatedPieChart" minHeight="0.0" minWidth="0.0" title="Acides Gras Saturés" titleSide="BOTTOM" />
-                                                         </children>
-                                                      </HBox>
-                                                      <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                                         <children>
-                                                            <PieChart fx:id="carbohydratesPieChart" minHeight="0.0" minWidth="0.0" title="Glucides" titleSide="BOTTOM" HBox.hgrow="ALWAYS" />
-                                                            <PieChart fx:id="sugarPieChart" minHeight="0.0" minWidth="0.0" title="Sucres" titleSide="BOTTOM" />
-                                                            <PieChart fx:id="proteinsPieChart" minHeight="0.0" minWidth="0.0" title="Protéines" titleSide="BOTTOM" />
-                                                         </children>
-                                                      </HBox>
-                                                      <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                                         <children>
-                                                            <PieChart fx:id="saltPieChart" minHeight="0.0" minWidth="0.0" title="Sel" titleSide="BOTTOM" HBox.hgrow="ALWAYS" />
-                                                            <PieChart fx:id="fibresPieChart" minHeight="0.0" minWidth="0.0" title="Fibres" titleSide="BOTTOM" />
-                                                            <PieChart fx:id="calciumPieChart" minHeight="0.0" minWidth="0.0" title="Calcium" titleSide="BOTTOM" />
-                                                         </children>
-                                                      </HBox>
+                                                      <PieChart fx:id="energyPieChart" minHeight="0.0" minWidth="0.0" title="Energie" titleSide="BOTTOM" HBox.hgrow="ALWAYS" />
+                                                      <PieChart fx:id="fatsPieChart" minHeight="0.0" minWidth="0.0" title="Lipides" titleSide="BOTTOM" />
+                                                      <PieChart fx:id="saturatedPieChart" minHeight="0.0" minWidth="0.0" title="Acides Gras Saturés" titleSide="BOTTOM" />
                                                    </children>
-                                                </VBox>
-                                             </content>
-                                          </ScrollPane>
+                                                </HBox>
+                                                <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                   <children>
+                                                      <PieChart fx:id="carbohydratesPieChart" minHeight="0.0" minWidth="0.0" title="Glucides" titleSide="BOTTOM" HBox.hgrow="ALWAYS" />
+                                                      <PieChart fx:id="sugarPieChart" minHeight="0.0" minWidth="0.0" title="Sucres" titleSide="BOTTOM" />
+                                                      <PieChart fx:id="proteinsPieChart" minHeight="0.0" minWidth="0.0" title="Protéines" titleSide="BOTTOM" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                   <children>
+                                                      <PieChart fx:id="saltPieChart" minHeight="0.0" minWidth="0.0" title="Sel" titleSide="BOTTOM" HBox.hgrow="ALWAYS" />
+                                                      <PieChart fx:id="fibresPieChart" minHeight="0.0" minWidth="0.0" title="Fibres" titleSide="BOTTOM" />
+                                                      <PieChart fx:id="calciumPieChart" minHeight="0.0" minWidth="0.0" title="Calcium" titleSide="BOTTOM" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content>
+                </Tab>
+                <Tab text="Historique des aliments consommés">
+                     <content>
+                        <VBox prefHeight="371.0" prefWidth="613.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="35.0" prefWidth="604.0">
+                                 <children>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Détails des AJR sur la période du   ">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Text>
+                                    <DatePicker fx:id="stat2DateStart" prefHeight="39.0" prefWidth="110.0" styleClass="date-picker" />
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="  au  " />
+                                    <DatePicker fx:id="stat2DateEnd" prefHeight="39.0" prefWidth="110.0" styleClass="date-picker" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Fruits">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Text>
+                                          <ListView fx:id="fruitList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Légumes">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Text>
+                                          <ListView fx:id="veggieList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Viandes">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Text>
+                                          <ListView fx:id="meatList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Poissons">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Text>
+                                          <ListView fx:id="fishList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Origine Animale">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Text>
+                                          <ListView fx:id="animalOriginList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Autres">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Text>
+                                          <ListView fx:id="otherList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                                        </children>
                                     </VBox>
                                  </children>
-                              </AnchorPane>
-                        </content>
-                      </Tab>
-                      <Tab text="Historique des aliments consommés">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <VBox layoutX="221.0" layoutY="14.0" prefHeight="371.0" prefWidth="613.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="35.0" prefWidth="613.0">
-                                             <children>
-                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Détails des AJR sur la période du   ">
-                                                   <HBox.margin>
-                                                      <Insets left="10.0" />
-                                                   </HBox.margin>
-                                                </Text>
-                                                <DatePicker fx:id="stat2DateStart" prefHeight="39.0" prefWidth="116.0" styleClass="date-picker" />
-                                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="  au  " />
-                                                <DatePicker fx:id="stat2DateEnd" prefHeight="39.0" prefWidth="105.0" styleClass="date-picker" />
-                                             </children>
-                                          </HBox>
-                                          <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                             <children>
-                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Fruits">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Text>
-                                                      <ListView fx:id="fruitList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                                                   </children>
-                                                </VBox>
-                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Légumes">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Text>
-                                                      <ListView fx:id="veggieList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                                                   </children>
-                                                </VBox>
-                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Viandes">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Text>
-                                                      <ListView fx:id="meatList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                                                   </children>
-                                                </VBox>
-                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Poissons">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Text>
-                                                      <ListView fx:id="fishList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                                                   </children>
-                                                </VBox>
-                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Origine Animale">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Text>
-                                                      <ListView fx:id="animalOriginList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                                                   </children>
-                                                </VBox>
-                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                                   <children>
-                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Autres">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Text>
-                                                      <ListView fx:id="otherList" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                                                   </children>
-                                                </VBox>
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                        </content>
-                      </Tab>
-                    </tabs>
-                  </TabPane>
-               </children>
-            </HBox>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </content>
+                </Tab>
+              </tabs>
+            </TabPane>
          </children>
-    </AnchorPane>
+      </HBox>
   </children>
 </VBox>

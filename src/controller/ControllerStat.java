@@ -66,6 +66,7 @@ public class ControllerStat extends Controller {
 
     Periode periode;
     List<Ingredient> ingredientList;
+    PieChart[] charts = {energyPieChart, fatsPieChart, saturatedPieChart, carbohydratesPieChart, sugarPieChart, proteinsPieChart, saltPieChart};
 
     public ControllerStat(Stage stage, Controller previousController) {
         super(stage,previousController);
@@ -104,7 +105,7 @@ public class ControllerStat extends Controller {
         });
 
         stat2DateStart.setOnAction(event -> {
-            periode.setStartDate(statDateStart.getValue());
+            periode.setStartDate(stat2DateStart.getValue());
             statDateStart.setValue(periode.getStartDate());
             statDateEnd.setValue(periode.getEndDate());
             stat2DateStart.setValue(periode.getStartDate());
@@ -113,7 +114,7 @@ public class ControllerStat extends Controller {
         });
 
         stat2DateEnd.setOnAction(event -> {
-            periode.setEndDate(statDateEnd.getValue());
+            periode.setEndDate(stat2DateEnd.getValue());
             statDateStart.setValue(periode.getStartDate());
             statDateEnd.setValue(periode.getEndDate());
             stat2DateStart.setValue(periode.getStartDate());
@@ -130,8 +131,21 @@ public class ControllerStat extends Controller {
 
     }
 
+    private void resetListViews(){
+        fruitList.getItems().clear();
+        veggieList.getItems().clear();
+        meatList.getItems().clear();
+        fishList.getItems().clear();
+        animalOriginList.getItems().clear();
+        otherList.getItems().clear();
+    }
+
     private void updateLists() {
+
+        resetListViews();
+
         ingredientList = getIngredientHistory(periode);
+
         for (Ingredient ingredient : ingredientList){
             switch (ingredient.getFood().getCategory()){
                 case FRUIT:
@@ -182,8 +196,22 @@ public class ControllerStat extends Controller {
         for (float data : intakesData) {
             pieChartData.add(new PieChart.Data("", data));
         }
+
+        float[] energyData;
+
+        /*for (int i = 0; i < charts.length; i++) {
+            energyData = calculatePieData(intakesData[i], RecommendedDailyAmount.male[i]*(periode.getInterval()+1));
+            charts[i].getStylesheets().clear();
+            charts[i].getStylesheets().add(obtainStylesheet(intakesData[i], RecommendedDailyAmount.male[i] * (periode.getInterval()+1)));
+            charts[i].setStartAngle(90);
+            charts[i].setData(FXCollections.observableArrayList(new PieChart.Data("", energyData[0]), new PieChart.Data("", energyData[1])));
+        }*/
+
+        energyData = calculatePieData(intakesData[0], RecommendedDailyAmount.male[0]*(periode.getInterval()+1));
+        energyPieChart.getStylesheets().clear();
+        energyPieChart.getStylesheets().add(obtainStylesheet(intakesData[0], RecommendedDailyAmount.male[0]*(periode.getInterval()+1)));
         energyPieChart.setStartAngle(90);
-        energyPieChart.setData(FXCollections.observableArrayList(pieChartData.get(0), new PieChart.Data("", RecommendedDailyAmount.male[0]-pieChartData.get(0).getPieValue()))); //TODO : The real data
+        energyPieChart.setData(FXCollections.observableArrayList(new PieChart.Data("", energyData[0]), new PieChart.Data("", energyData[1])));
         energyPieChart.setLabelsVisible(false);
 
         fatsPieChart.setStartAngle(90);
@@ -217,5 +245,29 @@ public class ControllerStat extends Controller {
         calciumPieChart.setStartAngle(90);
         calciumPieChart.setData(FXCollections.observableArrayList(new PieChart.Data("Calcium", 67)));
         calciumPieChart.setLabelsVisible(false);
+    }
+
+    private String obtainStylesheet(float intakesData, int recommendedAmount) {
+        float ratio = intakesData/recommendedAmount;
+        if(ratio <= 0.5) { return "resources/css/stylePieChartBelow50.css"; }
+        if(ratio <= 0.75) { return "resources/css/stylePieChartBelow75.css"; }
+        if(ratio <= 1) { return "resources/css/stylePieChartOkay.css"; }
+        if(ratio <= 1.25) { return "resources/css/stylePieChartAbove100.css"; }
+        return "resources/css/stylePieChartAbove125.css";
+    }
+
+    private float[] calculatePieData(float intakesData, int recommendedAmount) {
+        float[] result = new float[2];
+        if (recommendedAmount - intakesData >= 0){
+            result[0] = intakesData;
+            result[1] = recommendedAmount-intakesData;
+        }else if (2*recommendedAmount - intakesData >= 0){
+            result[0] = intakesData - recommendedAmount;
+            result[1] = recommendedAmount - result[0];
+        }else{
+            result[0] = intakesData;
+            result[1] = 0;
+        }
+        return result;
     }
 }
