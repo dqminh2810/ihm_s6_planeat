@@ -5,6 +5,7 @@ public abstract class ViewBase {
     public static int HEIGHT = 720;
     public static boolean isMaximized = false;
     private String css = "resources/css/style.css";
+    private String cssLight = "resources/css/styleLight.css";
     private String xmlFile;
     private String label;
 
@@ -31,5 +32,9 @@ public abstract class ViewBase {
 
     public int getWidth() {
         return WIDTH;
+    }
+
+    public String getCssLight() {
+        return cssLight;
     }
 }

@@ -1,7 +1,5 @@
 import controller.*;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import mocks.*;
 import javafx.stage.Stage;
 import model.User;
