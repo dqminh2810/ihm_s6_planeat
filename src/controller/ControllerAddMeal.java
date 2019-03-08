@@ -34,6 +34,8 @@ public class ControllerAddMeal extends Controller{
     @FXML
     private Button deleteAllButton;
     @FXML
+    private Button quitButton;
+    @FXML
     private ChoiceBox<Dish> startersChoiceBox;
     @FXML
     private ChoiceBox<Dish> maincoursesChoiceBox;
@@ -73,7 +75,11 @@ public class ControllerAddMeal extends Controller{
         pickButton.setOnAction(event -> pickButtonEvent());
         deleteAllButton.setOnAction(event -> deleteAllButtonEvent());
         saveandexitButton.setOnAction(event -> saveAndExitButtonEvent());
+        quitButton.setOnAction(event -> clickOnQuitButton());
     }
+
+
+
     //init TextField menuName
     public void initTextField() {
         menuNameTextField.setEditable(true);
@@ -177,6 +183,9 @@ public class ControllerAddMeal extends Controller{
     }
     public  void deleteButtonEvent(Dish dish) {
         dishTableView.getItems().remove(dish);
+    }
+    private void clickOnQuitButton() {
+        getStage().close();
     }
 
     //Link choiceBox to tableView
