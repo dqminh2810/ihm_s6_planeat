@@ -39,8 +39,8 @@
 .text-area{
     -fx-border-color: transparent;
     -fx-border-radius: 6px;
-    -fx-background-color: #d9d9d9;
-    -fx-control-inner-background: rgba(0,0,0,0.065);
+    -fx-background-color: #f0f0f0;
+    -fx-control-inner-background: #f0f0f0;
     -fx-text-fill: rgba(0,0,0,0.6);
     -fx-fill: rgba(0,0,0,0.6);
     -fx-prompt-text-fill: rgba(0,0,0,0.4);

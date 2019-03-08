@@ -1,5 +1,6 @@
 import controller.*;
 import javafx.application.Application;
+import javafx.scene.Scene;
 import mocks.*;
 import javafx.stage.Stage;
 import model.User;
@@ -21,8 +22,8 @@ public class Main extends Application {
             primaryStage.setMaximized(ViewBase.isMaximized);
         });
 
-        Controller controller = new ControllerLancement(primaryStage, null);
-        controller.setView(controller);
+        Controller controller = new ControllerAccueil(primaryStage, null);
+        controller.setFirstView(controller);
     }
 
     public static void main(String[] args) {

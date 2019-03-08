@@ -17,7 +17,7 @@ public class User {
     private CookingFrequency cookingFrequency;
     private String password;
     private ArrayList<MealDated> mealsDated;
-    private boolean useLightCss;
+    private Theme themeCss;
 
 
     public User(String name, String firstName, LocalDate birthDate, String mail, UserSex sex, float weight, int size, StatusChoice status, CookingFrequency cookingFrequency, String password) {
@@ -32,15 +32,15 @@ public class User {
         this.cookingFrequency = cookingFrequency;
         this.password = password;
         mealsDated = new ArrayList<>();
-        this.useLightCss = false;
+        this.themeCss = Theme.DARK;
     }
 
-    public void setUseLightCss(boolean useLightCss) {
-        this.useLightCss = useLightCss;
+    public void setThemeCss(Theme themeCss) {
+        this.themeCss = themeCss;
     }
 
-    public boolean isUseLightCss() {
-        return useLightCss;
+    public Theme getThemeCss() {
+        return themeCss;
     }
 
     public static User getActualUser() {

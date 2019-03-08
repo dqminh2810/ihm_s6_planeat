@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import model.Theme;
 import model.User;
 import view.ViewBase;
 
@@ -21,25 +22,35 @@ public abstract class Controller implements Initializable {
         this.previousController = previousController;
     }
 
-    public void setView(Controller controller) {
-        try {
+    private Parent getRoot(Controller controller){
+        try{
             FXMLLoader loader = new FXMLLoader();
             loader.setController(controller);
             Parent root = loader.load(getClass().getResourceAsStream("../"+ controller.getActualView().getXmlFile()));
-            if(User.actualUser.isUseLightCss()){
+            if(User.actualUser.getThemeCss().equals(Theme.LIGHT)){
                 root.getStylesheets().add(controller.getActualView().getCssLight());
             }else{
                 root.getStylesheets().add(controller.getActualView().getCss());
             }
-
-
-            stage.setScene(new Scene(root, controller.getActualView().getWidth(), controller.getActualView().getHeight()));
-            stage.setTitle(controller.getActualView().getLabel());
-            stage.show();
-            stage.setMaximized(ViewBase.isMaximized);
-        }catch (IOException io){
-            io.printStackTrace();
+            return root;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return null;
+    }
+
+    public void setFirstView(Controller controller){
+        stage.setScene(new Scene(getRoot(controller), controller.getActualView().getWidth(), controller.getActualView().getHeight()));
+        stage.setTitle(controller.getActualView().getLabel());
+        stage.show();
+        stage.setMaximized(ViewBase.isMaximized);
+    }
+
+    public void setView(Controller controller) {
+        stage.getScene().setRoot(getRoot(controller));
+        stage.setTitle(controller.getActualView().getLabel());
+        stage.show();
+        stage.setMaximized(ViewBase.isMaximized);
     }
 
     void clickOnReturnButton(Button button){

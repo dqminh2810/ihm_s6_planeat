@@ -1,9 +1,12 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mocks.UserMocks;
+import model.Theme;
 import model.User;
 import model.UserSex;
 import view.ViewBase;
@@ -15,6 +18,12 @@ import java.util.ResourceBundle;
 public class ControllerEditProfile extends ControllerUser {
     @FXML
     private Text editedText;
+    @FXML
+    private RadioButton darkRadio;
+    @FXML
+    private RadioButton lightRadio;
+    private ToggleGroup themeGroup;
+
 
     public ControllerEditProfile(Stage stage, Controller previousController) {
         super(stage, previousController);
@@ -47,6 +56,7 @@ public class ControllerEditProfile extends ControllerUser {
         user.setCookingFrequency(cookingFrequencyChoiceBox.getSelectionModel().getSelectedItem());
         user.setSize(getSize());
         user.setWeight(getWeight());
+        user.setThemeCss((Theme) themeGroup.getSelectedToggle().getUserData());
 
         if(passwordField.getText().length() != 0)
             user.setPassword(passwordField.getText());
@@ -64,10 +74,10 @@ public class ControllerEditProfile extends ControllerUser {
         return true;
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
+        initClickOnTheme();
         nameTexfield.setText(User.actualUser.getName());
         firstnameTexfield.setText(User.actualUser.getFirstName());
         birthDatePicker.setValue(User.actualUser.getBirthDate());
@@ -87,5 +97,17 @@ public class ControllerEditProfile extends ControllerUser {
         statusChoicebox.getSelectionModel().select(User.actualUser.getStatus());
         cookingFrequencyChoiceBox.getSelectionModel().select(User.actualUser.getCookingFrequency());
 
+    }
+
+    private void initClickOnTheme(){
+        themeGroup = new ToggleGroup();
+        darkRadio.setToggleGroup(themeGroup);
+        darkRadio.setUserData(Theme.DARK);
+        lightRadio.setToggleGroup(themeGroup);
+        lightRadio.setUserData(Theme.LIGHT);
+        if(User.actualUser.getThemeCss().equals(Theme.LIGHT))
+            lightRadio.setSelected(true);
+        else
+            darkRadio.setSelected(true);
     }
 }
