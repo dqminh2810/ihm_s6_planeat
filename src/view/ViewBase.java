@@ -1,8 +1,9 @@
 package view;
 
 public abstract class ViewBase {
-    private final int WIDTH = 1280;
-    private final int HEIGHT = 720;
+    public static int WIDTH = 1280;
+    public static int HEIGHT = 720;
+    public static boolean isMaximized = false;
     private String css = "resources/css/style.css";
     private String xmlFile;
     private String label;

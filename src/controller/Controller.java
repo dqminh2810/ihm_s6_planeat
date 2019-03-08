@@ -30,7 +30,7 @@ public abstract class Controller implements Initializable {
             stage.setScene(new Scene(root, controller.getActualView().getWidth(), controller.getActualView().getHeight()));
             stage.setTitle(controller.getActualView().getLabel());
             stage.show();
-
+            stage.setMaximized(ViewBase.isMaximized);
         }catch (IOException io){
             io.printStackTrace();
         }
