@@ -9,6 +9,9 @@
     -fx-fill: white;
     -fx-text-fill: white;
 }
+.buttonPrimary:hover{
+    -fx-background-color: #db9046;
+}
 .list-view{
     -fx-background-color: rgba(0,0,0,0.06);
 }
