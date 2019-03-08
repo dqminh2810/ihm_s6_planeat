@@ -6,10 +6,12 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.MealDated;
 import model.User;
+import org.pdfsam.ui.RingProgressIndicator;
 import view.*;
 
 import java.net.URL;
@@ -64,6 +66,9 @@ public class ControllerAccueil extends Controller {
     private Text curHourText;
     @FXML
     private Text helloUserText;
+
+    @FXML
+    private HBox HBox1;
 
     LocalDate selectedDay;
     private ObservableList<MealDated> selectedDayMealList;
@@ -137,6 +142,11 @@ public class ControllerAccueil extends Controller {
 
 
         //statistiques TODO: trouver les "cicle % round progress" (import)
+        RingProgressIndicator ring = new RingProgressIndicator();
+        ring.setRingWidth(50);
+        ring.setProgress(120);
+        HBox1.getChildren().add(ring);
+
         statsButton.setOnAction(event -> setView(new ControllerStat(getStage(),this)));
 
         dontsucrePiechart.setStartAngle(90);
