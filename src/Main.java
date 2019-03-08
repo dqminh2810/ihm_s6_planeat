@@ -1,6 +1,5 @@
 import controller.*;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import mocks.*;
 import javafx.stage.Stage;
 import model.User;
