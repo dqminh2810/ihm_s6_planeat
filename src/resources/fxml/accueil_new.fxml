@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="702.0" styleClass="backgroundDark" stylesheets="@../css/styleDark.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+
+<GridPane styleClass="backgroundDark" stylesheets="@../css/styleDark.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="25.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="62.5" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" percentWidth="12.5" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" percentHeight="100.0" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <VBox prefWidth="170.0" HBox.hgrow="ALWAYS">
+      <VBox prefWidth="170.0">
          <children>
             <HBox alignment="CENTER">
                <children>
@@ -25,7 +36,8 @@
                   <Text fx:id="curdateText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="dd/mm">
                      <font>
                         <Font size="14.0" />
-                     </font></Text>
+                     </font>
+                  </Text>
                   <Button fx:id="nextdayButton" mnemonicParsing="false" styleClass="buttonPrimary" text="&gt;&gt;">
                      <HBox.margin>
                         <Insets left="15.0" />
@@ -45,14 +57,14 @@
                </opaqueInsets>
             </ListView>
          </children>
-         <HBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </HBox.margin>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
       </VBox>
-      <VBox prefWidth="344.0" HBox.hgrow="ALWAYS">
+      <VBox prefWidth="344.0" GridPane.columnIndex="1">
          <children>
             <VBox prefHeight="126.0" prefWidth="308.0">
                <padding>
@@ -91,116 +103,121 @@
                         <Button fx:id="statsButton" mnemonicParsing="false" styleClass="buttonPrimary" text="-&gt;" />
                      </children>
                   </HBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                  <GridPane fx:id="statsGridPane" VBox.vgrow="ALWAYS">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="50.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="50.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="40.0" valignment="CENTER" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="40.0" valignment="CENTER" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
                      <children>
-                        <HBox alignment="CENTER" VBox.vgrow="ALWAYS" fx:id="HBox1">
-                           <children>
-                              <PieChart fx:id="caloriesPiechart" minHeight="0.0" minWidth="0.0" title="Calories" titleSide="BOTTOM" HBox.hgrow="ALWAYS" />
-                              <PieChart fx:id="proteinPiechart" minHeight="0.0" minWidth="0.0" title="Protéines" titleSide="BOTTOM" />
-                           </children></HBox>
-                        <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
-                           <children>
-                              <PieChart fx:id="glucosesPiechart" minHeight="0.0" minWidth="0.0" title="Glucoses" titleSide="BOTTOM" HBox.hgrow="ALWAYS" />
-                              <PieChart fx:id="dontsucrePiechart" minHeight="0.0" minWidth="0.0" title="Dont sucre" titleSide="BOTTOM" />
-                           </children></HBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Calories" GridPane.rowIndex="1" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Protéines" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Glucose" GridPane.rowIndex="3" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Dont sucre" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
-                  </VBox>
+                  </GridPane>
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
-         </children></VBox>
-      <VBox alignment="CENTER_RIGHT" prefHeight="400.0" prefWidth="85.0" HBox.hgrow="ALWAYS">
+         </children>
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+      </VBox>
+      <VBox alignment="CENTER_RIGHT" prefHeight="400.0" prefWidth="85.0" GridPane.columnIndex="2">
          <children>
-            <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+            <GridPane VBox.vgrow="ALWAYS">
+               <columnConstraints>
+                  <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
                <children>
-                  <Button fx:id="agendaButton" mnemonicParsing="false" styleClass="buttonPrimary" textAlignment="CENTER" wrapText="true">
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
+                  <Button fx:id="agendaButton" mnemonicParsing="false" styleClass="buttonPrimary" textAlignment="CENTER" wrapText="true" GridPane.hgrow="ALWAYS">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/resources/images/agenda-alt.png" />
-                           </image></ImageView>
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="addMealButton" mnemonicParsing="false" styleClass="buttonPrimary">
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
+                  <Button fx:id="addMealButton" mnemonicParsing="false" styleClass="buttonPrimary" GridPane.rowIndex="1">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/resources/images/calendar-plus-regular.png" />
-                           </image></ImageView>
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="createMealButton" mnemonicParsing="false" styleClass="buttonPrimary">
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
+                  <Button fx:id="createMealButton" mnemonicParsing="false" styleClass="buttonPrimary" GridPane.rowIndex="2">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/resources/images/add-meal.png" />
-                           </image></ImageView>
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="createIngredientButton" mnemonicParsing="false" styleClass="buttonPrimary">
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin>
+                  <Button fx:id="createIngredientButton" mnemonicParsing="false" styleClass="buttonPrimary" GridPane.rowIndex="3">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/resources/images/add-ingredient.png" />
-                           </image></ImageView>
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </VBox>
-            <VBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="78.0">
-               <children>
-                  <Text fx:id="helloUserText" layoutX="68.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Bonjour">
+                  <Text fx:id="helloUserText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Bonjour" GridPane.rowIndex="5">
                      <font>
                         <Font size="14.0" />
                      </font>
-                     <VBox.margin>
+                     <GridPane.margin>
                         <Insets right="10.0" />
-                     </VBox.margin>
+                     </GridPane.margin>
                   </Text>
-                  <Button fx:id="profileButton" mnemonicParsing="false" styleClass="buttonPrimary">
-                     <VBox.margin>
-                        <Insets bottom="20.0" top="20.0" />
-                     </VBox.margin>
+                  <Button fx:id="profileButton" mnemonicParsing="false" styleClass="buttonPrimary" GridPane.rowIndex="6">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@/resources/images/user-alt.png" />
-                           </image></ImageView>
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
-                  <Text fx:id="curHourText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="10h00">
+                  <Text fx:id="curHourText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="10h00" GridPane.rowIndex="7">
                      <font>
                         <Font size="14.0" />
                      </font>
-                     <VBox.margin>
+                     <GridPane.margin>
                         <Insets right="10.0" />
-                     </VBox.margin>
+                     </GridPane.margin>
                   </Text>
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </VBox>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </GridPane>
          </children>
-         <HBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
-         </HBox.margin></VBox>
+      </VBox>
    </children>
-</HBox>
+</GridPane>

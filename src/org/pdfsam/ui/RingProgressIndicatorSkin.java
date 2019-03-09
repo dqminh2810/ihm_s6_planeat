@@ -31,6 +31,7 @@ import javafx.util.Duration;
  * Skin of the ring progress indicator where an arc grows and by the progress value up to 100% where the arc becomes a ring.
  * 
  * @author Andrea Vacondio
+ * @author  Camille Bauce
  *
  */
 public class RingProgressIndicatorSkin implements Skin<RingProgressIndicator> {
@@ -85,6 +86,7 @@ public class RingProgressIndicatorSkin implements Skin<RingProgressIndicator> {
                 transition.pause();
             }
         });
+        container.getStyleClass().add("container");
         container.getChildren().addAll(fillerArc, outerCircle, innerCircle, percentLabel);
     }
 

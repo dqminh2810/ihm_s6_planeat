@@ -5,8 +5,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.MealDated;
@@ -44,14 +47,16 @@ public class ControllerAccueil extends Controller {
     private Text curmealNameText;
     @FXML
     private Button statsButton;
+//    @FXML
+//    private PieChart caloriesPieChart;
+//    @FXML
+//    private PieChart proteinPiechart;
+//    @FXML
+//    private PieChart glucosesPiechart;
+//    @FXML
+//    private PieChart dontsucrePiechart;
     @FXML
-    private PieChart caloriesPiechart;
-    @FXML
-    private PieChart proteinPiechart;
-    @FXML
-    private PieChart glucosesPiechart;
-    @FXML
-    private PieChart dontsucrePiechart;
+    private GridPane statsGridPane;
     @FXML
     private Button agendaButton;
     @FXML
@@ -66,9 +71,6 @@ public class ControllerAccueil extends Controller {
     private Text curHourText;
     @FXML
     private Text helloUserText;
-
-    @FXML
-    private HBox HBox1;
 
     LocalDate selectedDay;
     private ObservableList<MealDated> selectedDayMealList;
@@ -141,28 +143,50 @@ public class ControllerAccueil extends Controller {
         profileButton.setOnAction(event -> setView(new ControllerEditProfile(getStage(), this)));
 
 
-        //statistiques TODO: trouver les "cicle % round progress" (import)
-        RingProgressIndicator ring = new RingProgressIndicator();
-        ring.setRingWidth(50);
-        ring.setProgress(120);
-        HBox1.getChildren().add(ring);
+        //statistiques
+
+        final Label caption = new Label("");
+        caption.setTextFill(Color.DARKORANGE);
+        caption.setStyle("-fx-font: 24 arial;");
+
+        RingProgressIndicator ringCalories = new RingProgressIndicator();
+        ringCalories.setRingWidth(50);
+        ringCalories.setProgress(100);
+        statsGridPane.add(ringCalories,0,0);
+
+        RingProgressIndicator ringProteine = new RingProgressIndicator();
+        ringProteine.setRingWidth(50);
+        ringProteine.setProgress(30);
+        statsGridPane.add(ringProteine,1,0);
+
+        RingProgressIndicator ringGlucose = new RingProgressIndicator();
+        ringGlucose.setRingWidth(50);
+        ringGlucose.setProgress(25);
+        statsGridPane.add(ringGlucose,0,2);
+
+        RingProgressIndicator ringDontSucre = new RingProgressIndicator();
+        ringDontSucre.setRingWidth(50);
+        ringDontSucre.setProgress(40);
+        statsGridPane.add(ringDontSucre,1,2);
+
+        //roundyRound(ring);
 
         statsButton.setOnAction(event -> setView(new ControllerStat(getStage(),this)));
-        dontsucrePiechart.setStartAngle(90);
-        dontsucrePiechart.setData(FXCollections.observableArrayList(new PieChart.Data("", 50),new PieChart.Data("", 50)));
-        dontsucrePiechart.setLabelsVisible(false);
-
-        glucosesPiechart.setStartAngle(90);
-        glucosesPiechart.setData(FXCollections.observableArrayList(new PieChart.Data("", 30),new PieChart.Data("", 70)));
-        glucosesPiechart.setLabelsVisible(false);
-
-        caloriesPiechart.setStartAngle(90);
-        caloriesPiechart.setData(FXCollections.observableArrayList(new PieChart.Data("", 90),new PieChart.Data("", 10)));
-        caloriesPiechart.setLabelsVisible(false);
-
-        proteinPiechart.setStartAngle(90);
-        proteinPiechart.setData(FXCollections.observableArrayList(new PieChart.Data("", 95),new PieChart.Data("", 5)));
-        proteinPiechart.setLabelsVisible(false);
+//        dontsucrePiechart.setStartAngle(90);
+//        dontsucrePiechart.setData(FXCollections.observableArrayList(new PieChart.Data("", 50),new PieChart.Data("", 50)));
+//        dontsucrePiechart.setLabelsVisible(false);
+//
+//        glucosesPiechart.setStartAngle(90);
+//        glucosesPiechart.setData(FXCollections.observableArrayList(new PieChart.Data("", 30),new PieChart.Data("", 70)));
+//        glucosesPiechart.setLabelsVisible(false);
+//
+//        caloriesPiechart.setStartAngle(90);
+//        caloriesPiechart.setData(FXCollections.observableArrayList(new PieChart.Data("", 90),new PieChart.Data("", 10)));
+//        caloriesPiechart.setLabelsVisible(false);
+//
+//        proteinPiechart.setStartAngle(90);
+//        proteinPiechart.setData(FXCollections.observableArrayList(new PieChart.Data("", 95),new PieChart.Data("", 5)));
+//        proteinPiechart.setLabelsVisible(false);
 
         //prochain repas
         setCurrentMeal();
@@ -173,5 +197,10 @@ public class ControllerAccueil extends Controller {
     private void displayHour(){
         ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
         exec.scheduleAtFixedRate(() -> curHourText.setText(LocalDateTime.now().format(formatter)), 0, 5, TimeUnit.SECONDS);
+    }
+
+    private void roundyRound(RingProgressIndicator ring){
+        ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
+        exec.scheduleAtFixedRate(() -> ring.setProgress(ring.getProgress()+1), 0, 100, TimeUnit.MILLISECONDS);
     }
 }
