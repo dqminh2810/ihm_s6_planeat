@@ -1,0 +1,24 @@
+.buttonPrimary:hover{
+    -fx-cursor: hand;
+}
+.text-field{
+    -fx-border-radius: 6px;
+    -fx-border-color: transparent;
+    -fx-padding: 5px 15px;
+    -fx-font-size: 18px;
+}
+.text-area{
+    -fx-border-color: transparent;
+    -fx-border-radius: 6px;
+    -fx-font-size: 18px;
+}
+.choice-box{
+    -fx-border-color: transparent;
+    -fx-border-radius: 6px;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+.scroll-pane {
+    -fx-background-color: transparent;
+}

@@ -6,81 +6,125 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="926.0" styleClass="backgroundDark" stylesheets="@../css/styleDark.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefHeight="445.0" prefWidth="1260.0">
+      <HBox>
          <children>
-            <VBox prefHeight="250.0" prefWidth="1264.0">
+            <Button fx:id="quitButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="buttonPrimary" text="←">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
                <children>
-                  <HBox prefHeight="300.0" prefWidth="1260.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout d'un Repas" wrappingWidth="1258.1367797851562">
-                           <font>
-                              <Font size="21.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="5.0" top="5.0" />
-                           </HBox.margin>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <TextField fx:id="menuNameTextField" prefHeight="25.0" prefWidth="1156.0" promptText="Please insert your new menu name!!!" />
-               </children>
-            </VBox>
-            <HBox prefHeight="363.0" prefWidth="1260.0">
-               <children>
-                  <VBox prefHeight="363.0" prefWidth="186.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Starters" />
-                        <ChoiceBox fx:id="startersChoiceBox" prefWidth="150.0" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Maincourses" />
-                        <ChoiceBox fx:id="maincoursesChoiceBox" prefWidth="150.0" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Desserts" />
-                        <ChoiceBox fx:id="dessertsChoiceBox" prefWidth="150.0" />
-                        <Button fx:id="pickButton" mnemonicParsing="false" onAction="#linkChoiceBoxToTableView" prefWidth="87.0" text="Pick this one!">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="40.0" top="215.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="307.0" prefWidth="1081.0">
-                     <children>
-                        <TableView fx:id="dishTableView" prefHeight="277.0" prefWidth="1084.0">
-                          <columns>
-                            <TableColumn fx:id="typeTableColumn" prefWidth="200.0" text="Type" />
-                            <TableColumn fx:id="nameTableColumn" prefWidth="300.0" text="Name" />
-                              <TableColumn fx:id="actionTableColumn" prefWidth="100.0" text="Action" />
-                          </columns>
-                        </TableView>
-                        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <Button fx:id="saveandexitButton" mnemonicParsing="false" text="Save and exit">
-                                 <HBox.margin>
-                                    <Insets top="25.0" />
-                                 </HBox.margin>
-                              </Button>
-                              <Button fx:id="deleteAllButton" alignment="TOP_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="Delete all">
-                                 <HBox.margin>
-                                    <Insets left="20.0" right="20.0" top="25.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </HBox>
-                     </children>
-                  </VBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Ajouter un menu">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Text>
                </children>
             </HBox>
          </children>
-      </VBox>
+      </HBox>
+      <HBox>
+         <children>
+            <TextField fx:id="menuNameTextField" promptText="Nom du menu" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox>
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="363.0" prefWidth="186.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Entrées">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Text>
+                  <ChoiceBox fx:id="startersChoiceBox" prefWidth="150.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ChoiceBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Plat principal">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <ChoiceBox fx:id="maincoursesChoiceBox" prefWidth="150.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ChoiceBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Dessert">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <ChoiceBox fx:id="dessertsChoiceBox" prefWidth="150.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ChoiceBox>
+                  <Button fx:id="pickButton" mnemonicParsing="false" onAction="#linkChoiceBoxToTableView" prefWidth="87.0" styleClass="buttonPrimary" text="Ajouter">
+                     <VBox.margin>
+                        <Insets top="200.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="10.0" top="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS">
+               <children>
+                  <TableView fx:id="dishTableView" styleClass="backDarkGrey">
+                     <columns>
+                        <TableColumn fx:id="typeTableColumn" prefWidth="200.0" text="Type" />
+                        <TableColumn fx:id="nameTableColumn" prefWidth="300.0" text="Nom" />
+                        <TableColumn fx:id="actionTableColumn" prefWidth="100.0" text="Action" />
+                     </columns>
+                     <VBox.margin>
+                        <Insets right="10.0" />
+                     </VBox.margin>
+                  </TableView>
+                  <HBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Button fx:id="saveandexitButton" mnemonicParsing="false" styleClass="buttonPrimary" text="Enregistrer">
+                           <HBox.margin>
+                              <Insets top="25.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="deleteAllButton" alignment="TOP_RIGHT" mnemonicParsing="false" styleClass="buttonPrimary" text="Tout supprimer">
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" top="25.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
    </children>
-</AnchorPane>
+</VBox>

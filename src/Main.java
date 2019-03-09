@@ -3,7 +3,7 @@ import javafx.application.Application;
 import mocks.*;
 import javafx.stage.Stage;
 import model.User;
-import view.*;
+import view.ViewBase;
 
 public class Main extends Application {
 
@@ -16,9 +16,13 @@ public class Main extends Application {
         UserMocks.initMocks();
         User.actualUser = UserMocks.users.get("todesco@gmail.com");
 
-        ViewBase view = new ViewAccueil();
+        primaryStage.maximizedProperty().addListener((observable, oldValue, newValue) -> {
+            ViewBase.isMaximized = newValue;
+            primaryStage.setMaximized(ViewBase.isMaximized);
+        });
+
         Controller controller = new ControllerAccueil(primaryStage, null);
-        controller.setView(controller);
+        controller.setFirstView(controller);
     }
 
     public static void main(String[] args) {

@@ -18,11 +18,23 @@ public class ModelListOfDishes {
         desserts = FXCollections.observableArrayList();
         listOfDishes = FXCollections.observableArrayList();
 
-        starters.addAll(DishMocks.starters);
-        maincourses.addAll(DishMocks.maincourses);
-        desserts.addAll(DishMocks.desserts);
+        listOfDishes.addAll(DishMocks.dishes);
+        for(Dish d: listOfDishes){
+            if(d.getCourseType()==CourseType.STARTER)
+                if(!this.starters.contains(d))
+                    this.starters.add(d);
+        }
+        for(Dish d: listOfDishes){
+            if(d.getCourseType()==CourseType.MAIN_COURSE)
+                if(!this.maincourses.contains(d))
+                    this.maincourses.add(d);
+        }
+        for(Dish d: listOfDishes){
+            if(d.getCourseType()==CourseType.DESSERT)
+                if(!this.desserts.contains(d))
+                    this.desserts.add(d);
+        }
     }
-
     public ObservableList<Dish> getStarters() {
         return starters;
     }

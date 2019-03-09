@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import model.Theme;
+import model.User;
 import view.ViewBase;
 
 import java.io.IOException;
@@ -20,19 +22,41 @@ public abstract class Controller implements Initializable {
         this.previousController = previousController;
     }
 
-    public void setView(Controller controller) {
-        try {
+    private Parent getRoot(Controller controller){
+        try{
             FXMLLoader loader = new FXMLLoader();
             loader.setController(controller);
             Parent root = loader.load(getClass().getResourceAsStream("../"+ controller.getActualView().getXmlFile()));
-            root.getStylesheets().add(controller.getActualView().getCss());
+            root.getStylesheets().add(controller.getActualView().getCssBase());
+            if(User.actualUser.getThemeCss().equals(Theme.LIGHT)){
+                root.getStylesheets().add(controller.getActualView().getCssLight());
+            }else{
+                root.getStylesheets().add(controller.getActualView().getCssDark());
+            }
+            return root;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
+    public void setFirstView(Controller controller){
+        Parent root = getRoot(controller);
+        if(root != null){
             stage.setScene(new Scene(root, controller.getActualView().getWidth(), controller.getActualView().getHeight()));
             stage.setTitle(controller.getActualView().getLabel());
             stage.show();
+            stage.setMaximized(ViewBase.isMaximized);
+        }
+    }
 
-        }catch (IOException io){
-            io.printStackTrace();
+    public void setView(Controller controller) {
+        Parent root = getRoot(controller);
+        if(root != null) {
+            stage.getScene().setRoot(getRoot(controller));
+            stage.setTitle(controller.getActualView().getLabel());
+            stage.show();
+            stage.setMaximized(ViewBase.isMaximized);
         }
     }
 

@@ -1,12 +1,14 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mocks.UserMocks;
+import model.Theme;
 import model.User;
 import model.UserSex;
-import view.ViewBase;
 import view.ViewEditProfile;
 
 import java.net.URL;
@@ -15,10 +17,24 @@ import java.util.ResourceBundle;
 public class ControllerEditProfile extends ControllerUser {
     @FXML
     private Text editedText;
+    @FXML
+    private RadioButton darkRadio;
+    @FXML
+    private RadioButton lightRadio;
+    private ToggleGroup themeGroup;
+    private boolean profileEdited;
 
-    public ControllerEditProfile(Stage stage, Controller previousController) {
+
+    ControllerEditProfile(Stage stage, Controller previousController) {
         super(stage, previousController);
         this.actualView = new ViewEditProfile();
+        profileEdited = false;
+    }
+
+    private ControllerEditProfile(Stage stage, Controller previousController, boolean profileEdited) {
+        super(stage, previousController);
+        this.actualView = new ViewEditProfile();
+        this.profileEdited = profileEdited;
     }
 
     @Override
@@ -51,6 +67,12 @@ public class ControllerEditProfile extends ControllerUser {
         if(passwordField.getText().length() != 0)
             user.setPassword(passwordField.getText());
 
+        Theme radio = (Theme) themeGroup.getSelectedToggle().getUserData();
+        if(!radio.equals(User.actualUser.getThemeCss())){
+            user.setThemeCss(radio);
+            setView(new ControllerEditProfile(getStage(), getPreviousController(), true));
+        }
+
         editedText.setText("Profil édité avec succès");
     }
 
@@ -64,10 +86,10 @@ public class ControllerEditProfile extends ControllerUser {
         return true;
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
+        initClickOnTheme();
         nameTexfield.setText(User.actualUser.getName());
         firstnameTexfield.setText(User.actualUser.getFirstName());
         birthDatePicker.setValue(User.actualUser.getBirthDate());
@@ -87,5 +109,19 @@ public class ControllerEditProfile extends ControllerUser {
         statusChoicebox.getSelectionModel().select(User.actualUser.getStatus());
         cookingFrequencyChoiceBox.getSelectionModel().select(User.actualUser.getCookingFrequency());
 
+        if(profileEdited)
+            editedText.setText("Profil édité avec succès");
+    }
+
+    private void initClickOnTheme(){
+        themeGroup = new ToggleGroup();
+        darkRadio.setToggleGroup(themeGroup);
+        darkRadio.setUserData(Theme.DARK);
+        lightRadio.setToggleGroup(themeGroup);
+        lightRadio.setUserData(Theme.LIGHT);
+        if(User.actualUser.getThemeCss().equals(Theme.LIGHT))
+            lightRadio.setSelected(true);
+        else
+            darkRadio.setSelected(true);
     }
 }

@@ -1,9 +1,12 @@
 package view;
 
 public abstract class ViewBase {
-    private final int WIDTH = 1280;
-    private final int HEIGHT = 720;
-    private String css = "resources/css/style.css";
+    public static int WIDTH = 1280;
+    public static int HEIGHT = 720;
+    public static boolean isMaximized = false;
+    private String cssBase = "resources/css/styleBase.css";
+    private String cssDark = "resources/css/styleDark.css";
+    private String cssLight = "resources/css/styleLight.css";
     private String xmlFile;
     private String label;
 
@@ -12,12 +15,16 @@ public abstract class ViewBase {
         this.label = label;
     }
 
+    public String getCssBase() {
+        return cssBase;
+    }
+
     public String getXmlFile() {
         return xmlFile;
     }
 
-    public String getCss() {
-        return css;
+    public String getCssDark() {
+        return cssDark;
     }
 
     public String getLabel() {
@@ -30,5 +37,9 @@ public abstract class ViewBase {
 
     public int getWidth() {
         return WIDTH;
+    }
+
+    public String getCssLight() {
+        return cssLight;
     }
 }

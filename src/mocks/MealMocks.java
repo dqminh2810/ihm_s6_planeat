@@ -21,9 +21,9 @@ public abstract class MealMocks {
 
         //Ingredients
         ingredients.add(new Ingredient(FoodMocks.foods.get(0), 6));
-        ingredients2.add(new Ingredient(FoodMocks.foods.get(1), 400));
-        ingredients2.add(new Ingredient(FoodMocks.foods.get(3), 250));
-        ingredients3.add(new Ingredient(FoodMocks.foods.get(5), 200));
+        ingredients2.add(new Ingredient(FoodMocks.foods.get(1), 4));
+        ingredients2.add(new Ingredient(FoodMocks.foods.get(3), 2));
+        ingredients3.add(new Ingredient(FoodMocks.foods.get(5), 2));
 
         //Dishes
         dishes1.add(new Dish("Omelette des familles", "A ne pas retourner", CourseType.MAIN_COURSE, ingredients));

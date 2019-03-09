@@ -2,11 +2,10 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
-
     public static User actualUser = null;
-
     private String name;
     private String firstName;
     private LocalDate birthDate;
@@ -18,6 +17,7 @@ public class User {
     private CookingFrequency cookingFrequency;
     private String password;
     private ArrayList<MealDated> mealsDated;
+    private Theme themeCss;
 
 
     public User(String name, String firstName, LocalDate birthDate, String mail, UserSex sex, float weight, int size, StatusChoice status, CookingFrequency cookingFrequency, String password) {
@@ -32,6 +32,15 @@ public class User {
         this.cookingFrequency = cookingFrequency;
         this.password = password;
         mealsDated = new ArrayList<>();
+        this.themeCss = Theme.DARK;
+    }
+
+    public void setThemeCss(Theme themeCss) {
+        this.themeCss = themeCss;
+    }
+
+    public Theme getThemeCss() {
+        return themeCss;
     }
 
     public static User getActualUser() {
@@ -130,6 +139,15 @@ public class User {
 
     public ArrayList<MealDated> getMeals() {
         return mealsDated;
+    }
+
+    public List<Ingredient> getIngredientHistory(Periode periode) {
+        List<Ingredient> list = new ArrayList<>();
+        for (MealDated mealDated : mealsDated){
+            if (periode.containsDay(mealDated.getTime().toLocalDate()))
+                list.addAll(mealDated.getMeal().getAllIngredients());
+        }
+        return list;
     }
 
     @Override

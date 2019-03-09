@@ -136,7 +136,7 @@ public class ControllerAccueil extends Controller {
 
         agendaButton.setOnAction(event -> setView(new ControllerAgenda(getStage(), this)));
         createIngredientButton.setOnAction(event -> setView(new ControllerAddFood(getStage(), this)));
-        createMealButton.setOnAction(event ->  new ControllerAddDish(getStage(),this));
+        createMealButton.setOnAction(event ->  setView(new ControllerAddDish(getStage(),this)));
         addMealButton.setOnAction(event -> setView(new ControllerGestionMenu(getStage(), this)));
         profileButton.setOnAction(event -> setView(new ControllerEditProfile(getStage(), this)));
 
@@ -148,7 +148,6 @@ public class ControllerAccueil extends Controller {
         HBox1.getChildren().add(ring);
 
         statsButton.setOnAction(event -> setView(new ControllerStat(getStage(),this)));
-
         dontsucrePiechart.setStartAngle(90);
         dontsucrePiechart.setData(FXCollections.observableArrayList(new PieChart.Data("", 50),new PieChart.Data("", 50)));
         dontsucrePiechart.setLabelsVisible(false);

@@ -3,6 +3,7 @@ package model;
 import javafx.scene.control.Button;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Un meal est un repas, il contient un nom et une liste de plats
@@ -107,4 +108,11 @@ public class Meal {
         return name;
     }
 
+    List<Ingredient> getAllIngredients() {
+        List<Ingredient> list = new ArrayList<>();
+        for (Dish dish : dishes) {
+            list.addAll(dish.getIngredients());
+        }
+        return list;
+    }
 }
