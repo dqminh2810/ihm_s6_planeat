@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="746.0" styleClass="backgroundDark" stylesheets="@../css/styleDark.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="746.0" styleClass="backgroundDark" stylesheets="@../css/styleDark.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox>
          <children>
@@ -73,9 +73,11 @@
                               <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <TextField fx:id="energy_textfield" promptText="Énergie">
+                              <TextField fx:id="energyTextfield" promptText="Énergie">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
@@ -105,11 +107,6 @@
                                     <Font size="10.0" />
                                  </font>
                               </TextField>
-                              <TextField fx:id="energyTextfield" prefWidth="322.0" promptText="Énergie">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </TextField>
                               <TextField fx:id="saltTextfield" promptText="Sel" GridPane.rowIndex="6">
                                  <font>
                                     <Font size="10.0" />
@@ -118,13 +115,25 @@
                                     <Insets />
                                  </GridPane.margin>
                               </TextField>
+                              <TextField fx:id="fibresTextfield" prefWidth="322.0" promptText="Fibres" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="calciumTextfield" layoutX="10.0" layoutY="175.0" prefWidth="322.0" promptText="Calcium" GridPane.rowIndex="8">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </TextField>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text=" Kcal" GridPane.columnIndex="1" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text=" %" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="g pour 100g" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="g pour 100g" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="g pour 100g" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="g pour 100g" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="g pour 100g" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="g pour 100g" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <Text layoutX="505.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="g pour 100g" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <Text layoutX="505.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="g pour 100g" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                            </children>
                            <opaqueInsets>
                               <Insets />

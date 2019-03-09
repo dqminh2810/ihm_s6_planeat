@@ -6,18 +6,20 @@ public class Food {
     private String name;
     private FoodCategory category;
 
-    private int energy;
-    private int fat;
-    private int acid;
-    private int carbohydrate; //glucides
-    private int sugar;
-    private int protein;
-    private int salt;
+    private double energy;
+    private double fat;
+    private double acid;
+    private double carbohydrate; //glucides
+    private double sugar;
+    private double protein;
+    private double salt;
+    private double fibres;
+    private double calcium;
 
     private boolean peanut;
     private boolean gluten;
 
-    public Food(String name, FoodCategory category, int energy, int fat, int acid, int carbohydrate, int sugar, int protein, int salt, boolean peanut, boolean gluten) {
+    public Food(String name, FoodCategory category, double energy, double fat, double acid, double carbohydrate, double sugar, double protein, double salt, double fibres, double calcium, boolean peanut, boolean gluten) {
         this.name = name;
         this.category = category;
         this.energy = energy;
@@ -27,6 +29,8 @@ public class Food {
         this.sugar = sugar;
         this.protein = protein;
         this.salt = salt;
+        this.fibres = fibres;
+        this.calcium = calcium;
         this.peanut = peanut;
         this.gluten = gluten;
     }
@@ -51,75 +55,83 @@ public class Food {
         this.category = category;
     }
 
-    public int getEnergy()
+    public double getEnergy()
     {
         return energy;
     }
 
-    public void setEnergy(int energy)
+    public void setEnergy(double energy)
     {
         this.energy = energy;
     }
 
-    public int getFat()
+    public double getFat()
     {
         return fat;
     }
 
-    public void setFat(int fat)
+    public void setFat(double fat)
     {
         this.fat = fat;
     }
 
-    public int getAcid()
+    public double getAcid()
     {
         return acid;
     }
 
-    public void setAcid(int acid)
+    public void setAcid(double acid)
     {
         this.acid = acid;
     }
 
-    public int getCarbohydrate()
+    public double getCarbohydrate()
     {
         return carbohydrate;
     }
 
-    public void setCarbohydrate(int carbohydrate)
+    public void setCarbohydrate(double carbohydrate)
     {
         this.carbohydrate = carbohydrate;
     }
 
-    public int getSugar()
+    public double getSugar()
     {
         return sugar;
     }
 
-    public void setSugar(int sugar)
+    public void setSugar(double sugar)
     {
         this.sugar = sugar;
     }
 
-    public int getProtein()
+    public double getProtein()
     {
         return protein;
     }
 
-    public void setProtein(int protein)
+    public void setProtein(double protein)
     {
         this.protein = protein;
     }
 
-    public int getSalt()
+    public double getSalt()
     {
         return salt;
     }
 
-    public void setSalt(int salt)
+    public void setSalt(double salt)
     {
         this.salt = salt;
     }
+
+    public double getFibres() { return fibres; }
+
+    public void setFibres(double fibres) { this.fibres = fibres; }
+
+    public double getCalcium() { return calcium; }
+
+    public void setCalcium(double calcium) { this.calcium = calcium; }
 
     public boolean isPeanut()
     {

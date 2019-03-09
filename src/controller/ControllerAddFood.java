@@ -39,6 +39,10 @@ public class ControllerAddFood extends Controller
     private TextField proteinTextfield;
     @FXML
     private TextField saltTextfield;
+    @FXML
+    private TextField fibresTextfield;
+    @FXML
+    private TextField calciumTextfield;
 
 
     @FXML
@@ -74,29 +78,29 @@ public class ControllerAddFood extends Controller
 
         FoodCategory foodCategory = categorySplitmenu.getSelectionModel().getSelectedItem();
 
-        int energy;
+        double energy;
         if(energyTextfield.getText().equals(""))
             energy = -1;
         else
         {
             try
             {
-                energy = Integer.valueOf(energyTextfield.getText());
+                energy = Double.valueOf(energyTextfield.getText());
             } catch (Exception e)
             {
-                errorText.setText("La valeur donnée au champ <Énergire> doit être numérique");
+                errorText.setText("La valeur donnée au champ <Énergie> doit être numérique");
                 return;
             }
         }
 
-        int fat;
+        double fat;
         if(fatTextfield.getText().equals(""))
             fat = -1;
         else
         {
             try
             {
-                fat = Integer.valueOf(fatTextfield.getText());
+                fat = Double.valueOf(fatTextfield.getText());
             } catch (Exception e)
             {
                 errorText.setText("La valeur donnée au champ <Matière grasses> doit être numérique");
@@ -104,14 +108,14 @@ public class ControllerAddFood extends Controller
             }
         }
 
-        int acid;
+        double acid;
         if(acidTextfield.getText().equals(""))
             acid = -1;
         else
         {
             try
             {
-                acid = Integer.valueOf(acidTextfield.getText());
+                acid = Double.valueOf(acidTextfield.getText());
             } catch (Exception e)
             {
                 errorText.setText("La valeur donnée au champ <Acide gras saturés> doit être numérique");
@@ -119,14 +123,14 @@ public class ControllerAddFood extends Controller
             }
         }
 
-        int carbohydrate;
+        double carbohydrate;
         if(carbohydrateTextfield.getText().equals(""))
             carbohydrate = -1;
         else
         {
             try
             {
-                carbohydrate = Integer.valueOf(carbohydrateTextfield.getText());
+                carbohydrate = Double.valueOf(carbohydrateTextfield.getText());
             } catch (Exception e)
             {
                 errorText.setText("La valeur donnée au champ <Glucides> doit être numérique");
@@ -134,14 +138,14 @@ public class ControllerAddFood extends Controller
             }
         }
 
-        int sugar;
+        double sugar;
         if(sugarTextfield.getText().equals(""))
             sugar = -1;
         else
         {
             try
             {
-                sugar = Integer.valueOf(sugarTextfield.getText());
+                sugar = Double.valueOf(sugarTextfield.getText());
             } catch (Exception e)
             {
                 errorText.setText("La valeur donnée au champ <Sucres> doit être numérique");
@@ -149,14 +153,14 @@ public class ControllerAddFood extends Controller
             }
         }
 
-        int protein;
+        double protein;
         if(proteinTextfield.getText().equals(""))
             protein = -1;
         else
         {
             try
             {
-                protein = Integer.valueOf(proteinTextfield.getText());
+                protein = Double.valueOf(proteinTextfield.getText());
             } catch (Exception e)
             {
                 errorText.setText("La valeur donnée au champ <Protéines> doit être numérique");
@@ -164,17 +168,47 @@ public class ControllerAddFood extends Controller
             }
         }
 
-        int salt;
+        double salt;
         if(saltTextfield.getText().equals(""))
             salt = -1;
         else
         {
             try
             {
-                salt = Integer.valueOf(saltTextfield.getText());
+                salt = Double.valueOf(saltTextfield.getText());
             } catch (Exception e)
             {
                 errorText.setText("La valeur donnée au champ <Sel> doit être numérique");
+                return;
+            }
+        }
+
+        double fibres;
+        if(fibresTextfield.getText().equals(""))
+            fibres = -1;
+        else
+        {
+            try
+            {
+                fibres = Double.valueOf(fibresTextfield.getText());
+            } catch (Exception e)
+            {
+                errorText.setText("La valeur donnée au champ <Fibre> doit être numérique");
+                return;
+            }
+        }
+
+        double calcium;
+        if(calciumTextfield.getText().equals(""))
+            calcium = -1;
+        else
+        {
+            try
+            {
+                calcium = Double.valueOf(calciumTextfield.getText());
+            } catch (Exception e)
+            {
+                errorText.setText("La valeur donnée au champ <Calcium> doit être numérique");
                 return;
             }
         }
@@ -187,7 +221,7 @@ public class ControllerAddFood extends Controller
         //If an error occur during the save process
         try
         {
-            food = new Food(name, foodCategory, energy, fat, acid, carbohydrate, sugar, protein, salt, containPeanut, containGluten);
+            food = new Food(name, foodCategory, energy, fat, acid, carbohydrate, sugar, protein, salt, fibres, calcium, containPeanut, containGluten);
         }
         catch (Exception e)
         {
