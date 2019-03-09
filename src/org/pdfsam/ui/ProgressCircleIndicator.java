@@ -36,6 +36,7 @@ import com.sun.javafx.css.converters.SizeConverter;
  * Base class for the progress indicator controls represented by circualr shapes
  * 
  * @author Andrea Vacondio
+ * @author Camille Bauce
  *
  */
 abstract class ProgressCircleIndicator extends Control {
@@ -81,7 +82,7 @@ abstract class ProgressCircleIndicator extends Control {
 
     private int defaultToHundred(int value) {
         if (value > 100) {
-            return 100;
+            //return 100;
         }
         return value;
     }

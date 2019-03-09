@@ -4,7 +4,13 @@
 }
 .ringindicator-inner-circle {
 	-fx-opacity: 1;
-	-fx-stroke: circleindicator-color; 
+	-fx-stroke: circleindicator-color;
+	-fx-stroke-width: 8.0px;
+	-fx-fill: -fx-background;
+}
+.ringindicator-over100-inner-circle {
+	-fx-opacity: 1;
+	-fx-stroke: #ff0509;
 	-fx-stroke-width: 8.0px;
 	-fx-fill: -fx-background;
 }
@@ -12,6 +18,17 @@
 	-fx-stroke: circleindicator-color;
 	-fx-fill: -fx-background;
 	-fx-stroke-line-cap: butt;
+}
+.ringindicator-over100-filler{
+	-fx-stroke: #ff0509;
+	-fx-fill: -fx-background;
+	-fx-stroke-line-cap: butt;
+}
+.ringindicator-over100-outer-circle-secondary {
+	-fx-opacity: 0.1;
+	-fx-stroke: #ff0509;
+	-fx-stroke-width: 2.0px;
+	-fx-fill: -fx-background;
 }
 .ringindicator-outer-circle-secondary {
 	-fx-opacity: 0.1;

@@ -42,19 +42,25 @@ public class RingProgressIndicatorSkin implements Skin<RingProgressIndicator> {
     private final Circle outerCircle = new Circle();
     private final StackPane container = new StackPane();
     private final Arc fillerArc = new Arc();
+    private final Arc fillerArcOver100 = new Arc();
     private final RotateTransition transition = new RotateTransition(Duration.millis(2000), fillerArc);
 
     public RingProgressIndicatorSkin(final RingProgressIndicator indicator) {
         this.indicator = indicator;
         initContainer(indicator);
-        initFillerArc();
+
+        initFillerArcs();
+
         container.widthProperty().addListener((o, oldVal, newVal) -> {
             fillerArc.setCenterX(newVal.intValue() / 2);
+            fillerArcOver100.setCenterX(newVal.intValue() / 2);
         });
         container.heightProperty().addListener((o, oldVal, newVal) -> {
             fillerArc.setCenterY(newVal.intValue() / 2);
+            fillerArcOver100.setCenterY(newVal.intValue() / 2);
         });
-        innerCircle.getStyleClass().add("ringindicator-inner-circle");
+
+        updateInnerCircle(indicator.getProgress());
         outerCircle.getStyleClass().add("ringindicator-outer-circle-secondary");
         updateRadii();
 
@@ -62,9 +68,17 @@ public class RingProgressIndicatorSkin implements Skin<RingProgressIndicator> {
             initIndeterminate(newVal);
         });
         this.indicator.progressProperty().addListener((o, oldVal, newVal) -> {
+            int newValOver100 = 0;
+            int newValUnder100 = newVal.intValue();
+            if(newVal.intValue() > 100){
+                newValOver100 = newVal.intValue()%100;
+                newValUnder100 = newVal.intValue() - newValOver100;
+            }
             if (newVal.intValue() >= 0) {
-                setProgressLabel(newVal.intValue());
-                fillerArc.setLength(newVal.intValue() * -3.6);
+                updateLabel(newVal.intValue());
+                updateInnerCircle(newVal.intValue());
+                fillerArc.setLength(newValUnder100 * -3.6);
+                fillerArcOver100.setLength(newValOver100 * -3.6);
             }
         });
         this.indicator.ringWidthProperty().addListener((o, oldVal, newVal) -> {
@@ -78,7 +92,7 @@ public class RingProgressIndicatorSkin implements Skin<RingProgressIndicator> {
         });
         initTransition();
         initIndeterminate(indicator.isIndeterminate());
-        initLabel(indicator.getProgress());
+        updateLabel(indicator.getProgress());
         indicator.visibleProperty().addListener((o, oldVal, newVal) -> {
             if (newVal && this.indicator.isIndeterminate()) {
                 transition.play();
@@ -87,7 +101,7 @@ public class RingProgressIndicatorSkin implements Skin<RingProgressIndicator> {
             }
         });
         container.getStyleClass().add("container");
-        container.getChildren().addAll(fillerArc, outerCircle, innerCircle, percentLabel);
+        container.getChildren().addAll(fillerArc,fillerArcOver100, outerCircle, innerCircle, percentLabel);
     }
 
     private void setProgressLabel(int value) {
@@ -104,11 +118,23 @@ public class RingProgressIndicatorSkin implements Skin<RingProgressIndicator> {
         transition.setByAngle(360);
     }
 
-    private void initFillerArc() {
+    private void initFillerArcs() {
+        int newValOver100 = 0;
+        int newValUnder100 = indicator.getProgress();
+        if(indicator.getProgress() > 100){
+            newValOver100 = indicator.getProgress()%100;
+            newValUnder100 =indicator.getProgress() - newValOver100;
+        }
+
         fillerArc.setManaged(false);
         fillerArc.getStyleClass().add("ringindicator-filler");
         fillerArc.setStartAngle(90);
-        fillerArc.setLength(indicator.getProgress() * -3.6);
+        fillerArc.setLength(newValUnder100 * -3.6);
+
+        fillerArcOver100.setManaged(false);
+        fillerArcOver100.getStyleClass().add("ringindicator-over100-filler");
+        fillerArcOver100.setStartAngle(90);
+        fillerArcOver100.setLength(newValOver100 * -3.6);
     }
 
     private void initContainer(final RingProgressIndicator indicator) {
@@ -126,13 +152,36 @@ public class RingProgressIndicatorSkin implements Skin<RingProgressIndicator> {
         fillerArc.setRadiusY(innerCircleRadius + innerCircleHalfStrokeWidth - 1 + (ringWidth / 2));
         fillerArc.setRadiusX(innerCircleRadius + innerCircleHalfStrokeWidth - 1 + (ringWidth / 2));
         fillerArc.setStrokeWidth(ringWidth);
+        fillerArcOver100.setRadiusY(innerCircleRadius + innerCircleHalfStrokeWidth - 1 + (ringWidth / 2));
+        fillerArcOver100.setRadiusX(innerCircleRadius + innerCircleHalfStrokeWidth - 1 + (ringWidth / 2));
+        fillerArcOver100.setStrokeWidth(ringWidth);
         innerCircle.setRadius(innerCircleRadius);
     }
 
-    private void initLabel(int value) {
+    private void updateLabel(int value) {
+        if(value > 100){
+            percentLabel.getStyleClass().add("circleindicator100-label");
+            percentLabel.getStyleClass().remove("circleindicator-label");
+        }
+        else {
+            percentLabel.getStyleClass().add("circleindicator-label");
+            percentLabel.getStyleClass().remove("circleindicator000-label");
+        }
         setProgressLabel(value);
-        percentLabel.getStyleClass().add("circleindicator-label");
     }
+
+    private void updateInnerCircle(int value) {
+        if(value > 100){
+            innerCircle.getStyleClass().add("ringindicator-over100-inner-circle");
+            innerCircle.getStyleClass().remove("ringindicator-inner-circle");
+        }
+        else {
+            innerCircle.getStyleClass().add("ringindicator-inner-circle");
+            innerCircle.getStyleClass().remove("ringindicator-over100-inner-circle");
+        }
+    }
+
+
 
     private void initIndeterminate(boolean newVal) {
         percentLabel.setVisible(!newVal);
@@ -145,6 +194,7 @@ public class RingProgressIndicatorSkin implements Skin<RingProgressIndicator> {
         } else {
             fillerArc.getStyleClass().remove("indeterminate");
             fillerArc.setRotate(0);
+            fillerArcOver100.setRotate(0);
             transition.stop();
         }
     }

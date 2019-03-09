@@ -151,7 +151,7 @@ public class ControllerAccueil extends Controller {
 
         RingProgressIndicator ringCalories = new RingProgressIndicator();
         ringCalories.setRingWidth(50);
-        ringCalories.setProgress(100);
+        ringCalories.setProgress(125);
         statsGridPane.add(ringCalories,0,0);
 
         RingProgressIndicator ringProteine = new RingProgressIndicator();
