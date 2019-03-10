@@ -23,34 +23,34 @@ public abstract class ControllerUser extends Controller{
     @FXML
     protected Button returnButton;
     @FXML
-    protected TextField nameTexfield;
+    TextField nameTexfield;
     @FXML
-    protected TextField firstnameTexfield;
+    TextField firstnameTexfield;
     @FXML
-    protected TextField mailTexfield;
+    TextField mailTexfield;
     @FXML
-    protected DatePicker birthDatePicker;
+    DatePicker birthDatePicker;
     @FXML
-    protected RadioButton sexM;
+    RadioButton sexM;
     @FXML
-    protected RadioButton sexF;
+    RadioButton sexF;
     @FXML
-    protected TextField weightTexfield;
+    TextField weightTexfield;
     @FXML
-    protected TextField sizeTextfield;
+    TextField sizeTextfield;
     @FXML
-    protected ChoiceBox<StatusChoice> statusChoicebox;
+    ChoiceBox<StatusChoice> statusChoicebox;
     @FXML
-    protected ChoiceBox<CookingFrequency> cookingFrequencyChoiceBox;
+    ChoiceBox<CookingFrequency> cookingFrequencyChoiceBox;
     @FXML
-    protected PasswordField passwordField;
+    PasswordField passwordField;
     @FXML
-    protected PasswordField passwordConfirmationField;
+    PasswordField passwordConfirmationField;
     @FXML
-    protected Button sendFormButton;
+    private Button sendFormButton;
     @FXML
     protected Text errorText;
-    protected ToggleGroup group;
+    ToggleGroup group;
 
     ControllerUser(Stage stage, Controller previousController) {
         super(stage, previousController);

@@ -40,7 +40,7 @@
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <ListView fx:id="dishList" minWidth="-Infinity" VBox.vgrow="ALWAYS" />
-                  <Button fx:id="addDishButton" mnemonicParsing="false" text="Ajouter un plat" />
+                  <Button fx:id="addDishButton" mnemonicParsing="false" styleClass="buttonPrimary" text="Ajouter un plat" />
                </children>
             </VBox>
             <ScrollPane hbarPolicy="NEVER" HBox.hgrow="ALWAYS">

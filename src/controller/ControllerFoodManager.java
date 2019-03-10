@@ -9,9 +9,7 @@ import javafx.stage.Stage;
 import mocks.FoodMocks;
 import model.Food;
 import model.FoodCategory;
-import model.MealDated;
 import view.ViewAddFood;
-import view.ViewBase;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -185,7 +183,7 @@ public class ControllerFoodManager extends Controller {
         categorySplitmenu.getSelectionModel().select(0);
     }
 
-    boolean isNameOk(){
+    private boolean isNameOk(){
         if (nameTextfield.getText().length() == 0) {
             errorText.setText("Le champ nom est obligatoire");
             return false;
@@ -193,7 +191,7 @@ public class ControllerFoodManager extends Controller {
         return true;
     }
 
-    boolean isDoubleValueOk(TextField value, String champ){
+    private boolean isDoubleValueOk(TextField value, String champ){
         if(value.getText().equals(""))
             return true;
         else {
@@ -207,14 +205,14 @@ public class ControllerFoodManager extends Controller {
         return true;
     }
 
-    double getDoubleValue(TextField value){
+    private double getDoubleValue(TextField value){
         if(value.getText().equals(""))
             return -1;
         else
             return Double.valueOf(value.getText());
     }
 
-    boolean checkIfFoodHasSameName(){
+    private boolean checkIfFoodHasSameName(){
         if(addMode || (!addMode && !foodToEdit.getName().equals(nameTextfield.getText()))) {
             for (Food f : FoodMocks.foods) {
                 if (f.getName().equals(nameTextfield.getText())) {
