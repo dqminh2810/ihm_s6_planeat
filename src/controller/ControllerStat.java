@@ -1,9 +1,6 @@
 package controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
@@ -15,12 +12,10 @@ import model.Periode;
 import model.User;
 import model.UserSex;
 import org.pdfsam.ui.RingProgressIndicator;
-import view.ViewBase;
 import view.ViewStat;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -71,17 +66,17 @@ public class ControllerStat extends Controller {
     @FXML
     private ListView otherList;
 
-    Periode periode;
-    List<Ingredient> ingredientList;
-    RingProgressIndicator ringCalories;
-    RingProgressIndicator ringFats;
-    RingProgressIndicator ringSaturated;
-    RingProgressIndicator ringCarbohydrates;
-    RingProgressIndicator ringSugar;
-    RingProgressIndicator ringProteins;
-    RingProgressIndicator ringSalt;
-    RingProgressIndicator ringFibres;
-    RingProgressIndicator ringCalcium;
+    private Periode periode;
+    private List<Ingredient> ingredientList;
+    private RingProgressIndicator ringCalories;
+    private RingProgressIndicator ringFats;
+    private RingProgressIndicator ringSaturated;
+    private RingProgressIndicator ringCarbohydrates;
+    private RingProgressIndicator ringSugar;
+    private RingProgressIndicator ringProteins;
+    private RingProgressIndicator ringSalt;
+    private RingProgressIndicator ringFibres;
+    private RingProgressIndicator ringCalcium;
 
     //PieChart[] charts = {energyPieChart, fatsPieChart, saturatedPieChart, carbohydratesPieChart, sugarPieChart, proteinsPieChart, saltPieChart};
 
@@ -252,47 +247,48 @@ public class ControllerStat extends Controller {
         }*/
         int dataPercentage;
 
-        dataPercentage = getIntakePercentage(intakesData[0], recommendedIntakes[0]);
+        dataPercentage = getIntakePercentage(intakesData[0], recommendedIntakes[0]*(periode.getInterval()+1));
         ringCalories.getStylesheets().clear();
         ringCalories.getStylesheets().add(obtainStylesheet(dataPercentage));
+        //ringCalories.getStylesheets().forEach(str -> System.out.println(str));
         ringCalories.setProgress(dataPercentage);
 
-        dataPercentage = getIntakePercentage(intakesData[1], recommendedIntakes[1]);
+        dataPercentage = getIntakePercentage(intakesData[1], recommendedIntakes[1]*(periode.getInterval()+1));
         ringFats.getStylesheets().clear();
         ringFats.getStylesheets().add(obtainStylesheet(dataPercentage));
         ringFats.setProgress(dataPercentage);
 
-        dataPercentage = getIntakePercentage(intakesData[2], recommendedIntakes[2]);
+        dataPercentage = getIntakePercentage(intakesData[2], recommendedIntakes[2]*(periode.getInterval()+1));
         ringSaturated.getStylesheets().clear();
         ringSaturated.getStylesheets().add(obtainStylesheet(dataPercentage));
         ringSaturated.setProgress(dataPercentage);
 
-        dataPercentage = getIntakePercentage(intakesData[3], recommendedIntakes[3]);
+        dataPercentage = getIntakePercentage(intakesData[3], recommendedIntakes[3]*(periode.getInterval()+1));
         ringCarbohydrates.getStylesheets().clear();
         ringCarbohydrates.getStylesheets().add(obtainStylesheet(dataPercentage));
         ringCarbohydrates.setProgress(dataPercentage);
 
-        dataPercentage = getIntakePercentage(intakesData[4], recommendedIntakes[4]);
+        dataPercentage = getIntakePercentage(intakesData[4], recommendedIntakes[4]*(periode.getInterval()+1));
         ringSugar.getStylesheets().clear();
         ringSugar.getStylesheets().add(obtainStylesheet(dataPercentage));
         ringSugar.setProgress(dataPercentage);
 
-        dataPercentage = getIntakePercentage(intakesData[5], recommendedIntakes[5]);
+        dataPercentage = getIntakePercentage(intakesData[5], recommendedIntakes[5]*(periode.getInterval()+1));
         ringProteins.getStylesheets().clear();
         ringProteins.getStylesheets().add(obtainStylesheet(dataPercentage));
         ringProteins.setProgress(dataPercentage);
 
-        dataPercentage = getIntakePercentage(intakesData[6], recommendedIntakes[6]);
+        dataPercentage = getIntakePercentage(intakesData[6], recommendedIntakes[6]*(periode.getInterval()+1));
         ringSalt.getStylesheets().clear();
         ringSalt.getStylesheets().add(obtainStylesheet(dataPercentage));
         ringSalt.setProgress(dataPercentage);
 
-        dataPercentage = getIntakePercentage(intakesData[7], recommendedIntakes[7]);
+        dataPercentage = getIntakePercentage(intakesData[7], recommendedIntakes[7]*(periode.getInterval()+1));
         ringFibres.getStylesheets().clear();
         ringFibres.getStylesheets().add(obtainStylesheet(dataPercentage));
         ringFibres.setProgress(dataPercentage);
 
-        dataPercentage = getIntakePercentage(intakesData[8], recommendedIntakes[8]);
+        dataPercentage = getIntakePercentage(intakesData[8], recommendedIntakes[8]*(periode.getInterval()+1));
         ringCalcium.getStylesheets().clear();
         ringCalcium.getStylesheets().add(obtainStylesheet(dataPercentage));
         ringCalcium.setProgress(dataPercentage);
@@ -365,11 +361,11 @@ public class ControllerStat extends Controller {
     }
 
     private String obtainStylesheet(int dataPercentage) {
-        if (dataPercentage < 50) { return "resources/css/pdfsam/ringprogress.css"; }
-        if (dataPercentage < 75) { return "resources/css/pdfsam/ringprogress.css"; }
-        if (dataPercentage < 100) { return "resources/css/pdfsam/ringprogress.css"; }
-        if (dataPercentage < 125) { return "resources/css/pdfsam/ringprogress.css"; }
-        return "resources/css/pdfsam/ringprogress.css";
+        if (dataPercentage < 50) { return "resources/css/pdfsam/ringprogressBelow50.css"; }
+        if (dataPercentage < 75) { return "resources/css/pdfsam/ringprogressBelow75.css"; }
+        if (dataPercentage < 100) { return "resources/css/pdfsam/ringprogressAbove75.css"; }
+        if (dataPercentage < 125) { return "resources/css/pdfsam/ringprogressAbove100.css"; }
+        return "resources/css/pdfsam/ringprogressAbove125.css";
     }
 
     private int getIntakePercentage(double intakes, double recommended) {

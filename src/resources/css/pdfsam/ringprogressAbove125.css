@@ -1,0 +1,66 @@
+.ringindicator{
+    -fx-ring-width: 22.0;
+    -fx-inner-radius: 60.0;
+}
+
+.circleindicator-container  {
+    circleindicator-color: #932220;
+    -fx-padding: 5.0;
+    -fx-background-color: -fx-background;
+}
+.circleindicator-container > .circleindicator-label {
+    -fx-font-weight: bold;
+    -fx-font-size: 2.5em;
+    -fx-text-fill: circleindicator-color;
+    -fx-padding: 5.0;
+}
+
+.circleindicator-container > .circleindicator100-label {
+    -fx-font-weight: bold;
+    -fx-font-size: 2.5em;
+    -fx-text-fill: #e5281f;
+    -fx-padding: 5.0;
+}
+
+.ringindicator-inner-circle {
+    -fx-opacity: 1;
+    -fx-stroke: circleindicator-color;
+    -fx-stroke-width: 8.0px;
+    -fx-fill: -fx-background;
+}
+.ringindicator-over100-inner-circle {
+    -fx-opacity: 1;
+    -fx-stroke: #e5281f;
+    -fx-stroke-width: 8.0px;
+    -fx-fill: -fx-background;
+}
+.ringindicator-filler {
+    -fx-stroke: circleindicator-color;
+    -fx-fill:  transparent;
+    -fx-stroke-line-cap: butt;
+}
+.ringindicator-over100-filler{
+    -fx-stroke: #e5281f;
+    -fx-fill: transparent;
+    -fx-stroke-line-cap: butt;
+}
+.ringindicator-over100-outer-circle-secondary {
+    -fx-opacity: 0.1;
+    -fx-stroke: #e5281f;
+    -fx-stroke-width: 2.0px;
+    -fx-fill: -fx-background;
+}
+.ringindicator-outer-circle-secondary {
+    -fx-opacity: 0.1;
+    -fx-stroke: circleindicator-color;
+    -fx-stroke-width: 2.0px;
+    -fx-fill: -fx-background;
+}
+.indeterminate {
+    -fx-opacity: 0.55;
+    -fx-stroke: linear-gradient(from 0.0% 0.0% to 70.0% 70.0%, circleindicator-color 70.0%, #0e53ff 75.0%, #e5281f);
+}
+
+.container {
+    -fx-background-color: transparent;
+}
