@@ -51,9 +51,12 @@ public class ControllerFoodManager extends Controller {
     private ListView<Food> foodListview;
     @FXML
     private Button deleteButton;
+    @FXML
+    private Button getAddBackButton;
     private ObservableList<Food> foods;
     boolean addMode = true;
     private Food foodToEdit;
+
 
     ControllerFoodManager(Stage stage, Controller previousController) {
         super(stage, previousController);
@@ -156,13 +159,16 @@ public class ControllerFoodManager extends Controller {
     private void setAddMode(){
         addMode = true;
         deleteButton.setDisable(true);
+        getAddBackButton.setDisable(true);
         saveButton.setText("Ajouter l'aliment");
+        foodToEdit = null;
         emptyFields();
     }
 
     private void setEditMode(){
         addMode = false;
         deleteButton.setDisable(false);
+        getAddBackButton.setDisable(false);
         saveButton.setText("Editer l'aliment");
         fillFields();
     }
@@ -256,6 +262,8 @@ public class ControllerFoodManager extends Controller {
             FoodMocks.foods.remove(foodToEdit);
             setAddMode();
         });
+
+        getAddBackButton.setOnAction(event -> setAddMode());
     }
 
     private void fillFields(){

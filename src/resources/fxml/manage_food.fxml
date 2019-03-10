@@ -165,6 +165,10 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Button>
+                              <Button fx:id="getAddBackButton" disable="true" layoutX="165.0" layoutY="10.0" mnemonicParsing="false" styleClass="buttonPrimary" text="Revenir au mode d'ajout">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin></Button>
                               <Button fx:id="saveButton" layoutX="230.0" layoutY="10.0" mnemonicParsing="false" styleClass="buttonPrimary" text="Ajouter l'aliment" />
                            </children>
                            <VBox.margin>
