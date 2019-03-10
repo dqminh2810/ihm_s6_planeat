@@ -62,7 +62,7 @@ public class ControllerAccueil extends Controller {
     @FXML
     private Button addMealButton;
     @FXML
-    private Button createMealButton;
+    private Button dishManagerButton;
     @FXML
     private Button createIngredientButton;
     @FXML
@@ -72,10 +72,9 @@ public class ControllerAccueil extends Controller {
     @FXML
     private Text helloUserText;
 
-    LocalDate selectedDay;
+    private LocalDate selectedDay;
     private ObservableList<MealDated> selectedDayMealList;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-
 
     public ControllerAccueil(Stage stage, Controller previousController) {
         super(stage,previousController);
@@ -138,7 +137,7 @@ public class ControllerAccueil extends Controller {
 
         agendaButton.setOnAction(event -> setView(new ControllerAgenda(getStage(), this)));
         createIngredientButton.setOnAction(event -> setView(new ControllerAddFood(getStage(), this)));
-        createMealButton.setOnAction(event ->  setView(new ControllerAddDish(getStage(),this)));
+        dishManagerButton.setOnAction(event ->  setView(new ControllerDishManager(getStage(),this)));
         addMealButton.setOnAction(event -> setView(new ControllerGestionMenu(getStage(), this)));
         profileButton.setOnAction(event -> setView(new ControllerEditProfile(getStage(), this)));
 

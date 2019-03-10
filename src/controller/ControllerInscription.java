@@ -5,16 +5,15 @@ import model.CookingFrequency;
 import model.StatusChoice;
 import model.User;
 import model.UserSex;
-import view.ViewAccueil;
-import view.ViewBase;
 import view.ViewInscription;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+/**
+ * @author Montoya Damien
+ */
 
 public class ControllerInscription extends ControllerUser {
 
-    public ControllerInscription(Stage stage, Controller previousController) {
+    ControllerInscription(Stage stage, Controller previousController) {
         super(stage,previousController);
         this.actualView = new ViewInscription();
     }

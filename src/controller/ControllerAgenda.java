@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import mocks.MealMocks;
 import model.*;
 import view.ViewAgenda;
-import view.ViewBase;
 
 import java.net.URL;
 import java.time.DayOfWeek;
@@ -25,6 +24,10 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static java.time.temporal.ChronoUnit.DAYS;
+
+/**
+ * @author Montoya Damien
+ */
 
 public class ControllerAgenda extends Controller {
     @FXML
