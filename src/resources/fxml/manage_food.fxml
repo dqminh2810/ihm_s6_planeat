@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -28,7 +29,7 @@
             </Button>
             <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Ajout d'un Aliment">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Gestion des aliments">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -39,6 +40,7 @@
       </HBox>
       <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
          <children>
+            <ListView id="dishList" fx:id="foodListview" prefHeight="200.0" prefWidth="200.0" />
             <ScrollPane fitToWidth="true" hbarPolicy="NEVER" HBox.hgrow="ALWAYS">
                <content>
                   <VBox>
@@ -158,11 +160,12 @@
                         </Text>
                         <HBox alignment="CENTER">
                            <children>
-                              <Button fx:id="saveButton" mnemonicParsing="false" styleClass="buttonPrimary" text="Enregistrer l'aliment" HBox.hgrow="ALWAYS">
+                              <Button fx:id="deleteButton" disable="true" mnemonicParsing="false" styleClass="buttonPrimary" text="Supprimer l'aliment" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
-                                    <Insets />
+                                    <Insets right="10.0" />
                                  </HBox.margin>
                               </Button>
+                              <Button fx:id="saveButton" layoutX="230.0" layoutY="10.0" mnemonicParsing="false" styleClass="buttonPrimary" text="Ajouter l'aliment" />
                            </children>
                            <VBox.margin>
                               <Insets top="10.0" />
