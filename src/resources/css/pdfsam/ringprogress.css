@@ -16,12 +16,12 @@
 }
 .ringindicator-filler {
 	-fx-stroke: circleindicator-color;
-	-fx-fill: -fx-background;
+	-fx-fill:  transparent;
 	-fx-stroke-line-cap: butt;
 }
 .ringindicator-over100-filler{
 	-fx-stroke: #ff0509;
-	-fx-fill: -fx-background;
+	-fx-fill: transparent;
 	-fx-stroke-line-cap: butt;
 }
 .ringindicator-over100-outer-circle-secondary {

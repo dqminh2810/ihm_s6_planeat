@@ -151,22 +151,22 @@ public class ControllerAccueil extends Controller {
 
         RingProgressIndicator ringCalories = new RingProgressIndicator();
         ringCalories.setRingWidth(50);
-        ringCalories.setProgress(125);
+        ringCalories.setProgress(195);
         statsGridPane.add(ringCalories,0,0);
 
         RingProgressIndicator ringProteine = new RingProgressIndicator();
         ringProteine.setRingWidth(50);
-        ringProteine.setProgress(30);
+        ringProteine.setProgress(90);
         statsGridPane.add(ringProteine,1,0);
 
         RingProgressIndicator ringGlucose = new RingProgressIndicator();
         ringGlucose.setRingWidth(50);
-        ringGlucose.setProgress(25);
+        ringGlucose.setProgress(75);
         statsGridPane.add(ringGlucose,0,2);
 
         RingProgressIndicator ringDontSucre = new RingProgressIndicator();
         ringDontSucre.setRingWidth(50);
-        ringDontSucre.setProgress(40);
+        ringDontSucre.setProgress(160);
         statsGridPane.add(ringDontSucre,1,2);
 
         //roundyRound(ring);
