@@ -77,14 +77,16 @@ public class ControllerDishManager extends Controller
             return;
         }
 
-        int i;
-        for(i=0; (i<DishMocks.dishes.size()) && !(DishMocks.dishes.get(i).equals(selectedDish)); i++);
+        int i = -1;
+
+        if(selectedDish != null)
+            for(i=0; (i<DishMocks.dishes.size()) && !(DishMocks.dishes.get(i).equals(selectedDish)); i++);
 
         for(int j=0; j<DishMocks.dishes.size(); j++)
         {
            if ((DishMocks.dishes.get(j).getName().equals(name)) && (j != i))
             {
-                errorText.setText("Il existe déjà un plat " + name + " | i: "+i+" - j: "+j);
+                errorText.setText("Il existe déjà un plat " + name);
                 return;
             }
         }
@@ -99,8 +101,15 @@ public class ControllerDishManager extends Controller
         try
         {
             dish = new Dish(name, description, courseType, new ArrayList<Ingredient>(ingredients));
-            DishMocks.dishes.remove(i);
-            DishMocks.dishes.add(i, dish);
+
+            if(selectedDish != null)
+            {
+                DishMocks.dishes.remove(i);
+                DishMocks.dishes.add(i, dish);
+            }
+            else
+                DishMocks.dishes.add(dish);
+
             dishes = FXCollections.observableArrayList(DishMocks.dishes);
             dishList.setItems(dishes);
             clickOnDishList(dishList);
@@ -147,6 +156,8 @@ public class ControllerDishManager extends Controller
         ingredients = ((selected != null) && (selected.getIngredients() != null)) ? FXCollections.observableArrayList(selected.getIngredients()) : FXCollections.observableArrayList();
         ingredientList.setItems(ingredients);
         clickOnIngredientList(ingredientList);
+
+        saveButton.setText((selected != null) ? "Sauvegarder les modifications" : "Enregistrer le plat");
     }
 
     private void selectDish(Dish selected)
@@ -185,6 +196,7 @@ public class ControllerDishManager extends Controller
                 dishes = FXCollections.observableArrayList(DishMocks.dishes);
                 dishList.setItems(dishes);
                 clickOnDishList(dishList);
+                selectedDish(null);
             }
             return null;
         });
@@ -397,7 +409,7 @@ public class ControllerDishManager extends Controller
         clickOnReturnButton(returnButton);
         addIngredientButton.setOnAction(event -> addIngredient());
         saveButton.setOnAction(event -> saveDish());
-        addDishButton.setOnAction(event -> setView(new ControllerAddDish(getStage(), this)));
+        addDishButton.setOnAction(event -> selectedDish(null));
     }
 
     private void loadCourseType()
