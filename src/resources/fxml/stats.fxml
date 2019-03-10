@@ -19,7 +19,7 @@
   <children>
       <HBox prefHeight="400.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="36.0" styleClass="buttonPrimary" stylesheets="@../css/styleDark.css" text="←">
+            <Button fx:id="returnButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="36.0" styleClass="buttonPrimary" text="←">
                <HBox.margin>
                   <Insets top="4.0" />
                </HBox.margin>
