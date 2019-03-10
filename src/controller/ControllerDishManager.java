@@ -77,12 +77,14 @@ public class ControllerDishManager extends Controller
             return;
         }
 
-        //TODO
-        for (Dish d : DishMocks.dishes)
+        int i;
+        for(i=0; (i<DishMocks.dishes.size()) && !(DishMocks.dishes.get(i).equals(selectedDish)); i++);
+
+        for(int j=0; j<DishMocks.dishes.size(); j++)
         {
-            if (d.getName().equals(name))
+           if ((DishMocks.dishes.get(j).getName().equals(name)) && (j != i))
             {
-                errorText.setText("Il existe déjà un plat " + name);
+                errorText.setText("Il existe déjà un plat " + name + " | i: "+i+" - j: "+j);
                 return;
             }
         }
@@ -97,15 +99,17 @@ public class ControllerDishManager extends Controller
         try
         {
             dish = new Dish(name, description, courseType, new ArrayList<Ingredient>(ingredients));
-            DishMocks.dishes.add(dish);
+            DishMocks.dishes.remove(i);
+            DishMocks.dishes.add(i, dish);
+            dishes = FXCollections.observableArrayList(DishMocks.dishes);
+            dishList.setItems(dishes);
+            clickOnDishList(dishList);
+            selectedDish(null);
         } catch (Exception e)
         {
             errorText.setText("Une erreur empêche la sauvegarde");
             return;
         }
-
-        //If the save worked, leave the page
-        setView(getPreviousController());
     }
 
     private void clickOnIngredientList(ListView<Ingredient> listView)
@@ -135,11 +139,12 @@ public class ControllerDishManager extends Controller
     private void selectedDish(Dish selected)
     {
         selectedDish = selected;
-        nameTextfield.setText(selected.getName());
-        descriptionTextarea.setText(selected.getDescription());
-        courseTypeSplitMenu.setValue(selected.getCourseType());
 
-        ingredients = (selected.getIngredients() != null) ? FXCollections.observableArrayList(selected.getIngredients()) : FXCollections.observableArrayList();
+        nameTextfield.setText((selected != null) ? selected.getName() : "");
+        descriptionTextarea.setText((selected != null) ? selected.getDescription() : "");
+        courseTypeSplitMenu.setValue((selected != null) ? selected.getCourseType() : CourseType.STARTER);
+
+        ingredients = ((selected != null) && (selected.getIngredients() != null)) ? FXCollections.observableArrayList(selected.getIngredients()) : FXCollections.observableArrayList();
         ingredientList.setItems(ingredients);
         clickOnIngredientList(ingredientList);
     }
