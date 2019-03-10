@@ -14,6 +14,10 @@ import view.ViewConnexion;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author Bauce Camille
+ */
+
 public class ControllerConnexion extends Controller {
     @FXML
     private TextField emailTextfield;
@@ -26,7 +30,7 @@ public class ControllerConnexion extends Controller {
     @FXML
     private Text errorText;
 
-    public ControllerConnexion(Stage stage, Controller previousController) {
+    ControllerConnexion(Stage stage, Controller previousController) {
         super(stage,previousController);
         this.actualView = new ViewConnexion();
     }
@@ -40,16 +44,12 @@ public class ControllerConnexion extends Controller {
             if (password.equals(user.getPassword())){
                 User.actualUser = user;
                 setView(new ControllerAccueil(getStage(), this));
-            }
-            else{
+            } else{
                 errorText.setText("Mot de passe incorrect");
             }
-        }
-        else{
+        } else{
             errorText.setText("Email inconnu");
         }
-
-
     }
 
     @Override

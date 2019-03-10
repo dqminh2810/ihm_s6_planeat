@@ -32,6 +32,7 @@ import static java.time.temporal.ChronoUnit.DAYS;
 public class ControllerAgenda extends Controller {
     @FXML
     private Button returnButton;
+
     @FXML
     private Button previousWeekButton;
     @FXML
@@ -73,7 +74,7 @@ public class ControllerAgenda extends Controller {
     private ArrayList<ObservableList<MealDated>> mealsDaysList;
     private LocalDate firstDayOfActualWeek;
 
-    public ControllerAgenda(Stage stage, Controller previousController) {
+    ControllerAgenda(Stage stage, Controller previousController) {
         super(stage,previousController);
         this.actualView = new ViewAgenda();
     }
@@ -227,8 +228,8 @@ public class ControllerAgenda extends Controller {
     }
 
     private void clearLists(){
-        for(int i=0;i<mealsDaysList.size();i++){
-            mealsDaysList.get(i).clear();
+        for (ObservableList<MealDated> mealDateds : mealsDaysList) {
+            mealDateds.clear();
         }
     }
 

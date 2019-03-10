@@ -12,6 +12,11 @@ import view.ViewBase;
 
 import java.io.IOException;
 
+/**
+ * @author Montoya Damien
+ * @author Bauce Camille
+ */
+
 public abstract class Controller implements Initializable {
     private Stage stage; //the state is the current window
     private Controller previousController;
