@@ -42,6 +42,9 @@ public class ControllerDishManager extends Controller
     private Button addIngredientButton;
 
     @FXML
+    private Button addDishButton;
+
+    @FXML
     private ChoiceBox<CourseType> courseTypeSplitMenu;
 
     @FXML
@@ -128,52 +131,25 @@ public class ControllerDishManager extends Controller
         });
     }
 
-    //TODO
+    private void selectedDish(Dish selected)
+    {
+        selectedDish = selected;
+        nameTextfield.setText(selected.getName());
+        descriptionTextarea.setText(selected.getDescription());
+        courseTypeSplitMenu.setValue(selected.getCourseType());
+        ingredients = FXCollections.observableArrayList(selected.getIngredients());
+    }
+
     private void selectDish(Dish selected)
     {
-        /*errorText.setText("");
+        errorText.setText("");
 
-        Dialog<Ingredient> dialog = new Dialog<>();
-        dialog.setTitle("Modifier ingrédient");
-        dialog.setHeaderText("Modifier ingrédient");
+        Dialog<Dish> dialog = new Dialog<>();
+        dialog.setTitle("Gérer un plat");
+        dialog.setHeaderText("Gérer un plat");
         dialog.setGraphic(null);
 
-        int i;
-        for (i=0; i<ingredients.size() && !(ingredients.get(i).toString().equals(selected.toString())); i++);
-
-        if (i >= ingredients.size())
-        {
-            errorText.setText("L'ingrédient à modifier n'est pas trouvé");
-            return;
-        }
-
-        int j;
-        for (j=0; j<FoodMocks.foods.size() && !(FoodMocks.foods.get(j).toString().equals(selected.getFood().toString())); j++);
-
-        if (j >= FoodMocks.foods.size())
-        {
-            errorText.setText("L'aliment de l'ingrédient à modifier n'est pas trouvé");
-            return;
-        }
-
-        Label middle = new Label(" - ");
-        ChoiceBox<Food> foodChoiceBox = new ChoiceBox<>();
-        ObservableList<Food> foodObservableList = FXCollections.observableArrayList();
-        foodObservableList.setAll(FoodMocks.foods);
-        foodChoiceBox.setItems(foodObservableList);
-        foodChoiceBox.getSelectionModel().select(j);
-        TextField quantity = new TextField();
-        quantity.setPromptText("Quantité");
-        quantity.setText(selected.getQuantity()+"");
-
-        GridPane grid = new GridPane();
-        grid.add(foodChoiceBox, 0, 0);
-        grid.add(middle, 1, 0);
-        grid.add(quantity, 2, 0);
-        grid.add(new Label(" g"), 3, 0);
-        dialog.getDialogPane().setContent(grid);
-
-        ButtonType buttonOk = new ButtonType("Écraser", ButtonBar.ButtonData.OK_DONE);
+        ButtonType buttonOk = new ButtonType("Editer", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().add(buttonOk);
 
         ButtonType buttonDelete = new ButtonType("Supprimer", ButtonBar.ButtonData.OTHER);
@@ -183,56 +159,30 @@ public class ControllerDishManager extends Controller
         dialog.getDialogPane().getButtonTypes().add(buttonCancel);
 
         Node buttonOkSecurity = dialog.getDialogPane().lookupButton(buttonOk);
-
-        quantity.textProperty().addListener((observable, oldValue, newValue) ->
-        {
-            int q;
-
-            try
-            {
-                q = Integer.valueOf(newValue);
-            } catch (Exception e)
-            {
-                buttonOkSecurity.setDisable(true);
-                return;
-            }
-
-            if (q > 0)
-                buttonOkSecurity.setDisable(false);
-            else
-                buttonOkSecurity.setDisable(true);
-        });
+        buttonOkSecurity.setDisable(false);
 
         dialog.setResultConverter(b ->
         {
             if (b == buttonOk)
             {
-                return new Ingredient(foodChoiceBox.getValue(), Integer.valueOf(quantity.getText()));
+                return selected;
             }
 
             if (b == buttonDelete)
             {
-                int index;
-                for (index=0; index<ingredients.size() && !(ingredients.get(index).toString().equals(selected.toString())); index++);
-                ingredients.remove(index);
+                int i;
+                for(i=0; (i<DishMocks.dishes.size())&& !(DishMocks.dishes.get(i).equals(selected)); i++);
+                DishMocks.dishes.remove(i);
+                dishes = FXCollections.observableArrayList(DishMocks.dishes);
             }
-
             return null;
         });
 
-        Optional<Ingredient> result = dialog.showAndWait();
+        Optional<Dish> result = dialog.showAndWait();
         if (result.isPresent())
         {
-            for(int ingI=0; ingI<ingredients.size(); ingI++)
-                if((ingredients.get(ingI).getFood().equals(result.get().getFood())) && (ingI != i))
-                {
-                    errorText.setText("Le plat contient déjà l'aliment " + result.get().getFood().getName());
-                    return;
-                }
-
-            ingredients.remove(i);
-            ingredients.add(i, result.get());
-        }*/
+            selectedDish(result.get());
+        }
     }
 
     private void updateIngredient(Ingredient selected)
@@ -435,6 +385,7 @@ public class ControllerDishManager extends Controller
         clickOnReturnButton(returnButton);
         addIngredientButton.setOnAction(event -> addIngredient());
         saveButton.setOnAction(event -> saveDish());
+        addDishButton.setOnAction(event -> setView(new ControllerAddDish(getStage(), this)));
     }
 
     private void loadCourseType()

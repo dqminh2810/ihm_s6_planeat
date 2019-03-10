@@ -26,7 +26,7 @@
             </Button>
             <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Ajout d'un Plat">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textWhite" text="Gestion des plats">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -37,7 +37,12 @@
       </HBox>
       <HBox VBox.vgrow="ALWAYS">
          <children>
-            <ListView id="dishList" prefHeight="200.0" prefWidth="200.0" />
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ListView fx:id="dishList" VBox.vgrow="ALWAYS" />
+                  <Button fx:id="addDishButton" mnemonicParsing="false" text="Ajouter un plat" />
+               </children>
+            </VBox>
             <ScrollPane hbarPolicy="NEVER" HBox.hgrow="ALWAYS">
                <content>
                   <VBox>
