@@ -10,11 +10,14 @@ import mocks.UserMocks;
 import model.CookingFrequency;
 import model.StatusChoice;
 import model.UserSex;
-import view.ViewBase;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+
+/**
+ * @author Montoya Damien
+ */
 
 public abstract class ControllerUser extends Controller{
     @FXML

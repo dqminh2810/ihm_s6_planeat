@@ -3,13 +3,14 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import view.ViewBase;
-import view.ViewConnexion;
-import view.ViewInscription;
 import view.ViewLancement;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+/**
+ * @author Bauce Camille
+ */
 
 public class ControllerLancement extends Controller {
     @FXML

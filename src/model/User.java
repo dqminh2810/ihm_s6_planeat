@@ -47,10 +47,6 @@ public class User {
         return actualUser;
     }
 
-    public static void setActualUser(User actualUser) {
-        User.actualUser = actualUser;
-    }
-
     public String getName() {
         return name;
     }

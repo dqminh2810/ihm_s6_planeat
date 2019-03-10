@@ -14,6 +14,10 @@ import view.ViewEditProfile;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author Montoya Damien
+ */
+
 public class ControllerEditProfile extends ControllerUser {
     @FXML
     private Text editedText;
@@ -63,6 +67,7 @@ public class ControllerEditProfile extends ControllerUser {
         user.setCookingFrequency(cookingFrequencyChoiceBox.getSelectionModel().getSelectedItem());
         user.setSize(getSize());
         user.setWeight(getWeight());
+        user.setBirthDate(birthDatePicker.getValue());
 
         if(passwordField.getText().length() != 0)
             user.setPassword(passwordField.getText());
