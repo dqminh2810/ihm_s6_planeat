@@ -193,6 +193,13 @@ public class ControllerAddDish extends Controller
         Optional<Ingredient> result = dialog.showAndWait();
         if (result.isPresent())
         {
+            for(Ingredient ing : ingredients)
+                if(ing.getFood().equals(result.get().getFood()))
+                {
+                    errorText.setText("Le plat contient déjà l'aliment " + result.get().getFood().getName());
+                    return;
+                }
+
             ingredients.remove(i);
             ingredients.add(i, result.get());
         }
