@@ -15,26 +15,16 @@ public abstract class MealMocks {
         meals = new ArrayList<>();
         ArrayList<Dish> dishes1 = new ArrayList<>();
         ArrayList<Dish> dishes2 = new ArrayList<>();
-        ArrayList<Ingredient> ingredients = new ArrayList<>();
-        ArrayList<Ingredient> ingredients2 = new ArrayList<>();
-        ArrayList<Ingredient> ingredients3 = new ArrayList<>();
-
-        //Ingredients
-        ingredients.add(new Ingredient(FoodMocks.foods.get(0), 6));
-        ingredients2.add(new Ingredient(FoodMocks.foods.get(1), 4));
-        ingredients2.add(new Ingredient(FoodMocks.foods.get(3), 2));
-        ingredients3.add(new Ingredient(FoodMocks.foods.get(5), 2));
 
         //Dishes
-        dishes1.add(new Dish("Omelette des familles", "A ne pas retourner", CourseType.MAIN_COURSE, ingredients));
-        dishes1.add(new Dish("Omelette des familles 2", "A ne pas retourner", CourseType.MAIN_COURSE, ingredients));
-        dishes1.add(new Dish("Yaourt aux fruits", "Perles de lait et mon visage s'est transformé", CourseType.DESSERT, new ArrayList<>()));
-        dishes2.add(new Dish("Pates au poulet", "miam :)", CourseType.MAIN_COURSE, ingredients2));
-        dishes2.add(new Dish("poivrons","scrounch", CourseType.STARTER, ingredients3));
-        dishes2.add(new Dish("Yaourt aux fruits", "Perles de lait et mon visage s'est transformé", CourseType.DESSERT, new ArrayList<>()));
+        dishes1.add(DishMocks.dishes.get(0));
+        dishes1.add(DishMocks.dishes.get(3));
+        dishes2.add(DishMocks.dishes.get(2));
+        dishes2.add(DishMocks.dishes.get(1));
+        dishes2.add(DishMocks.dishes.get(4));
 
         //Meals
-        meals.add(new Meal("Omelette", dishes1));
-        meals.add(new Meal("Pates au poulet et poivrons", dishes2));
+        meals.add(new Meal("Poivrons Yaourt", dishes1));
+        meals.add(new Meal("Omelette pattes", dishes2));
     }
 }
