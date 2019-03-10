@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -7,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 import model.*;
 import view.ViewAgenda;
 import view.ViewBase;
@@ -36,11 +39,11 @@ public class ControllerGestionMenu extends Controller {
     @FXML
     private TableView<Meal> MealTableView;
     @FXML
-    private TableColumn<Meal, ArrayList<Dish>> starterTableColumn;
+    private TableColumn<Meal, String> starterTableColumn;
     @FXML
-    private TableColumn<Meal,  ArrayList<Dish>> maincourseTableColumn;
+    private TableColumn<Meal, String> maincourseTableColumn;
     @FXML
-    private TableColumn<Meal,  ArrayList<Dish>> dessertTableColumn;
+    private TableColumn<Meal,  String> dessertTableColumn;
     @FXML
     private TableColumn<Meal, Meal> actionTableColumn;
 
@@ -91,6 +94,76 @@ public class ControllerGestionMenu extends Controller {
                 setGraphic(empty ? null : pane);
             }
         });
+
+        //Rename tablecolumncell to dish name
+        starterTableColumn.setCellFactory(new Callback<TableColumn<Meal,  String>, TableCell<Meal, String>>() {
+            @Override
+            public TableCell<Meal, String> call(TableColumn<Meal, String> param) {
+                TableCell<Meal, String> cell = new TableCell(){
+                    @Override
+                    protected void updateItem(Object item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setText(null);
+                        if(item != null){
+                            String res="";
+                            for(Dish d: (ArrayList<Dish>) item){
+                                res+=d.getName();
+                                res+="\n";
+                            }
+                            setText(res);
+                            setTooltip(new Tooltip(res));
+                        }
+                    }
+                };
+                return cell;
+            }
+        });
+        maincourseTableColumn.setCellFactory(new Callback<TableColumn<Meal,  String>, TableCell<Meal, String>>() {
+            @Override
+            public TableCell<Meal, String> call(TableColumn<Meal, String> param) {
+                TableCell<Meal, String> cell = new TableCell(){
+                    @Override
+                    protected void updateItem(Object item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setText(null);
+                        if(item != null){
+                            String res="";
+                            for(Dish d: (ArrayList<Dish>) item){
+                                res+=d.getName();
+                                res+="\n";
+                            }
+                            setText(res);
+                            setTooltip(new Tooltip(res));
+
+                        }
+                    }
+                };
+                return cell;
+            }
+        });
+        dessertTableColumn.setCellFactory(new Callback<TableColumn<Meal,  String>, TableCell<Meal, String>>() {
+            @Override
+            public TableCell<Meal, String> call(TableColumn<Meal, String> param) {
+                TableCell<Meal, String> cell = new TableCell(){
+                    @Override
+                    protected void updateItem(Object item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setText(null);
+                        if(item != null){
+                            String res="";
+                            for(Dish d: (ArrayList<Dish>) item){
+                                res+=d.getName();
+                                res+="\n";
+                            }
+                            setText(res);
+                            setTooltip(new Tooltip(res));
+                        }
+                    }
+                };
+                return cell;
+            }
+        });
+
 
     }
 
