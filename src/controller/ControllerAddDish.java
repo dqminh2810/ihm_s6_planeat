@@ -74,7 +74,7 @@ public class ControllerAddDish extends Controller
         {
             if (d.getName().equals(name))
             {
-                errorText.setText("Il existe déjà un repas " + name);
+                errorText.setText("Il existe déjà un plat " + name);
                 return;
             }
         }
@@ -114,6 +114,8 @@ public class ControllerAddDish extends Controller
 
     private void updateIngredient(Ingredient selected)
     {
+        errorText.setText("");
+
         Dialog<Ingredient> dialog = new Dialog<>();
         dialog.setTitle("Modifier ingrédient");
         dialog.setHeaderText("Modifier ingrédient");
@@ -154,10 +156,13 @@ public class ControllerAddDish extends Controller
         grid.add(new Label(" g"), 3, 0);
         dialog.getDialogPane().setContent(grid);
 
-        ButtonType buttonOk = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+        ButtonType buttonOk = new ButtonType("Écraser", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().add(buttonOk);
 
-        ButtonType buttonCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType buttonDelete = new ButtonType("Supprimer", ButtonBar.ButtonData.OTHER);
+        dialog.getDialogPane().getButtonTypes().add(buttonDelete);
+
+        ButtonType buttonCancel = new ButtonType("Annuler", ButtonBar.ButtonData.CANCEL_CLOSE);
         dialog.getDialogPane().getButtonTypes().add(buttonCancel);
 
         Node buttonOkSecurity = dialog.getDialogPane().lookupButton(buttonOk);
@@ -187,14 +192,22 @@ public class ControllerAddDish extends Controller
             {
                 return new Ingredient(foodChoiceBox.getValue(), Integer.valueOf(quantity.getText()));
             }
+
+            if (b == buttonDelete)
+            {
+                int index;
+                for (index=0; index<ingredients.size() && !(ingredients.get(index).toString().equals(selected.toString())); index++);
+                ingredients.remove(index);
+            }
+
             return null;
         });
 
         Optional<Ingredient> result = dialog.showAndWait();
         if (result.isPresent())
         {
-            for(Ingredient ing : ingredients)
-                if(ing.getFood().equals(result.get().getFood()))
+            for(int ingI=0; ingI<ingredients.size(); ingI++)
+                if((ingredients.get(ingI).getFood().equals(result.get().getFood())) && (ingI != i))
                 {
                     errorText.setText("Le plat contient déjà l'aliment " + result.get().getFood().getName());
                     return;
@@ -207,6 +220,8 @@ public class ControllerAddDish extends Controller
 
     private void addIngredient()
     {
+        errorText.setText("");
+
         Dialog<Ingredient> dialog = new Dialog<>();
         dialog.setTitle("Ajouter un ingrédient");
         dialog.setHeaderText("Ajouter un ingrédient");
@@ -228,10 +243,10 @@ public class ControllerAddDish extends Controller
         grid.add(new Label(" g"), 3, 0);
         dialog.getDialogPane().setContent(grid);
 
-        ButtonType buttonOk = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+        ButtonType buttonOk = new ButtonType("Ajouter", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().add(buttonOk);
 
-        ButtonType buttonCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType buttonCancel = new ButtonType("Annuler", ButtonBar.ButtonData.CANCEL_CLOSE);
         dialog.getDialogPane().getButtonTypes().add(buttonCancel);
 
         Node buttonOkSecurity = dialog.getDialogPane().lookupButton(buttonOk);
