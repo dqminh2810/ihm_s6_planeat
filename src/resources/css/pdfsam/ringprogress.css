@@ -18,7 +18,7 @@
 .circleindicator-container > .circleindicator100-label {
 	-fx-font-weight: bold;
 	-fx-font-size: 2.5em;
-	-fx-text-fill: #ff0509;
+	-fx-text-fill: #e5281f;
 	-fx-padding: 5.0;
 }
 
@@ -30,7 +30,7 @@
 }
 .ringindicator-over100-inner-circle {
 	-fx-opacity: 1;
-	-fx-stroke: #ff0509;
+	-fx-stroke: #e5281f;
 	-fx-stroke-width: 8.0px;
 	-fx-fill: -fx-background;
 }
@@ -40,13 +40,13 @@
 	-fx-stroke-line-cap: butt;
 }
 .ringindicator-over100-filler{
-	-fx-stroke: #ff0509;
+	-fx-stroke: #e5281f;
 	-fx-fill: transparent;
 	-fx-stroke-line-cap: butt;
 }
 .ringindicator-over100-outer-circle-secondary {
 	-fx-opacity: 0.1;
-	-fx-stroke: #ff0509;
+	-fx-stroke: #e5281f;
 	-fx-stroke-width: 2.0px;
 	-fx-fill: -fx-background;
 }
@@ -58,7 +58,7 @@
 }
 .indeterminate {
 	-fx-opacity: 0.55;
-	-fx-stroke: linear-gradient(from 0.0% 0.0% to 70.0% 70.0%, circleindicator-color 70.0%, #0e53ff 75.0%, #ff2328);
+	-fx-stroke: linear-gradient(from 0.0% 0.0% to 70.0% 70.0%, circleindicator-color 70.0%, #0e53ff 75.0%, #e5281f);
 }
 
 .container {
