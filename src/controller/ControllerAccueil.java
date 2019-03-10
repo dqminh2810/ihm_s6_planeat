@@ -3,12 +3,10 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -18,11 +16,9 @@ import org.pdfsam.ui.RingProgressIndicator;
 import view.*;
 
 import java.net.URL;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Collections;
 
 import static java.time.temporal.ChronoUnit.DAYS;
@@ -136,7 +132,7 @@ public class ControllerAccueil extends Controller {
         helloUserText.setText(hello);
 
         agendaButton.setOnAction(event -> setView(new ControllerAgenda(getStage(), this)));
-        createIngredientButton.setOnAction(event -> setView(new ControllerAddFood(getStage(), this)));
+        createIngredientButton.setOnAction(event -> setView(new ControllerFoodManager(getStage(), this)));
         dishManagerButton.setOnAction(event ->  setView(new ControllerDishManager(getStage(),this)));
         addMealButton.setOnAction(event -> setView(new ControllerGestionMenu(getStage(), this)));
         profileButton.setOnAction(event -> setView(new ControllerEditProfile(getStage(), this)));
