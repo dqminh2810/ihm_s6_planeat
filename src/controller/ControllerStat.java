@@ -7,12 +7,14 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import mocks.RecommendedDailyAmount;
 import model.Ingredient;
 import model.Periode;
 import model.User;
 import model.UserSex;
+import org.pdfsam.ui.RingProgressIndicator;
 import view.ViewBase;
 import view.ViewStat;
 
@@ -29,7 +31,11 @@ public class ControllerStat extends Controller {
     private DatePicker statDateStart;
     @FXML
     private DatePicker statDateEnd;
+
     @FXML
+    private GridPane statGridPane;
+
+    /*@FXML
     private PieChart energyPieChart;
     @FXML
     private PieChart fatsPieChart;
@@ -46,7 +52,7 @@ public class ControllerStat extends Controller {
     @FXML
     private PieChart fibresPieChart;
     @FXML
-    private PieChart calciumPieChart;
+    private PieChart calciumPieChart;*/
 
     @FXML
     private DatePicker stat2DateStart;
@@ -67,7 +73,17 @@ public class ControllerStat extends Controller {
 
     Periode periode;
     List<Ingredient> ingredientList;
-    PieChart[] charts = {energyPieChart, fatsPieChart, saturatedPieChart, carbohydratesPieChart, sugarPieChart, proteinsPieChart, saltPieChart};
+    RingProgressIndicator ringCalories;
+    RingProgressIndicator ringFats;
+    RingProgressIndicator ringSaturated;
+    RingProgressIndicator ringCarbohydrates;
+    RingProgressIndicator ringSugar;
+    RingProgressIndicator ringProteins;
+    RingProgressIndicator ringSalt;
+    RingProgressIndicator ringFibres;
+    RingProgressIndicator ringCalcium;
+
+    //PieChart[] charts = {energyPieChart, fatsPieChart, saturatedPieChart, carbohydratesPieChart, sugarPieChart, proteinsPieChart, saltPieChart};
 
     public ControllerStat(Stage stage, Controller previousController) {
         super(stage,previousController);
@@ -79,6 +95,34 @@ public class ControllerStat extends Controller {
         clickOnReturnButton(returnButton);
 
         periode = new Periode(LocalDate.now(), LocalDate.now());
+
+        ringCalories = new RingProgressIndicator();
+        ringCalories.setRingWidth(50);
+        statGridPane.add(ringCalories, 0, 0);
+        ringFats = new RingProgressIndicator();
+        ringFats.setRingWidth(50);
+        statGridPane.add(ringFats, 1, 0);
+        ringSaturated = new RingProgressIndicator();
+        ringSaturated.setRingWidth(50);
+        statGridPane.add(ringSaturated, 2, 0);
+        ringCarbohydrates = new RingProgressIndicator();
+        ringCarbohydrates.setRingWidth(50);
+        statGridPane.add(ringCarbohydrates, 0, 1);
+        ringSugar = new RingProgressIndicator();
+        ringSugar.setRingWidth(50);
+        statGridPane.add(ringSugar, 1, 1);
+        ringProteins = new RingProgressIndicator();
+        ringProteins.setRingWidth(50);
+        statGridPane.add(ringProteins, 2, 1);
+        ringSalt = new RingProgressIndicator();
+        ringSalt.setRingWidth(50);
+        statGridPane.add(ringSalt, 0, 2);
+        ringFibres = new RingProgressIndicator();
+        ringFibres.setRingWidth(50);
+        statGridPane.add(ringFibres, 1, 2);
+        ringCalcium = new RingProgressIndicator();
+        ringCalcium.setRingWidth(50);
+        statGridPane.add(ringCalcium, 2, 2);
 
         updateData();
 
@@ -206,7 +250,54 @@ public class ControllerStat extends Controller {
             charts[i].setStartAngle(90);
             charts[i].setData(FXCollections.observableArrayList(new PieChart.Data("", energyData[0]), new PieChart.Data("", energyData[1])));
         }*/
+        int dataPercentage;
 
+        dataPercentage = getIntakePercentage(intakesData[0], recommendedIntakes[0]);
+        ringCalories.getStylesheets().clear();
+        ringCalories.getStylesheets().add(obtainStylesheet(dataPercentage));
+        ringCalories.setProgress(dataPercentage);
+
+        dataPercentage = getIntakePercentage(intakesData[1], recommendedIntakes[1]);
+        ringFats.getStylesheets().clear();
+        ringFats.getStylesheets().add(obtainStylesheet(dataPercentage));
+        ringFats.setProgress(dataPercentage);
+
+        dataPercentage = getIntakePercentage(intakesData[2], recommendedIntakes[2]);
+        ringSaturated.getStylesheets().clear();
+        ringSaturated.getStylesheets().add(obtainStylesheet(dataPercentage));
+        ringSaturated.setProgress(dataPercentage);
+
+        dataPercentage = getIntakePercentage(intakesData[3], recommendedIntakes[3]);
+        ringCarbohydrates.getStylesheets().clear();
+        ringCarbohydrates.getStylesheets().add(obtainStylesheet(dataPercentage));
+        ringCarbohydrates.setProgress(dataPercentage);
+
+        dataPercentage = getIntakePercentage(intakesData[4], recommendedIntakes[4]);
+        ringSugar.getStylesheets().clear();
+        ringSugar.getStylesheets().add(obtainStylesheet(dataPercentage));
+        ringSugar.setProgress(dataPercentage);
+
+        dataPercentage = getIntakePercentage(intakesData[5], recommendedIntakes[5]);
+        ringProteins.getStylesheets().clear();
+        ringProteins.getStylesheets().add(obtainStylesheet(dataPercentage));
+        ringProteins.setProgress(dataPercentage);
+
+        dataPercentage = getIntakePercentage(intakesData[6], recommendedIntakes[6]);
+        ringSalt.getStylesheets().clear();
+        ringSalt.getStylesheets().add(obtainStylesheet(dataPercentage));
+        ringSalt.setProgress(dataPercentage);
+
+        dataPercentage = getIntakePercentage(intakesData[7], recommendedIntakes[7]);
+        ringFibres.getStylesheets().clear();
+        ringFibres.getStylesheets().add(obtainStylesheet(dataPercentage));
+        ringFibres.setProgress(dataPercentage);
+
+        dataPercentage = getIntakePercentage(intakesData[8], recommendedIntakes[8]);
+        ringCalcium.getStylesheets().clear();
+        ringCalcium.getStylesheets().add(obtainStylesheet(dataPercentage));
+        ringCalcium.setProgress(dataPercentage);
+
+        /*
         energyData = calculatePieData(intakesData[0], recommendedIntakes[0]*(periode.getInterval()+1));
         energyPieChart.getStylesheets().clear();
         energyPieChart.getStylesheets().add(obtainStylesheet(intakesData[0], recommendedIntakes[0]*(periode.getInterval()+1)));
@@ -269,6 +360,20 @@ public class ControllerStat extends Controller {
         calciumPieChart.setStartAngle(90);
         calciumPieChart.setData(FXCollections.observableArrayList(new PieChart.Data("", energyData[0]), new PieChart.Data("", energyData[1])));
         calciumPieChart.setLabelsVisible(false);
+
+        */
+    }
+
+    private String obtainStylesheet(int dataPercentage) {
+        if (dataPercentage < 50) { return "resources/css/pdfsam/ringprogress.css"; }
+        if (dataPercentage < 75) { return "resources/css/pdfsam/ringprogress.css"; }
+        if (dataPercentage < 100) { return "resources/css/pdfsam/ringprogress.css"; }
+        if (dataPercentage < 125) { return "resources/css/pdfsam/ringprogress.css"; }
+        return "resources/css/pdfsam/ringprogress.css";
+    }
+
+    private int getIntakePercentage(double intakes, double recommended) {
+        return (int) ((intakes/recommended)*100);
     }
 
     private double[] getReferenceIntakes() {
@@ -278,16 +383,16 @@ public class ControllerStat extends Controller {
             return RecommendedDailyAmount.male;
     }
 
-    private String obtainStylesheet(double intakesData, double recommendedAmount) {
+    /*private String obtainStylesheet(double intakesData, double recommendedAmount) {
         double ratio = intakesData/recommendedAmount;
         if(ratio <= 0.5) { return "resources/css/stylePieChartBelow50.css"; }
         if(ratio <= 0.75) { return "resources/css/stylePieChartBelow75.css"; }
         if(ratio <= 1) { return "resources/css/stylePieChartOkay.css"; }
         if(ratio <= 1.25) { return "resources/css/stylePieChartAbove100.css"; }
         return "resources/css/stylePieChartAbove125.css";
-    }
+    }*/
 
-    private double[] calculatePieData(double intakesData, double recommendedAmount) {
+    /*private double[] calculatePieData(double intakesData, double recommendedAmount) {
         double[] result = new double[2];
         if (recommendedAmount - intakesData >= 0){
             result[0] = intakesData;
@@ -300,5 +405,5 @@ public class ControllerStat extends Controller {
             result[1] = 0;
         }
         return result;
-    }
+    }*/
 }
