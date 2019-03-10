@@ -77,6 +77,7 @@ public class ControllerDishManager extends Controller
             return;
         }
 
+        //TODO
         for (Dish d : DishMocks.dishes)
         {
             if (d.getName().equals(name))
@@ -137,7 +138,10 @@ public class ControllerDishManager extends Controller
         nameTextfield.setText(selected.getName());
         descriptionTextarea.setText(selected.getDescription());
         courseTypeSplitMenu.setValue(selected.getCourseType());
-        ingredients = FXCollections.observableArrayList(selected.getIngredients());
+
+        ingredients = (selected.getIngredients() != null) ? FXCollections.observableArrayList(selected.getIngredients()) : FXCollections.observableArrayList();
+        ingredientList.setItems(ingredients);
+        clickOnIngredientList(ingredientList);
     }
 
     private void selectDish(Dish selected)
@@ -174,6 +178,8 @@ public class ControllerDishManager extends Controller
                 for(i=0; (i<DishMocks.dishes.size())&& !(DishMocks.dishes.get(i).equals(selected)); i++);
                 DishMocks.dishes.remove(i);
                 dishes = FXCollections.observableArrayList(DishMocks.dishes);
+                dishList.setItems(dishes);
+                clickOnDishList(dishList);
             }
             return null;
         });
@@ -381,6 +387,7 @@ public class ControllerDishManager extends Controller
 
         dishes = FXCollections.observableArrayList(DishMocks.dishes);
         dishList.setItems(dishes);
+        clickOnDishList(dishList);
 
         clickOnReturnButton(returnButton);
         addIngredientButton.setOnAction(event -> addIngredient());
