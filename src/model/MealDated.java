@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class MealDated implements Comparable<MealDated> {
@@ -26,7 +27,7 @@ public class MealDated implements Comparable<MealDated> {
 
     @Override
     public String toString() {
-        return meal.getName() + "\n" + time.getHour() + " : " + time.getMinute();
+        return meal.getName() + "\n" + time.format(DateTimeFormatter.ofPattern("HH:mm"));
     }
 
     @Override
