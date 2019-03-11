@@ -53,14 +53,6 @@ public class ControllerAccueil extends Controller {
     private Text curmealNameText;
     @FXML
     private Button statsButton;
-//    @FXML
-//    private PieChart caloriesPieChart;
-//    @FXML
-//    private PieChart proteinPiechart;
-//    @FXML
-//    private PieChart glucosesPiechart;
-//    @FXML
-//    private PieChart dontsucrePiechart;
     @FXML
     private GridPane statsGridPane;
     @FXML
@@ -231,10 +223,5 @@ public class ControllerAccueil extends Controller {
     private void displayHour(){
         ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
         exec.scheduleAtFixedRate(() -> curHourText.setText(LocalDateTime.now().format(formatter)), 0, 5, TimeUnit.SECONDS);
-    }
-
-    private void roundyRound(RingProgressIndicator ring){
-        ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
-        exec.scheduleAtFixedRate(() -> ring.setProgress(ring.getProgress()+1), 0, 100, TimeUnit.MILLISECONDS);
     }
 }
