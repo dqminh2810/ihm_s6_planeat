@@ -10,7 +10,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Ingredient;
 import model.MealDated;
+import model.Periode;
 import model.User;
 import org.pdfsam.ui.RingProgressIndicator;
 import view.*;
@@ -22,6 +24,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 
 import static java.time.temporal.ChronoUnit.DAYS;
+import static utils.Util.*;
+
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -76,6 +81,13 @@ public class ControllerAccueil extends Controller {
     private ObservableList<MealDated> selectedDayMealList;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
+    private RingProgressIndicator ringCalories;
+    private RingProgressIndicator ringProteines;
+    private RingProgressIndicator ringSucre;
+    private RingProgressIndicator ringFibres;
+    private double[] intakesData;
+
+
     public ControllerAccueil(Stage stage, Controller previousController) {
         super(stage,previousController);
         this.actualView = new ViewAccueil();
@@ -86,6 +98,7 @@ public class ControllerAccueil extends Controller {
             curdateText.setText(day.format(DateTimeFormatter.ofPattern("dd/MM")));
             clearList();
             loadList();
+            update();
     }
 
     private void setCurrentMeal(){
@@ -121,6 +134,27 @@ public class ControllerAccueil extends Controller {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        //statistiques
+
+        ringCalories = new RingProgressIndicator();
+        ringCalories.setRingWidth(50);
+        statsGridPane.add(ringCalories,0,0);
+
+        ringProteines = new RingProgressIndicator();
+        ringProteines.setRingWidth(50);
+        statsGridPane.add(ringProteines,1,0);
+
+        ringSucre = new RingProgressIndicator();
+        ringSucre.setRingWidth(50);
+        statsGridPane.add(ringSucre,0,2);
+
+        ringFibres = new RingProgressIndicator();
+        ringFibres.setRingWidth(50);
+        statsGridPane.add(ringFibres,1,2);
+
+        statsButton.setOnAction(event -> setView(new ControllerStat(getStage(),this)));
+
         //liste calendrier
         selectedDayMealList =  FXCollections.observableArrayList();
         curdayList.setItems(selectedDayMealList);
@@ -141,56 +175,56 @@ public class ControllerAccueil extends Controller {
         addMealButton.setOnAction(event -> setView(new ControllerGestionMenu(getStage(), this)));
         profileButton.setOnAction(event -> setView(new ControllerEditProfile(getStage(), this)));
 
-
-        //statistiques
-
-        final Label caption = new Label("");
-        caption.setTextFill(Color.DARKORANGE);
-        caption.setStyle("-fx-font: 24 arial;");
-
-        RingProgressIndicator ringCalories = new RingProgressIndicator();
-        ringCalories.setRingWidth(50);
-        ringCalories.setProgress(195);
-        statsGridPane.add(ringCalories,0,0);
-
-        RingProgressIndicator ringProteine = new RingProgressIndicator();
-        ringProteine.setRingWidth(50);
-        ringProteine.setProgress(90);
-        statsGridPane.add(ringProteine,1,0);
-
-        RingProgressIndicator ringGlucose = new RingProgressIndicator();
-        ringGlucose.setRingWidth(50);
-        ringGlucose.setProgress(75);
-        statsGridPane.add(ringGlucose,0,2);
-
-        RingProgressIndicator ringDontSucre = new RingProgressIndicator();
-        ringDontSucre.setRingWidth(50);
-        ringDontSucre.setProgress(160);
-        statsGridPane.add(ringDontSucre,1,2);
-
-        //roundyRound(ring);
-
-        statsButton.setOnAction(event -> setView(new ControllerStat(getStage(),this)));
-//        dontsucrePiechart.setStartAngle(90);
-//        dontsucrePiechart.setData(FXCollections.observableArrayList(new PieChart.Data("", 50),new PieChart.Data("", 50)));
-//        dontsucrePiechart.setLabelsVisible(false);
-//
-//        glucosesPiechart.setStartAngle(90);
-//        glucosesPiechart.setData(FXCollections.observableArrayList(new PieChart.Data("", 30),new PieChart.Data("", 70)));
-//        glucosesPiechart.setLabelsVisible(false);
-//
-//        caloriesPiechart.setStartAngle(90);
-//        caloriesPiechart.setData(FXCollections.observableArrayList(new PieChart.Data("", 90),new PieChart.Data("", 10)));
-//        caloriesPiechart.setLabelsVisible(false);
-//
-//        proteinPiechart.setStartAngle(90);
-//        proteinPiechart.setData(FXCollections.observableArrayList(new PieChart.Data("", 95),new PieChart.Data("", 5)));
-//        proteinPiechart.setLabelsVisible(false);
-
         //prochain repas
         setCurrentMeal();
         displayHour();
 
+    }
+
+    private void update() {
+        updateIngredientList();
+        updateIndicators();
+    }
+
+    private void updateIndicators() {
+
+        int dataPercentage;
+
+        double[] recommendedIntakes = getReferenceIntakes();
+
+        dataPercentage = getIntakePercentage(intakesData[0], recommendedIntakes[0]);
+        ringCalories.getStylesheets().clear();
+        ringCalories.getStylesheets().add(obtainStylesheet(dataPercentage));
+        ringCalories.setProgress(dataPercentage);
+
+        dataPercentage = getIntakePercentage(intakesData[1], recommendedIntakes[1]);
+        ringProteines.getStylesheets().clear();
+        ringProteines.getStylesheets().add(obtainStylesheet(dataPercentage));
+        ringProteines.setProgress(dataPercentage);
+
+        //sucre
+        dataPercentage = getIntakePercentage(intakesData[2], recommendedIntakes[2]);
+        ringSucre.getStylesheets().clear();
+        ringSucre.getStylesheets().add(obtainStylesheet(dataPercentage));
+        ringSucre.setProgress(dataPercentage);
+
+        //fibre
+        dataPercentage = getIntakePercentage(intakesData[3], recommendedIntakes[3]);
+        ringFibres.getStylesheets().clear();
+        ringFibres.getStylesheets().add(obtainStylesheet(dataPercentage));
+        ringFibres.setProgress(dataPercentage);
+    }
+
+    private void updateIngredientList() {
+        Periode periode = new Periode(selectedDay,selectedDay);
+        List<Ingredient> ingredientList = getIngredientHistory(periode);
+        intakesData = new double[4];
+        for (Ingredient ingredient : ingredientList){
+            intakesData[0] += ingredient.getFood().getEnergy() * ingredient.getQuantity();
+            intakesData[2] += ingredient.getFood().getSugar() * ingredient.getQuantity();
+            intakesData[1] += ingredient.getFood().getProtein() * ingredient.getQuantity();
+            intakesData[3] += ingredient.getFood().getFibres() * ingredient.getQuantity();
+        }
     }
 
     private void displayHour(){

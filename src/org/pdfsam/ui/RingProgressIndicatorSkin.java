@@ -167,7 +167,7 @@ public class RingProgressIndicatorSkin implements Skin<RingProgressIndicator> {
         }
         else {
             percentLabel.getStyleClass().add("circleindicator-label");
-            percentLabel.getStyleClass().remove("circleindicator000-label");
+            percentLabel.getStyleClass().remove("circleindicator100-label");
         }
         setProgressLabel(value);
     }
