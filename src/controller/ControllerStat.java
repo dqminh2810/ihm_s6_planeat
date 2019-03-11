@@ -29,29 +29,8 @@ public class ControllerStat extends Controller {
     private DatePicker statDateStart;
     @FXML
     private DatePicker statDateEnd;
-
     @FXML
     private GridPane statGridPane;
-
-    /*@FXML
-    private PieChart energyPieChart;
-    @FXML
-    private PieChart fatsPieChart;
-    @FXML
-    private PieChart saturatedPieChart;
-    @FXML
-    private PieChart carbohydratesPieChart;
-    @FXML
-    private PieChart sugarPieChart;
-    @FXML
-    private PieChart proteinsPieChart;
-    @FXML
-    private PieChart saltPieChart;
-    @FXML
-    private PieChart fibresPieChart;
-    @FXML
-    private PieChart calciumPieChart;*/
-
     @FXML
     private DatePicker stat2DateStart;
     @FXML
@@ -131,19 +110,7 @@ public class ControllerStat extends Controller {
         ringCalcium.getStylesheets().add("resources/css/pdfsam/ringprogress.css");
         statGridPane.add(ringCalcium, 2, 2);
 
-
-
         updateData();
-
-//        ringCalories.getStylesheets().add("resources/css/pdfsam/ringprogress.css");
-//        ringFats.getStylesheets().add("resources/css/pdfsam/ringprogress.css");
-//        ringSaturated.getStylesheets().add("resources/css/pdfsam/ringprogress.css");
-//        ringCarbohydrates.getStylesheets().add("resources/css/pdfsam/ringprogress.css");
-//        ringSugar.getStylesheets().add("resources/css/pdfsam/ringprogress.css");
-//        ringProteins.getStylesheets().add("resources/css/pdfsam/ringprogress.css");
-//        ringSalt.getStylesheets().add("resources/css/pdfsam/ringprogress.css");
-//        ringFibres.getStylesheets().add("resources/css/pdfsam/ringprogress.css");
-//        ringCalcium.getStylesheets().add("resources/css/pdfsam/ringprogress.css");
 
         statDateStart.setValue(periode.getStartDate());
         statDateEnd.setValue(periode.getEndDate());
@@ -258,27 +225,16 @@ public class ControllerStat extends Controller {
 
         double[] recommendedIntakes = getReferenceIntakes();
 
-        double[] energyData;
-
-        /*for (int i = 0; i < charts.length; i++) {
-            energyData = calculatePieData(intakesData[i], RecommendedDailyAmount.male[i]*(periode.getInterval()+1));
-            charts[i].getStylesheets().clear();
-            charts[i].getStylesheets().add(obtainStylesheet(intakesData[i], RecommendedDailyAmount.male[i] * (periode.getInterval()+1)));
-            charts[i].setStartAngle(90);
-            charts[i].setData(FXCollections.observableArrayList(new PieChart.Data("", energyData[0]), new PieChart.Data("", energyData[1])));
-        }*/
         int dataPercentage;
 
         dataPercentage = getIntakePercentage(intakesData[0], recommendedIntakes[0]*(periode.getInterval()+1));
         ringCalories.getStylesheets().clear();
         ringCalories.getStylesheets().add(obtainStylesheet(dataPercentage));
-        ringCalories.getStylesheets().forEach(str -> System.out.println(str));
         ringCalories.setProgress(dataPercentage);
 
         dataPercentage = getIntakePercentage(intakesData[1], recommendedIntakes[1]*(periode.getInterval()+1));
         ringFats.getStylesheets().clear();
         ringFats.getStylesheets().add(obtainStylesheet(dataPercentage));
-        //ringFats.getStylesheets().forEach(str -> System.out.println(str));
         ringFats.setProgress(dataPercentage);
 
         dataPercentage = getIntakePercentage(intakesData[2], recommendedIntakes[2]*(periode.getInterval()+1));
@@ -315,96 +271,5 @@ public class ControllerStat extends Controller {
         ringCalcium.getStylesheets().clear();
         ringCalcium.getStylesheets().add(obtainStylesheet(dataPercentage));
         ringCalcium.setProgress(dataPercentage);
-        /*
-        energyData = calculatePieData(intakesData[0], recommendedIntakes[0]*(periode.getInterval()+1));
-        energyPieChart.getStylesheets().clear();
-        energyPieChart.getStylesheets().add(obtainStylesheet(intakesData[0], recommendedIntakes[0]*(periode.getInterval()+1)));
-        energyPieChart.setStartAngle(90);
-        energyPieChart.setData(FXCollections.observableArrayList(new PieChart.Data("", energyData[0]), new PieChart.Data("", energyData[1])));
-        energyPieChart.setLabelsVisible(false);
-
-        energyData = calculatePieData(intakesData[1], recommendedIntakes[1]*(periode.getInterval()+1));
-        fatsPieChart.getStylesheets().clear();
-        fatsPieChart.getStylesheets().add(obtainStylesheet(intakesData[1], recommendedIntakes[1]*(periode.getInterval()+1)));
-        fatsPieChart.setStartAngle(90);
-        fatsPieChart.setData(FXCollections.observableArrayList(new PieChart.Data("", energyData[0]), new PieChart.Data("", energyData[1])));
-        fatsPieChart.setLabelsVisible(false);
-
-        energyData = calculatePieData(intakesData[2], recommendedIntakes[2]*(periode.getInterval()+1));
-        saturatedPieChart.getStylesheets().clear();
-        saturatedPieChart.getStylesheets().add(obtainStylesheet(intakesData[2], recommendedIntakes[2]*(periode.getInterval()+1)));
-        saturatedPieChart.setStartAngle(90);
-        saturatedPieChart.setData(FXCollections.observableArrayList(new PieChart.Data("", energyData[0]), new PieChart.Data("", energyData[1])));
-        saturatedPieChart.setLabelsVisible(false);
-
-        energyData = calculatePieData(intakesData[3], recommendedIntakes[3]*(periode.getInterval()+1));
-        carbohydratesPieChart.getStylesheets().clear();
-        carbohydratesPieChart.getStylesheets().add(obtainStylesheet(intakesData[3], recommendedIntakes[3]*(periode.getInterval()+1)));
-        carbohydratesPieChart.setStartAngle(90);
-        carbohydratesPieChart.setData(FXCollections.observableArrayList(new PieChart.Data("", energyData[0]), new PieChart.Data("", energyData[1])));
-        carbohydratesPieChart.setLabelsVisible(false);
-
-        energyData = calculatePieData(intakesData[4], recommendedIntakes[4]*(periode.getInterval()+1));
-        sugarPieChart.getStylesheets().clear();
-        sugarPieChart.getStylesheets().add(obtainStylesheet(intakesData[4], recommendedIntakes[4]*(periode.getInterval()+1)));
-        sugarPieChart.setStartAngle(90);
-        sugarPieChart.setData(FXCollections.observableArrayList(new PieChart.Data("", energyData[0]), new PieChart.Data("", energyData[1])));
-        sugarPieChart.setLabelsVisible(false);
-
-        energyData = calculatePieData(intakesData[5], recommendedIntakes[5]*(periode.getInterval()+1));
-        proteinsPieChart.getStylesheets().clear();
-        proteinsPieChart.getStylesheets().add(obtainStylesheet(intakesData[5], recommendedIntakes[5]*(periode.getInterval()+1)));
-        proteinsPieChart.setStartAngle(90);
-        proteinsPieChart.setData(FXCollections.observableArrayList(new PieChart.Data("", energyData[0]), new PieChart.Data("", energyData[1])));
-        proteinsPieChart.setLabelsVisible(false);
-
-        energyData = calculatePieData(intakesData[6], recommendedIntakes[6]*(periode.getInterval()+1));
-        saltPieChart.getStylesheets().clear();
-        saltPieChart.getStylesheets().add(obtainStylesheet(intakesData[6], recommendedIntakes[6]*(periode.getInterval()+1)));
-        saltPieChart.setStartAngle(90);
-        saltPieChart.setData(FXCollections.observableArrayList(new PieChart.Data("", energyData[0]), new PieChart.Data("", energyData[1])));
-        saltPieChart.setLabelsVisible(false);
-
-        energyData = calculatePieData(intakesData[7], recommendedIntakes[7]*(periode.getInterval()+1));
-        fibresPieChart.getStylesheets().clear();
-        fibresPieChart.getStylesheets().add(obtainStylesheet(intakesData[7], recommendedIntakes[7]*(periode.getInterval()+1)));
-        fibresPieChart.setStartAngle(90);
-        fibresPieChart.setData(FXCollections.observableArrayList(new PieChart.Data("", energyData[0]), new PieChart.Data("", energyData[1])));
-        fibresPieChart.setLabelsVisible(false);
-
-        energyData = calculatePieData(intakesData[8], recommendedIntakes[8]*(periode.getInterval()+1));
-        calciumPieChart.getStylesheets().clear();
-        calciumPieChart.getStylesheets().add(obtainStylesheet(intakesData[8], recommendedIntakes[8]*(periode.getInterval()+1)));
-        calciumPieChart.setStartAngle(90);
-        calciumPieChart.setData(FXCollections.observableArrayList(new PieChart.Data("", energyData[0]), new PieChart.Data("", energyData[1])));
-        calciumPieChart.setLabelsVisible(false);
-
-        */
     }
-
-
-
-    /*private String obtainStylesheet(double intakesData, double recommendedAmount) {
-        double ratio = intakesData/recommendedAmount;
-        if(ratio <= 0.5) { return "resources/css/stylePieChartBelow50.css"; }
-        if(ratio <= 0.75) { return "resources/css/stylePieChartBelow75.css"; }
-        if(ratio <= 1) { return "resources/css/stylePieChartOkay.css"; }
-        if(ratio <= 1.25) { return "resources/css/stylePieChartAbove100.css"; }
-        return "resources/css/stylePieChartAbove125.css";
-    }*/
-
-    /*private double[] calculatePieData(double intakesData, double recommendedAmount) {
-        double[] result = new double[2];
-        if (recommendedAmount - intakesData >= 0){
-            result[0] = intakesData;
-            result[1] = recommendedAmount-intakesData;
-        }else if (2*recommendedAmount - intakesData >= 0){
-            result[0] = intakesData - recommendedAmount;
-            result[1] = recommendedAmount - result[0];
-        }else{
-            result[0] = intakesData;
-            result[1] = 0;
-        }
-        return result;
-    }*/
 }

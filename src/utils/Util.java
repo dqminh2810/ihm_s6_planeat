@@ -12,12 +12,6 @@ public class Util {
 
     public static String obtainStylesheet(int dataPercentage) {
         return "resources/css/pdfsam/ringprogress.css";
-//        String pathToDir = System.getProperty("user.dir");
-//        if (dataPercentage < 50) { return pathToDir+"/resources/css/pdfsam/ringprogressBelow50.css"; }
-//        if (dataPercentage < 75) { return pathToDir+"/resources/css/pdfsam/ringprogressBelow75.css"; }
-//        if (dataPercentage < 100) { return pathToDir+"/resources/css/pdfsam/ringprogressAbove75.css"; }
-//        if (dataPercentage < 125) { return pathToDir+"/resources/css/pdfsam/ringprogressAbove100.css"; }
-//        return "file:"+pathToDir.replace("\\","/")+"/resources/css/pdfsam/ringprogressAbove125.css";
     }
 
     public static int getIntakePercentage(double intakes, double recommended) {
