@@ -76,6 +76,10 @@ public class RingProgressIndicatorSkin implements Skin<RingProgressIndicator> {
                 newValOver100 = newVal.intValue()%100;
                 newValUnder100 = newVal.intValue() - newValOver100;
             }
+            if(newVal.intValue() >= 200){
+                newValOver100 = 100;
+                newValUnder100 = 100;
+            }
             if (newVal.intValue() >= 0) {
                 updateLabel(newVal.intValue());
                 updateInnerCircle(newVal.intValue());
@@ -123,9 +127,14 @@ public class RingProgressIndicatorSkin implements Skin<RingProgressIndicator> {
     private void initFillerArcs() {
         int newValOver100 = 0;
         int newValUnder100 = indicator.getProgress();
+
         if(indicator.getProgress() > 100){
             newValOver100 = indicator.getProgress()%100;
             newValUnder100 =indicator.getProgress() - newValOver100;
+        }
+        if(indicator.getProgress() >= 200){
+            newValOver100 = 100;
+            newValUnder100 = 100;
         }
 
         fillerArc.setManaged(false);

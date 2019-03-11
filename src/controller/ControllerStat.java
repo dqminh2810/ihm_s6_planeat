@@ -245,15 +245,15 @@ public class ControllerStat extends Controller {
 
         double intakesData[] = new double[9];
         for (Ingredient ingredient : ingredientList){
-            intakesData[0] += ingredient.getFood().getEnergy() * ingredient.getQuantity();
-            intakesData[1] += ingredient.getFood().getFat() * ingredient.getQuantity();
-            intakesData[2] += ingredient.getFood().getAcid() * ingredient.getQuantity();
-            intakesData[3] += ingredient.getFood().getCarbohydrate() * ingredient.getQuantity();
-            intakesData[4] += ingredient.getFood().getSugar() * ingredient.getQuantity();
-            intakesData[5] += ingredient.getFood().getProtein() * ingredient.getQuantity();
-            intakesData[6] += ingredient.getFood().getSalt() * ingredient.getQuantity();
-            intakesData[7] += ingredient.getFood().getFibres() * ingredient.getQuantity();
-            intakesData[8] += ingredient.getFood().getCalcium() * ingredient.getQuantity();
+            intakesData[0] += (ingredient.getFood().getEnergy()/100) * ingredient.getQuantity();
+            intakesData[1] += (ingredient.getFood().getFat()/100) * ingredient.getQuantity();
+            intakesData[2] += (ingredient.getFood().getAcid()/100) * ingredient.getQuantity();
+            intakesData[3] += (ingredient.getFood().getCarbohydrate()/100) * ingredient.getQuantity();
+            intakesData[4] += (ingredient.getFood().getSugar()/100) * ingredient.getQuantity();
+            intakesData[5] += (ingredient.getFood().getProtein()/100) * ingredient.getQuantity();
+            intakesData[6] += (ingredient.getFood().getSalt()/100) * ingredient.getQuantity();
+            intakesData[7] += (ingredient.getFood().getFibres()/100) * ingredient.getQuantity();
+            intakesData[8] += (ingredient.getFood().getCalcium()/100) * ingredient.getQuantity();
         }
 
         double[] recommendedIntakes = getReferenceIntakes();

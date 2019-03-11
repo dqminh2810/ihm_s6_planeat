@@ -221,10 +221,10 @@ public class ControllerAccueil extends Controller {
         List<Ingredient> ingredientList = getIngredientHistory(periode);
         intakesData = new double[4];
         for (Ingredient ingredient : ingredientList){
-            intakesData[0] += ingredient.getFood().getEnergy() * ingredient.getQuantity();
-            intakesData[2] += ingredient.getFood().getSugar() * ingredient.getQuantity();
-            intakesData[1] += ingredient.getFood().getProtein() * ingredient.getQuantity();
-            intakesData[3] += ingredient.getFood().getFibres() * ingredient.getQuantity();
+            intakesData[0] += (ingredient.getFood().getEnergy()/100) * ingredient.getQuantity();
+            intakesData[2] += (ingredient.getFood().getSugar()/100) * ingredient.getQuantity();
+            intakesData[1] += (ingredient.getFood().getProtein()/100) * ingredient.getQuantity();
+            intakesData[3] += (ingredient.getFood().getFibres()/100) * ingredient.getQuantity();
         }
     }
 
