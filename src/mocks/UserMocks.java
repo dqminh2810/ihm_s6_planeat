@@ -13,15 +13,15 @@ public abstract class UserMocks {
         users = new HashMap<>();
         User user;
 
-        user = new User("Todesco", "Gabin", LocalDate.now(),
-                "todesco@gmail.com", UserSex.FEMALE, 76, 185, StatusChoice.STUDENT, CookingFrequency.OFTEN, "test");
+        user = new User("Tremblay", "Jason", LocalDate.now(),
+                "jason@gmail.com", UserSex.FEMALE, 90, 185, StatusChoice.STUDENT, CookingFrequency.OFTEN, "test");
         user.addRepas(MealDatedMocks.meals);
-        users.put("todesco@gmail.com", user);
+        users.put("jason@gmail.com", user);
 
 
-        user = new User("Bauce", "Camille", LocalDate.now(),
-                "bauce@gmail.com", UserSex.FEMALE, 49, 160, StatusChoice.STUDENT, CookingFrequency.NEVER, "azerty");
-        users.put("bauce@gmail.com", user);
+        user = new User("Martin", "Janette", LocalDate.now(),
+                "martin@gmail.com", UserSex.FEMALE, 68, 170, StatusChoice.STUDENT, CookingFrequency.NEVER, "azerty");
+        users.put("martin@gmail.com", user);
 
         user = new User("Sasha", "Carniere", LocalDate.now(),
                 "sashouille@gmail.com", UserSex.MALE, 74, 185, StatusChoice.STUDENT, CookingFrequency.NEVER, "password");
