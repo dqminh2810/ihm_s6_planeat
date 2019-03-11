@@ -33,7 +33,7 @@ public abstract class Controller implements Initializable {
             loader.setController(controller);
             Parent root = loader.load(getClass().getResourceAsStream("../"+ controller.getActualView().getXmlFile()));
             root.getStylesheets().add(controller.getActualView().getCssBase());
-            if(User.actualUser.getThemeCss().equals(Theme.LIGHT)){
+            if(User.actualUser != null && User.actualUser.getThemeCss().equals(Theme.LIGHT)){
                 root.getStylesheets().add(controller.getActualView().getCssLight());
             }else{
                 root.getStylesheets().add(controller.getActualView().getCssDark());
